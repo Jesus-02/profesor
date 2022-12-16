@@ -1,5 +1,0 @@
-01.- cv_docente
-02.- date_laboral
-03.- redes_sociales
-04.- date_cursos
-05.- correo_ingreso
