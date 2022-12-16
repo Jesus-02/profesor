@@ -1,4 +1,8 @@
+# Archivos para ignorar
 *.jpg
 *.png
 *.sql
 *.txt
+*.vpp
+# Todo lo que esta dentro de la carpeta
+/modelos_y_analicis/bd
