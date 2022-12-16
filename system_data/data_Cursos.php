@@ -148,12 +148,10 @@ class detalle_curso
   // cursos y local, Desactivados, Eliminar mes
   public function cursos_ListarDEliminarM()
   {
-    $m = date('m') + 1;
+    $m = date('m');
     $i = 0;
     $arrayCurso = [];
-    $sql = "SELECT cu.id_cursos, cu.titulo, cu.fecha_fin, it.instituto, it.av_local";
-    $sql = $sql . " FROM cursos cu join institutos it ON it.id_local=cu.id_local";
-    $sql = $sql . "  where cu.disponivilidad='F' and cu.fecha_fin <'2022-{$m}-01'";
+    $sql = "SELECT cu.id_cursos, cu.titulo, cu.fecha_fin, it.instituto, it.av_local FROM cursos cu JOIN institutos it ON it.id_local=cu.id_local  WHERE cu.disponivilidad='F' AND cu.fecha_fin < '2022-$m-01'";
     $datos = $this->con->consultaRetorno($sql);
     while ($row = mysqli_fetch_array($datos)) {
       $arrayCurso[$i][1] = $row['titulo'];
@@ -310,6 +308,6 @@ if ($_POST['function'] == "articleCB") {
 }
 
 // $listar = new detalle_curso();
-// $variante = $listar->bAlumnosxCurso(5);
+// $variante = $listar->cursos_ListarDEliminarM();
 // print_r($variante);
 // echo count($variante);
