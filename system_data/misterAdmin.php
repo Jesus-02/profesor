@@ -235,7 +235,52 @@ class userAdmin
         $this->data = $this->con->consultaRetorno($sql);
         $row = $this->data->fetch_array(MYSQLI_ASSOC);
         return json_encode($row);
-    }    
+    }
+    /* alumnos */
+    public function searchUsers()
+    {
+        $order=[];
+        $response=[];$x=0;
+        $option=""; $opnCurso="";
+        $order[1] = isset($_POST['opciones']) ? $_POST['opciones'] : "";
+        $order[2] = isset($_POST['bUserDni']) ? $_POST['bUserDni'] : "";
+        $order[3] = isset($_POST['bUserName']) ? $_POST['bUserName'] : "";
+        $order[4] = isset($_POST['bUserSurname']) ? $_POST['bUserSurname'] : "";
+        $order[5] = isset($_POST['bUserMail']) ? $_POST['bUserMail'] : "";
+        $order[6] = isset($_POST['bUserCellp']) ? $_POST['bUserCellp'] : "";
+        $order[7] = isset($_POST['bUserCursos']) ? $_POST['bUserCursos'] : "";
+        if($order[1]=="a1"){
+            $option=" where alu.dni={$order[2]}";
+        } elseif($order[1]=="a2"){
+            $option=" where alu.nombres='{$order[3]}' and ap_paterno='{$order[4]}'";
+        } elseif($order[1]=="a4"){
+            $option=" where alu.correo='{$order[5]}'";
+        } elseif($order[1]=="a5"){
+            $option=" where alu.celular={$order[6]}";
+        }
+        if($order[1]=="a6" && $order[7]!=0){
+            $opnCurso=" where cual.id_curso={$order[7]}";
+        }elseif ($order[1]!="a6" && $order[7]!=0) {
+            $opnCurso=" and cual.id_curso={$order[7]}";
+        }
+        $sql="select alu.dni, alu.nombres, alu.ap_paterno, alu.ap_materno, alu.correo, alu.celular, cu.titulo from alumnos alu inner join cursos_alumnos cual on alu.id_alumnos=cual.id_alumno join cursos cu on cu.id_cursos=cual.id_curso".$option.$opnCurso;
+        $this->data=$this->con->consultaRetorno($sql);
+        if ($this->data->num_rows > 0) {
+            while ($row = $this->data->fetch_array(MYSQLI_NUM)) {
+                $response['row'][$x][1]=$row[0];
+                $response['row'][$x][2]=$row[1];
+                $response['row'][$x][3]=$row[2];
+                $response['row'][$x][4]=$row[3];
+                $response['row'][$x][7]=$row[4];
+                $response['row'][$x][8]=$row[5];
+                $response['row'][$x][11]=$row[6];
+                $x++;
+            }
+        } else{
+            $response['row']=false;
+        }      
+        return json_encode($response);
+    }
     /* Activar nuevo curso */
     public function newCourse()
     {
@@ -592,6 +637,10 @@ if ($_POST['function'] == "editMister") {
 } else if ($_POST['function'] == "laboralB") {
     $classMister = new userAdmin();
     echo $classMister->buscarLaboral($_POST['laboralBuscar']);
+} else if ($_POST['function'] == "searchStudent") {
+    /* alumnos */    
+    $classMister = new userAdmin();
+    echo $classMister->searchUsers();
 } else if ($_POST['function'] == "courseNew") {
     /* activar nuevo curso */    
     $classMister = new userAdmin();

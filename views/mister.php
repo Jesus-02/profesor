@@ -773,19 +773,18 @@ include_once "../system_data/dataView.php";
                         <h2 class="mb-3">Todos los alumnos:</h2>
                         <form method="POST" class="input-group bg-dark pt-3 px-3 rounded-top" name="form_buscar1">
                             <select class="form-select" id="table_alumnos-b1Opciones" name="buscar_alumnos1" aria-label="Default select example">
-                                <option value="a0">Ninguno</option>
                                 <option value="a1">DNI</option>
-                                <option value="a2">NOMBRES, APELLIDOS</option>
+                                <option value="a2">NOMBRES, APELLIDO</option>
                                 <option value="a4">CORREO</option>
                                 <option value="a5">CELULAR</option>
                                 <option value="a6" selected>CURSOS</option>
                             </select>
-                            <input type="text" name="a1" placeholder="00000000" title="DNI" aria-label="DNI" class="form-control">
+                            <input type="text" name="a1" placeholder="00000000" aria-label="DNI" class="form-control">
                             <input type="text" name="a2" placeholder="NOMBRES" aria-label="NOMBRES" class="form-control">
-                            <input type="text" name="a3" placeholder="APELLIDOS" aria-label="APELLIDOS" class="form-control">
-                            <input type="text" name="a4" placeholder="ejemplo@gamil.com" title="CORREO" aria-label="CORREO" class="form-control">
-                            <input type="text" name="a5" placeholder="000000000" title="CELULAR" aria-label="CELULAR" class="form-control">
-                            <select name="a6" id="" aria-label="Curso" class="form-select" title="CURSOS">
+                            <input type="text" name="a3" placeholder="APELLIDO PATERNO" aria-label="APELLIDO" class="form-control">
+                            <input type="text" name="a4" placeholder="ejemplo@gamil.com" aria-label="CORREO" class="form-control">
+                            <input type="text" name="a5" placeholder="000000000" aria-label="CELULAR" class="form-control">
+                            <select name="a6" aria-label="Curso" class="form-select">
                                 <option value="0">todos</option>
                                 <optgroup label="Cursos actuales">
                                     <?php for ($i = 0; $i < count($cursoLocal); $i++) { ?>
@@ -795,7 +794,7 @@ include_once "../system_data/dataView.php";
                                     <?php } ?>
                                 </optgroup>
                             </select>
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="JavaScript:searchUsers()">Buscar</button>
                         </form>
                         <div class="table-responsive">
                             <table class="table table-dark table-hover">

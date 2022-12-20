@@ -66,7 +66,7 @@ class portadas
               <h1 class="display-1">¿Como te esta llendo en el curso?</h1>
             </div>
             <div class="col-12">
-              <p class="lead fs-2">Aquí puedras revisar tus notas y promedios durante el
+              <p class="lead fs-2">Aquí podras revisar tus notas y promedios durante el
                 curso con mi persona, registrate y podras vivir de la experiencia.<br>
                 Buena suerte.</p>
             </div>

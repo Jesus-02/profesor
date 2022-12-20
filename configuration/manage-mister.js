@@ -337,7 +337,6 @@ function updateSchool(params, action) {
     });
   }
 }
-
 /* formulario Activar nuevos cursos */
 document.querySelector("select#num_Temas").addEventListener("click", ()=>{
   let valor = document.getElementById('num_Temas').value;
@@ -838,6 +837,34 @@ function updateReview(params, action){
     }/* Validacion */
   }
 }
+/* Buscar Usuarios */
+function searchUsers() {
+  let dataUser=[], x=0, filas="";
+  let opn = document.form_buscar1.elements[0].value;
+  let cursos = document.form_buscar1.elements[6].value;
+  document.querySelectorAll("#alumnos form[name=form_buscar1] .form-control").forEach(element=>{
+    dataUser[x]=element.value;
+    x++;
+  });
+  $.ajax({
+    type: 'POST',
+    url:'../system_data/misterAdmin.php',
+    data: `opciones=${opn}&bUserDni=${dataUser[0]}&bUserName=${dataUser[1]}&bUserSurname=${dataUser[2]}&bUserMail=${dataUser[3]}&bUserCellp=${dataUser[4]}&bUserCursos=${cursos}&function=searchStudent`,
+    dataType: 'JSON',
+    success: response=>{
+      if (response['row'].length) {
+        for (let x = 0; x < response['row'].length; x++) {
+          order=`<th scope="row">${response['row'][x][2]}</th><td>${response['row'][x][3]} ${response['row'][x][4]}</td><td>${response['row'][x][7]}</td><td>${response['row'][x][8]}</td><td>${response['row'][x][11]}</td><td><button type="button" class="btn btn-warning" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="${response['row'][x][1]}"><i class="bi bi-person-badge"></i></button></td>`;
+          filas=filas+"<tr>"+order+"</tr>";   
+        }
+        $('#alumnos div[name=table_alumnos] table tbody').html(filas);        
+      }else{
+        alert("Alumno no encontrado.");
+      }
+    }
+  });
+}
+
 /**
  * Cursos disponibles 
  */
@@ -864,8 +891,10 @@ function activeCourse(code, x) {
   }
 }
 
-/* CV */
-/* botones formulario datos personales */
+/**
+ * CV
+ * botones formulario datos personales
+*/
 $('#datos_personales button').click(function() {
   let nameM = $(this).attr('name');
   if (nameM=="mEditar") {
@@ -930,36 +959,36 @@ $('#datos_personales button').click(function() {
 });
 /* redes sociales mister */
 $("#modalSocial button[name=guardar]").on('click',()=>{
-    let order=[], regist;
-    order[1]=document.getElementById('social_Function').value;
-    order[2]=document.getElementById('social_Name').value;
-    order[3]=document.getElementById('social_Correo').value;
-    order[4]=document.getElementById('social_Link').value;
-    order[5]=document.getElementById('social_edit').value;
-    regist= `social=${order[2]}&mail=${order[3]}&url=${order[4]}&codigo=${order[5]}&function=${order[1]}`;
-    $.ajax({
-        type: 'POST',
-        url: '../system_data/misterAdmin.php',
-        data: regist,
-        dataType: 'JSON',
-        success: response=>{
-            if (response['test'][3]=="validar") {
-                let x=0;
-                document.querySelectorAll('#modalSocial .modal-body .form-control').forEach(element=>{
-                    if (response['test'][x]==1) {
-                       element.classList.add('is-invalid'); 
-                    } else {
-                        element.classList.remove('is-invalid');
-                    }
-                    x++;
-                });                
-                console.log(response['test']);
-            }else{
-                $('#modalSocial .modal-body .form-control').removeClass('is-invalid');
-                window.location.reload();
-            }
-        }
-    });
+  let order=[], regist;
+  order[1]=document.getElementById('social_Function').value;
+  order[2]=document.getElementById('social_Name').value;
+  order[3]=document.getElementById('social_Correo').value;
+  order[4]=document.getElementById('social_Link').value;
+  order[5]=document.getElementById('social_edit').value;
+  regist= `social=${order[2]}&mail=${order[3]}&url=${order[4]}&codigo=${order[5]}&function=${order[1]}`;
+  $.ajax({
+      type: 'POST',
+      url: '../system_data/misterAdmin.php',
+      data: regist,
+      dataType: 'JSON',
+      success: response=>{
+          if (response['test'][3]=="validar") {
+              let x=0;
+              document.querySelectorAll('#modalSocial .modal-body .form-control').forEach(element=>{
+                  if (response['test'][x]==1) {
+                     element.classList.add('is-invalid'); 
+                  } else {
+                      element.classList.remove('is-invalid');
+                  }
+                  x++;
+              });                
+              console.log(response['test']);
+          }else{
+              $('#modalSocial .modal-body .form-control').removeClass('is-invalid');
+              window.location.reload();
+          }
+      }
+  });
 });
 /* Cursos mister */
 $("#modalCursos button[name=guardar]").on('click',()=>{
@@ -974,27 +1003,27 @@ $("#modalCursos button[name=guardar]").on('click',()=>{
   order[8]=document.getElementById('cursos_edit').value;
   regist= `curso=${order[2]}&descripcion=${order[3]}&nPorcentaje=${order[4]}&lugar=${order[5]}&fInicio=${order[6]}&fTermino=${order[7]}&codigo=${order[8]}&function=${order[1]}`;
   $.ajax({
-      type: 'POST',
-      url: '../system_data/misterAdmin.php',
-      data: regist,
-      dataType: 'JSON',
-      success: response=>{
-          if (response['test'][6]=="validar") {
-              let x=0;
-              document.querySelectorAll('#modalCursos .modal-body .form-control').forEach(element=>{
-                  if (response['test'][x]==1) {
-                     element.classList.add('is-invalid'); 
-                  } else {
-                      element.classList.remove('is-invalid');
-                  }
-                  x++;
-              });                
-              console.log(response['test']);
-          }else{
-              $('#modalCursos .modal-body .form-control').removeClass('is-invalid');
-              window.location.reload();
-          }
+    type: 'POST',
+    url: '../system_data/misterAdmin.php',
+    data: regist,
+    dataType: 'JSON',
+    success: response=>{
+      if (response['test'][6]=="validar") {
+          let x=0;
+          document.querySelectorAll('#modalCursos .modal-body .form-control').forEach(element=>{
+              if (response['test'][x]==1) {
+                 element.classList.add('is-invalid'); 
+              } else {
+                  element.classList.remove('is-invalid');
+              }
+              x++;
+          });                
+          console.log(response['test']);
+      }else{
+          $('#modalCursos .modal-body .form-control').removeClass('is-invalid');
+          window.location.reload();
       }
+    }
   });
 });
 /* laboral mister */
