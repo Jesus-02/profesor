@@ -113,16 +113,16 @@ class footers
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-1">
-          <a href="#"><i class="bi bi-twitter display-6" alt="Cargando..."title="twitter"></i></a>
+          <a href="https://twitter.com/JesusDa96994626" target="_blank"><i class="bi bi-twitter display-6" alt="Cargando..."title="twitter"></i></a>
         </div>
         <div class="col-1">
-          <a href="#"><i class="bi bi-facebook display-6" alt="Cargando..."title="facebook"></i></a>
+          <a href="https://facebook.com/jesusbonnele.zubiletediaz.5" target="_blank"><i class="bi bi-facebook display-6" alt="Cargando..."title="facebook"></i></a>
         </div>
         <div class="col-1">
-          <a href="#"><i class="bi bi-instagram display-6" alt="Cargando..."title="instagram"></i></a>
+          <a href="https://www.instagram.com/jesuszd_01" target="_blank"><i class="bi bi-instagram display-6" alt="Cargando..."title="instagram"></i></a>
         </div>
         <div class="col-1">
-          <a href="#"><i class="bi bi-envelope display-6" alt="Cargando..."title="correo"></i></a>
+          <a href="mailto:dj99jesusbonnelee@gmail.com" target="_blank"><i class="bi bi-envelope display-6" alt="Cargando..."title="correo"></i></a>
         </div>
       </div>
     </div>

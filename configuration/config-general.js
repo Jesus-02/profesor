@@ -1,14 +1,21 @@
 /* Init session */
 $('form[name=sesion] button').on('click',function() {
   let userInit = document.getElementById('userInit').value;
+  let locacion =  window.location.href;
+  let urlViews = "";
+  if (locacion.includes('views')) {
+    urlViews="../system_data/general.php";
+  } else {
+    urlViews="system_data/general.php";    
+  }
+
   $.ajax({
     type: 'POST',
-    url: 'system_data/general.php',
+    url: urlViews,
     data: 'session='+userInit+'&function='+'open',
     dataType: 'JSON',
     success: function (response) {
       if (response[1]==false) {
-        console.log(response);      
       }else if(response[1]==true && response[4]==true) {
         alert('encontro el usuario');
         window.location.href = "/profesor1/views/register.php";        

@@ -17,7 +17,7 @@ include_once "../system_data/dataView.php";
 <body>
   <?php
   $portadas= new portadas();
-  echo $portadas->portada2();
+  echo $portadas->portada3();
   ?>
   <!-- cuerpo -->
   <section class="container" style="margin-top:50px">
@@ -132,7 +132,7 @@ include_once "../system_data/dataView.php";
                               <i class="bi bi-chevron-right position-start"></i>
                             </div>
                             <div class="col-11">
-                              <h3><?php echo substr($dlaboral[$i][3], 0, 4); ?> - <?php echo substr($dlaboral[$i][4], 0, 4); ?></h3>
+                              <h3><?php echo substr($dlaboral[$i][3], 0, 7); ?> / <?php echo substr($dlaboral[$i][4], 0, 7); ?></h3>
                               <h4 class="text-uppercase"><?php echo $dlaboral[$i][1]; ?></h4>
                               <p>
                               <?php echo $dlaboral[$i][2]; ?>
@@ -158,7 +158,7 @@ include_once "../system_data/dataView.php";
                             <i class="bi bi-chevron-right position-start"></i>
                           </div>
                           <div class="col-11">
-                            <h3><?php echo substr($dcursos[$i][5], 0, 4); ?> - <?php echo substr($dcursos[$i][6], 0, 4); ?></h3>
+                            <h3><?php echo substr($dcursos[$i][5], 0, 7); ?> / <?php echo substr($dcursos[$i][6], 0, 7); ?></h3>
                             <h4 class="text-uppercase"><?php echo $dcursos[$i][1]; ?></h4>
                             <p>
                               <?php echo $dcursos[$i][4]; ?>

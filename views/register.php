@@ -13,10 +13,10 @@
   <?php
   include_once("../header.php");
   $portadas= new portadas();
-  echo $portadas->portada2();
+  echo $portadas->portada3();
   include_once("../system_data/dataView.php");
   $class1= '';
-  $class2= '';  
+  $class2= '';
   if (isset($_SESSION['user'])!="") {
     $class1= 'visually-hidden';
     $class2= '';
