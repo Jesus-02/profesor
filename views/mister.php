@@ -374,7 +374,7 @@ include_once "../system_data/dataView.php";
                                         for ($x = 0; $x < count($social); $x++) {
                                         ?>
                                             <tr>
-                                                <th scope="row">
+                                                <th scope="row"  class="text-end">
                                                     <?php
                                                     echo $x + 1;
                                                     ?>
@@ -389,7 +389,7 @@ include_once "../system_data/dataView.php";
                                                     print_r($social[$x][1]);
                                                     ?>
                                                 </td>
-                                                <td>
+                                                <td  class="text-md-center">
                                                     <div class="btn-group" role="group" aria-label="Opciones">
                                                         <button type="button" name="edit" class="btn btn-success" onclick="javaScript:editData(<?php echo $social[$x][3] ?>,'modalSocial')" data-bs-toggle="modal" data-bs-target="#modalSocial">
                                                             <i class="bi bi-pencil-square"></i>
@@ -525,7 +525,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                 </article>
-                <!-- cursos Activos -->
+                <!-- cursos Activados -->
                 <article id="cursosActivos" class="container bg-secondary text-dark border border-warning rounded py-5">
                     <h1>Cursos disponibles:</h1>
                     <p class="fs-4">Ver los cursos que estoy dictando y los que ya han finalizado.</p>
@@ -548,9 +548,9 @@ include_once "../system_data/dataView.php";
                                         <tr>
                                             <th scope="row"><?php echo $cursoV[$i][1] ?></th>
                                             <td><?php echo $cursoV[$i][8] ?></td>
-                                            <td><?php echo $cursoV[$i][6] . " - " . $cursoV[$i][7] ?></td>
-                                            <td class="text-center"><?php echo $cursoV[$i][5] ?></td>
-                                            <td><button type="button" class="btn btn-primary" onclick="javaScript:activeCourse(<?php echo $cursoV[$i][10];?>, false)">Desactivar</button></td>
+                                            <td class="text-end"><?php echo $cursoV[$i][6] . " - " . $cursoV[$i][7] ?></td>
+                                            <td><?php echo ($cursoV[$i][5]=="V") ? "Educando" : "Culminado" ; ?></td>
+                                            <td  class="text-md-center"><button type="button" class="btn btn-primary" title="Desactivar curso" onclick="javaScript:activeCourse(<?php echo $cursoV[$i][10];?>, false)"><i class="bi bi-journal-minus"></i></button></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -574,9 +574,9 @@ include_once "../system_data/dataView.php";
                                         <tr>
                                             <th scope="row"><?php echo $cursoF[$i][1] ?></th>
                                             <td><?php echo $cursoF[$i][5] ?></td>
-                                            <td><?php echo $cursoF[$i][3] . " - " . $cursoF[$i][4] ?></td>
-                                            <td class="text-center"><?php echo $cursoF[$i][2] ?></td>
-                                            <td><button type="button" class="btn btn-success" onclick="javaScript:activeCourse(<?php echo $cursoF[$i][6];?>, true)">activar</button></td>
+                                            <td class="text-end"><?php echo $cursoF[$i][3] . " - " . $cursoF[$i][4] ?></td>
+                                            <td><?php echo ($cursoF[$i][2]=="V") ? "Educando" : "Culminado" ; ?></td>
+                                            <td  class="text-md-center"><button type="button" class="btn btn-success" title="Activar curso" onclick="javaScript:activeCourse(<?php echo $cursoF[$i][6];?>, true)"><i class="bi bi-journal-check"></i></button></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -606,9 +606,9 @@ include_once "../system_data/dataView.php";
                                     <tr>
                                         <th scope="row"><?php echo $cursoFE[$i][1] ?></th>
                                         <td><?php echo $cursoFE[$i][3] ?></td>
-                                        <td><?php echo $cursoFE[$i][5] ?></td>
-                                        <td><?php echo $cursoFE[$i][2] ?></td>
-                                        <td>
+                                        <td class="text-end"><?php echo $cursoFE[$i][5] ?></td>
+                                        <td class="text-end"><?php echo $cursoFE[$i][2] ?></td>
+                                        <td class="text-md-center">
                                             <div class="btn-group" role="group" aria-label="Opciones">
                                                 <button type="button" name="empty" class="btn btn-primary" title="Desocupar alumnos">
                                                     <i class="bi bi-people"></i>
@@ -650,12 +650,12 @@ include_once "../system_data/dataView.php";
                                             <tbody class="text-start">
                                                 <?php for ($y = 0; $y < count($alumnos); $y++) { ?>
                                                     <tr>
-                                                        <td><?php echo $y + 1; ?></td>
+                                                        <td class="text-end"><?php echo $y + 1; ?></td>
                                                         <th scope="row"><?php echo $alumnos[$y][3] . " " . $alumnos[$y][4]; ?></th>
                                                         <td><?php echo $alumnos[$y][1]; ?></td>
-                                                        <td><?php echo $alumnos[$y][6]; ?></td>
+                                                        <td class="text-end"><?php echo $alumnos[$y][6]; ?></td>
                                                         <td><?php echo $alumnos[$y][5]; ?></td>
-                                                        <td><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                                                        <td class="text-md-center"><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
                                                     </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -814,9 +814,9 @@ include_once "../system_data/dataView.php";
                                             <th scope="row"><?php echo $alumnosD[$i][7]; ?></th>
                                             <td><?php echo $alumnosD[$i][2] . " " . $alumnosD[$i][3]; ?></td>
                                             <td><?php echo $alumnosD[$i][4]; ?></td>
-                                            <td><?php echo $alumnosD[$i][5]; ?></td>
+                                            <td class="text-end"><?php echo $alumnosD[$i][5]; ?></td>
                                             <td><?php echo $alumnosD[$i][6]; ?></td>
-                                            <td>
+                                            <td class="text-md-center">
                                                 <button type="button" class="btn btn-warning" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<?php echo $alumnosD[$i][1]; ?>">
                                                     <i class="bi bi-person-badge"></i>
                                                 </button>
@@ -941,9 +941,9 @@ include_once "../system_data/dataView.php";
                                                 <th scope="row"><?php echo $cursosEvaluaciones[$i][6] . " - " . $cursosEvaluaciones[$i][10] ?></th>
                                                 <td><?php echo $cursosEvaluaciones[$i][7] ?></td>
                                                 <td><?php echo $cursosEvaluaciones[$i][3] ?></td>
-                                                <td><?php echo $cursosEvaluaciones[$i][2] ?></td>
+                                                <td class="text-end"><?php echo $cursosEvaluaciones[$i][2] ?></td>
                                                 <td><?php echo $cursosEvaluaciones[$i][5] == "v" ? "Pendiente" : "Completo"; ?></td>
-                                                <td><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                                                <td class="text-md-center"><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
                                             </tr>
                                         <?php }  ?>
                                     </tbody>
@@ -1043,7 +1043,7 @@ include_once "../system_data/dataView.php";
                                                 <th scope="row"><?php echo $cursosEvaluaciones[$i][6] . " - " . $cursosEvaluaciones[$i][10] ?></th>
                                                 <td><?php echo $cursosEvaluaciones[$i][7] ?></td>
                                                 <td><?php echo $cursosEvaluaciones[$i][3] ?></td>
-                                                <td><?php echo $cursosEvaluaciones[$i][2] ?></td>
+                                                <td class="text-end"><?php echo $cursosEvaluaciones[$i][2] ?></td>
                                                 <td><?php echo $cursosEvaluaciones[$i][5] == "v" ? "Pendiente" : "Completo"; ?></td>
                                             </tr>
                                         <?php }  ?>
@@ -1053,7 +1053,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </div>
                 </article>
-                    <!-- cursos -->
+                <!-- cursos -->
                 <article id="cursos" class="container">
                     <h1>Cursos:</h1>
                     <p class="fs-4">Registrar nuevo curso para poner como opcion para las activaciones.</p>
@@ -1110,10 +1110,10 @@ include_once "../system_data/dataView.php";
                                 <tbody>
                                     <?php for ($x = 0; $x < count($lcurso); $x++) {  ?>
                                         <tr>
-                                            <td><?php echo $x + 1; ?></td>
+                                            <td class="text-end"><?php echo $x + 1; ?></td>
                                             <th scope="row"> <?php echo $lcurso[$x][1]; ?></th>
                                             <td> <?php echo $lcurso[$x][2]; ?> </td>
-                                            <td><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                                            <td class="text-md-center"><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -1302,9 +1302,9 @@ include_once "../system_data/dataView.php";
                                         <tr>
                                             <th scope="row"><?php echo $cursoLocal[$i][1]; ?></th>
                                             <td><?php echo $cursoLocal[$i][8]; ?></td>
-                                            <td><?php echo $cursoLocal[$i][3]; ?></td>
-                                            <td><?php echo $cursoLocal[$i][6]; ?></td>
-                                            <td><?php echo $cursoLocal[$i][7]; ?></td>
+                                            <td class="text-end"><?php echo $cursoLocal[$i][3]; ?></td>
+                                            <td class="text-end"><?php echo $cursoLocal[$i][6]; ?></td>
+                                            <td class="text-end"><?php echo $cursoLocal[$i][7]; ?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -1369,10 +1369,10 @@ include_once "../system_data/dataView.php";
                                 <tbody>
                                     <?php for ($x = 0; $x < count($instituto); $x++) { ?>
                                         <tr>
-                                            <td><?php echo $x + 1; ?></td>
+                                            <td class="text-end"><?php echo $x + 1; ?></td>
                                             <th scope="row"><?php echo $instituto[$x][1]; ?></th>
                                             <td><?php echo $instituto[$x][2]; ?></td>
-                                            <td><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                                            <td class="text-md-center"><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
