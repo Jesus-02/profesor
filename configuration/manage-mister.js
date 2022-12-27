@@ -1,6 +1,6 @@
 /* Indispensable para popers */
-const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
 /* botones para formularios datos */
 $(link+' form div[name=opn-vertical] button').on('click',function() {
   let nameA = $(this).attr('name');
@@ -858,6 +858,9 @@ function searchUsers() {
           filas=filas+"<tr>"+order+"</tr>";   
         }
         $('#alumnos div[name=table_alumnos] table tbody').html(filas);        
+        /* Indispensable para popers */
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
       }else{
         alert("Alumno no encontrado.");
       }

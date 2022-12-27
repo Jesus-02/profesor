@@ -276,16 +276,16 @@ include_once "../system_data/dataView.php";
                         <i class="bi bi-person-check">&nbsp;</i> Curriculum vitae
                     </a>
                     <a href="#permisos" class="list-group-item list-group-item-action"><i class="bi bi-toggles">&nbsp;</i> Activar permisos</a>
-                    <a href="#cursosActivos" class="list-group-item list-group-item-action"><i class="bi bi-clipboard-pulse">&nbsp;</i> Cursos disponibles</a>
+                    <a href="#cursosActivos" class="list-group-item list-group-item-action"><i class="bi bi-clipboard-check">&nbsp;</i> Cursos disponibles</a>
                     <a href="#eliminar_alumnos" class="list-group-item list-group-item-action"><i class="bi bi-clipboard2-minus">&nbsp;</i> Eliminaciones</a>
                     <a href="#" id="mn-registrar" title="Registrar" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                        <b><i class="bi bi-clipboard-plus">&nbsp;</i> Registrar</b>
+                        <b><i class="bi bi-plus-square-dotted">&nbsp;</i> Registrar</b>
                         <span class="badge"><i class="bi bi-caret-down-fill"></i> <i class="bi bi-caret-up-fill"></i></span>
                     </a>
                     <div name="mn_registrar_list" class="list-goup-flush">
                         <a href="#alumnos" class="list-group-item list-group-item-action list-group-item-primary" title="Alumnos"><i class="bi bi-person-plus">&nbsp;</i> Alumnos</a>
-                        <a href="#cursos" class="list-group-item list-group-item-action list-group-item-primary" title="Cursos"><i class="bi bi-journal-plus">&nbsp;</i> Cursos</a>
-                        <a href="#activar-curso" class="list-group-item list-group-item-action list-group-item-primary" title="Activar nuevo curso"><i class="bi bi-journal-plus">&nbsp;</i> Activar curso</a>
+                        <a href="#cursos" class="list-group-item list-group-item-action list-group-item-primary" title="Cursos"><i class="bi bi-journal-plus">&nbsp;</i> Temas</a>
+                        <a href="#activar-curso" class="list-group-item list-group-item-action list-group-item-primary" title="Activar nuevo curso"><i class="bi bi-clipboard-plus">&nbsp;</i> Cursos</a>
                         <a href="#institutos" class="list-group-item list-group-item-action list-group-item-primary" title="Institutos"><i class="bi bi-building">&nbsp;</i> Institutos</a>
                         <a href="#evaluaciones" class="list-group-item list-group-item-action list-group-item-primary" title="Evaluaciones"><i class="bi bi-book">&nbsp;</i> Evaluaciones</a>
                         <a href="#notas" class="list-group-item list-group-item-action list-group-item-primary" title="Notas"><i class="bi bi-book">&nbsp;</i> Notas</a>
@@ -1022,8 +1022,8 @@ include_once "../system_data/dataView.php";
                             <button type="button" class="btn btn-info" name="listar">Listar</button>
                         </div>
                     </form>
-                    <!-- ALUMNOS -->
-                    <div name="datos_personales" class="card bg-secondary text-dark border border-warning mb-3">
+                    <!-- Notas pendientes -->
+                    <div name="notas_pendientes" class="card bg-secondary text-dark border border-warning mb-3">
                         <div class="card-body">
                             <h2 class="mb-3">Todas las evaluaciones pendientes:</h2>
                             <div class="table-responsive">
@@ -1039,17 +1039,64 @@ include_once "../system_data/dataView.php";
                                     </thead>
                                     <tbody>
                                         <?php for ($i = 0; $i < count($cursosEvaluaciones); $i++) { ?>
-                                            <tr>
-                                                <th scope="row"><?php echo $cursosEvaluaciones[$i][6] . " - " . $cursosEvaluaciones[$i][10] ?></th>
-                                                <td><?php echo $cursosEvaluaciones[$i][7] ?></td>
-                                                <td><?php echo $cursosEvaluaciones[$i][3] ?></td>
-                                                <td class="text-end"><?php echo $cursosEvaluaciones[$i][2] ?></td>
-                                                <td><?php echo $cursosEvaluaciones[$i][5] == "v" ? "Pendiente" : "Completo"; ?></td>
-                                            </tr>
+                                            <?php if ($cursosEvaluaciones[$i][5] == "v") {?>
+                                                <tr>
+                                                    <th scope="row"><?php echo $cursosEvaluaciones[$i][6] . " - " . $cursosEvaluaciones[$i][10] ?></th>
+                                                    <td><?php echo $cursosEvaluaciones[$i][7] ?></td>
+                                                    <td><?php echo $cursosEvaluaciones[$i][3] ?></td>
+                                                    <td class="text-end"><?php echo $cursosEvaluaciones[$i][2] ?></td>
+                                                    <td><?php echo $cursosEvaluaciones[$i][5] == "v" ? "Pendiente" : "Completo"; ?></td>
+                                                </tr>
+                                            <?php } ?>
                                         <?php }  ?>
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+                    <!-- Notas alumnos -->
+                    <div name="notas_pendientes" class="card bg-secondary text-dark border border-warning mb-3">
+                        <div class="card-body">
+                            <h2 class="mb-3">Todas las notas:</h2>
+                            <div class="accordion" id="accordionNotas">                                
+                                <?php for ($i = 0; $i < count($cursosEvaluaciones); $i++) { ?>
+                                    <?php if ($cursosEvaluaciones[$i][5] != "v") {?>
+                                        <div class="accordion-item">
+                                          <h2 class="accordion-header" id="notasCHeader<?php echo $i ?>">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#notasCurso<?php echo $i ?>" aria-expanded="false" aria-controls="notasCurso<?php echo $i ?>">
+                                                <?php echo $cursosEvaluaciones[$i][6] . " / " . $cursosEvaluaciones[$i][10] . " / " . $cursosEvaluaciones[$i][2] ?>
+                                            </button>
+                                          </h2>
+                                          <div id="notasCurso<?php echo $i ?>" class="accordion-collapse collapse" aria-labelledby="notasCHeader<?php echo $i ?>" data-bs-parent="#accordionNotas">
+                                            <div class="accordion-body">
+                                                <div class="table-responsive">
+                                                    <?php
+                                                        // Evaluaciones
+                                                        $notasEvaluacion = $cursos->bNotasXTest($cursosEvaluaciones[$i][1]);
+                                                    ?>
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Alumnos</th>
+                                                                <th scope="col">Notas</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php for ($y=0; $y < count($notasEvaluacion['row']); $y++) { ?>
+                                                                <tr>
+                                                                    <th scope="row"><?php echo $notasEvaluacion['row'][$y][3] ." ". $notasEvaluacion['row'][$y][4] .", ".  $notasEvaluacion['row'][$y][2]; ?></th>
+                                                                    <td><?php echo $notasEvaluacion['row'][$y][5]; ?></td>
+                                                                </tr>
+                                                            <?php } ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    <?php }  ?>
+                                <?php }  ?>
+                          </div>                               
                         </div>
                     </div>
                 </article>

@@ -294,6 +294,23 @@ class detalle_curso
     }
     return $arrayBusqueda;
   }
+  // Buscar notas de evaluaciones
+  public function bNotasXTest(int $var)
+  {
+    $y=0;
+    $arrayBusqueda=[];
+    $sql="SELECT evl.id_nota, evl.nota_numero, alm.nombres, alm.ap_paterno, alm.ap_materno FROM evaluaciones_alumnos evl INNER JOIN alumnos alm ON alm.id_alumnos=evl.id_alumno WHERE  evl.id_nota={$var}";
+    $this->data=$this->con->consultaRetorno($sql);
+    while ($row = $this->data->fetch_array(MYSQLI_NUM)) {
+      $arrayBusqueda['row'][$y][1]=$row[0];
+      $arrayBusqueda['row'][$y][2]=$row[2];
+      $arrayBusqueda['row'][$y][3]=$row[3];
+      $arrayBusqueda['row'][$y][4]=$row[4];
+      $arrayBusqueda['row'][$y][5]=$row[1];
+      $y++;
+    }
+    return $arrayBusqueda;
+  }
 }
 error_reporting(0);
 if ($_POST['function'] == "articleCB") {
