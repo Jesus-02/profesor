@@ -148,10 +148,10 @@ class detalle_curso
   // cursos y local, Desactivados, Eliminar mes
   public function cursos_ListarDEliminarM()
   {
-    $m = date('m');
+    $m = date('m'); $year = date('Y');
     $i = 0;
     $arrayCurso = [];
-    $sql = "SELECT cu.id_cursos, cu.titulo, cu.fecha_fin, it.instituto, it.av_local FROM cursos cu JOIN institutos it ON it.id_local=cu.id_local  WHERE cu.disponivilidad='F' AND cu.fecha_fin < '2022-$m-01'";
+    $sql = "SELECT cu.id_cursos, cu.titulo, cu.fecha_fin, it.instituto, it.av_local FROM cursos cu JOIN institutos it ON it.id_local=cu.id_local  WHERE cu.disponivilidad='F' AND cu.fecha_fin < '$year-$m-01'";
     $datos = $this->con->consultaRetorno($sql);
     while ($row = mysqli_fetch_array($datos)) {
       $arrayCurso[$i][1] = $row['titulo'];
@@ -161,7 +161,8 @@ class detalle_curso
       $sql="select count(dni) as 'alumnos' from alumnos as alm join cursos_alumnos as clm on alm.id_alumnos=clm.id_alumno where clm.id_curso='{$row['id_cursos']}'";        
       $this->data = $this->con->consultaRetorno($sql);
       $countData = $this->data->fetch_array(MYSQLI_NUM);
-      $arrayCurso[$i][5] = $countData[0]; 
+      $arrayCurso[$i][5] = $countData[0];
+      $arrayCurso[$i][6] = $row['id_cursos']; 
       $i++;
     }
     return $arrayCurso;
@@ -191,6 +192,26 @@ class detalle_curso
     }
     return $arrayCurso;
   }
+    // detalle Alumnos
+    public function alumnosError()
+    {
+      $i = 0;
+      $arrayCurso = [];
+      $sql = "select al.id_alumnos, al.nombres, al.ap_paterno, al.ap_materno, al.correo, cl.id_curso from alumnos al left join cursos_alumnos cl on cl.id_alumno=al.id_alumnos";
+      $this->data = $this->con->consultaRetorno($sql);
+      while ($row = $this->data->fetch_array(MYSQLI_ASSOC)) {
+        if ($row['id_curso']=="" || $row['id_curso']==null) {
+          $arrayCurso[$i][1] = $row['id_alumnos'];
+          $arrayCurso[$i][2] = $row['ap_paterno'];
+          $arrayCurso[$i][3] = $row['ap_materno'];
+          $arrayCurso[$i][4] = $row['correo'];
+          $arrayCurso[$i][5] = $row['nombres'];
+          $i++;
+        }
+      }
+      return $arrayCurso;
+    }
+  
   // detalle Alumnos
   public function alumnos()
   {
@@ -251,7 +272,7 @@ class detalle_curso
     $i = 0;
     $arrayCurso = [];
     $sql = "select evn.id_nota, evn.fecha, evn.titulo as 'evnTitulo', evn.pendiente, evn.descripcion, cu.id_cursos, cu.titulo  as 'cuTitulo', cu.id_local, rg.id_rango, rg.tipo_evaluacion";
-    $sql = $sql." from evaluaciones as evn join cursos as cu on evn.id_curso=cu.id_cursos join rangos as rg on rg.id_rango=evn.id_rango";
+    $sql = $sql." from evaluaciones as evn join cursos as cu on evn.id_curso=cu.id_cursos join rangos as rg on rg.id_rango=evn.id_rango order by evn.fecha asc";
     $datos = $this->con->consultaRetorno($sql);
     while ($row = mysqli_fetch_array($datos)) {
       $arrayCurso[$i][1] = $row['id_nota'];

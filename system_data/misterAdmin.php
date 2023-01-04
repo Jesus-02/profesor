@@ -574,7 +574,7 @@ class userAdmin
         }
         return json_encode($response);
     }    
-    /* borrar datos */
+    /* borrar datos del docente */
     public function deleteDataMt()
     {
         $code = isset($_POST['socialCode']) ? $_POST['socialCode'] : "";
@@ -588,6 +588,119 @@ class userAdmin
             $sql = "DELETE FROM date_laboral WHERE id_experiencia={$code} LIMIT 1";
         }
         $this->con->consultaSimple($sql);
+    }
+    /* borrar datos con el administrador */
+    public function deleteDataAdm(int $code , string $table)
+    {
+        $sql = "";
+        $response = [];
+        if($table == "deleteTest"){
+            $sql = "select count(nota_numero) from evaluaciones_alumnos where id_nota={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $y=$this->data->fetch_array(MYSQLI_NUM);
+            if ($y[0]==0) {
+                $sql = "DELETE FROM evaluaciones WHERE id_nota={$code} LIMIT 1";
+                $this->con->consultaSimple($sql);              
+                $response['valid'] = false;
+            }else {
+                $response['valid'] = true;
+            }
+        }else if($table == "deleteSchool"){
+            $sql = "select count(titulo) from cursos where id_local={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $y=$this->data->fetch_array(MYSQLI_NUM);
+            if ($y[0]==0) {
+                $sql = "DELETE FROM institutos WHERE id_local={$code} LIMIT 1";
+                $this->con->consultaSimple($sql);              
+                $response['valid'] = false;
+            }else {
+                $response['valid'] = true;
+            }
+        }else if($table == "deleteTeme"){
+            $sql = "SELECT count(id_curso) FROM detalles_curso_cursos WHERE id_decurso={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $y=$this->data->fetch_array(MYSQLI_NUM);
+            if ($y[0]==0) {
+                $sql = "DELETE FROM detalle_curso WHERE id_decurso={$code} LIMIT 1";
+                $this->con->consultaSimple($sql);              
+                $response['valid'] = false;
+            }else {
+                $response['valid'] = true;
+            }
+        }else if($table == "deleteCurse"){
+            /* students */
+            $sql = "SELECT count(id_alumno) FROM cursos_alumnos WHERE id_curso={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $students=$this->data->fetch_array(MYSQLI_NUM);
+            /* temes */
+            $sql = "SELECT count(id_decurso) FROM detalles_curso_cursos WHERE id_curso={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $temes=$this->data->fetch_array(MYSQLI_NUM);
+            /* test */
+            $sql = "select count(titulo) from evaluaciones where id_curso={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $test=$this->data->fetch_array(MYSQLI_NUM);
+            if ($students[0]==0 && $temes[0]==0 && $test[0]==0) {
+                $sql = "DELETE FROM cursos WHERE id_cursos={$code} LIMIT 1";
+                $this->con->consultaSimple($sql);             
+                $response['valid'] = false;
+            }else {
+                $response['valid'] = true;
+                $response['section'][1] = $students[0];
+                $response['section'][2] = $temes[0];
+                $response['section'][3] = $test[0];
+            }
+        }
+        return json_encode($response);
+    }
+    /* Vaciar secciones con el administrador */
+    public function emptyDataAdm(int $code, string $table)
+    {
+        $sql = "";
+        $response = [];
+        if($table == "emptyTest"){
+            $sql = "select count(nota_numero) from evaluaciones_alumnos where id_nota={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $y=$this->data->fetch_array(MYSQLI_NUM);
+            if ($y[0]==0) {
+                $response['valid'] = false;
+            }else {
+                $sql = "DELETE FROM evaluaciones_alumnos WHERE id_nota={$code}";
+                $this->con->consultaSimple($sql);
+                $sql = "UPDATE evaluaciones SET pendiente='v' WHERE id_nota={$code}";
+                $this->con->consultaSimple($sql);
+                $response['valid'] = true;
+            }
+        }else if($table == "emptyTemes"){
+            $sql = "SELECT count(id_curso) FROM detalles_curso_cursos WHERE id_curso={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $y=$this->data->fetch_array(MYSQLI_NUM);
+            if ($y[0]==0) {
+                $response['valid'] = false;
+            }else {
+                $sql = "DELETE FROM detalles_curso_cursos WHERE id_curso={$code}";
+                $this->con->consultaSimple($sql);              
+                $response['valid'] = true;
+            }
+        }else if($table == "emptyCurse"){
+            /* students */
+            $sql = "SELECT count(id_alumno) FROM cursos_alumnos WHERE id_curso={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $students=$this->data->fetch_array(MYSQLI_NUM);
+            /* test */
+            $sql = "select count(titulo) from evaluaciones where id_curso={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $test=$this->data->fetch_array(MYSQLI_NUM);
+            if ($students[0]==0 || $test[0]>0) {
+                $response['valid'] = false;
+            }else {              
+                /* students curse */
+                $sql = "DELETE FROM cursos_alumnos WHERE id_curso={$code}";
+                $this->con->consultaSimple($sql);
+                $response['valid'] = true;
+            }
+        }
+        return json_encode($response);
     }
     /* buscar session user */
     private function sessionUser()
@@ -680,4 +793,10 @@ if ($_POST['function'] == "editMister") {
 } else if ($_POST['function'] == "misterDataDt") {
     $classMister = new userAdmin();
     echo $classMister->deleteDataMt();
+} else if ($_POST['function'] == "adminDelete") {
+    $classMister = new userAdmin();
+    echo $classMister->deleteDataAdm($_POST['valCode'], $_POST['table']);
+} else if ($_POST['function'] == "adminEmpty") {
+    $classMister = new userAdmin();
+    echo $classMister->emptyDataAdm($_POST['valCode'], $_POST['table']);
 }

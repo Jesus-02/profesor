@@ -75,6 +75,7 @@ include_once "../system_data/dataView.php";
             </div>
         </div>
     </div>
+
     <!-- Modal Cursos realizados -->
     <div class="modal fade" id="modalCursos" tabindex="-1" aria-labelledby="datos del profesor" aria-hidden="true">
         <div class="modal-dialog">
@@ -153,6 +154,7 @@ include_once "../system_data/dataView.php";
             </div>
         </div>
     </div>
+
     <!-- Modal Datos laborales -->
     <div class="modal fade" id="modalLaboral" tabindex="-1" aria-labelledby="datos del profesor" aria-hidden="true">
         <div class="modal-dialog">
@@ -214,6 +216,7 @@ include_once "../system_data/dataView.php";
             </div>
         </div>
     </div>
+
     <!-- Modal password -->
     <div class="modal fade" id="modalPassword" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
@@ -261,7 +264,8 @@ include_once "../system_data/dataView.php";
             </div>
             </div>
         </div>
-    </div>    
+    </div>
+
     <!-- cuerpo -->
     <div class="container-fluid my-3">
         <div class="row">
@@ -508,6 +512,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </div>
                 </article>
+
                 <!-- permisos -->
                 <article id="permisos" class="container bg-secondary text-dark border border-warning rounded py-5">
                     <h1>Activaciones:</h1>
@@ -525,6 +530,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                 </article>
+
                 <!-- cursos Activados -->
                 <article id="cursosActivos" class="container bg-secondary text-dark border border-warning rounded py-5">
                     <h1>Cursos disponibles:</h1>
@@ -584,88 +590,121 @@ include_once "../system_data/dataView.php";
                         </div>
                     </div>    
                 </article>
+
                 <!-- eliminar_alumnos_cursos -->
-                <article id="eliminar_alumnos" class="container bg-secondary text-dark border border-warning rounded py-5">
-                    <h1>Eliminar cursos y alumnos:</h1>
-                    <p class="fs-4">Eliminar grupos de alumnos que han finalizado el curso.</p>
-                    <hr class="border-light opacity-75">
-                    <h3>Cursos finalizados:</h3>
-                    <div class="table-responsive">
-                        <table class="table col-12 table-dark table-hover">
-                            <thead class="table-dark">
-                                <tr class="text-start fs-4">
-                                    <th scope="col"><?php echo count($cursoFE); ?> Cursos</th>
-                                    <th scope="col">Institutos</th>
-                                    <th scope="col">Alumnos</th>
-                                    <th scope="col">Finalizados</th>
-                                    <th scope="col">Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-start fs-5">
-                                <?php for ($i = 0; $i < count($cursoFE); $i++) { ?>
-                                    <tr>
-                                        <th scope="row"><?php echo $cursoFE[$i][1] ?></th>
-                                        <td><?php echo $cursoFE[$i][3] ?></td>
-                                        <td class="text-end"><?php echo $cursoFE[$i][5] ?></td>
-                                        <td class="text-end"><?php echo $cursoFE[$i][2] ?></td>
-                                        <td class="text-md-center">
-                                            <div class="btn-group" role="group" aria-label="Opciones">
-                                                <button type="button" name="empty" class="btn btn-primary" title="Desocupar alumnos">
-                                                    <i class="bi bi-people"></i>
-                                                </button>
-                                                <button type="button" name="delete" class="btn btn-danger" title="Eliminar curso">
-                                                    <i class="bi bi-trash3"></i>
-                                                </button>
-                                            </div>
+                <article id="eliminar_alumnos" class="container">
+                    <div class="bg-secondary text-dark border border-warning rounded p-3 my-3">
+                        <h1>Eliminar cursos y alumnos:</h1>
+                        <p class="fs-4">Eliminar grupos de alumnos que han finalizado el curso.</p>
+                        <hr class="border-light opacity-75">
+                        <h3>Cursos finalizados:</h3>
+                        <div class="table-responsive">
+                            <table class="table col-12 table-dark table-hover">
+                                <thead class="table-dark">
+                                    <tr class="text-start fs-4">
+                                        <th scope="col"><?php echo count($cursoFE); ?> Cursos</th>
+                                        <th scope="col">Institutos</th>
+                                        <th scope="col">Alumnos</th>
+                                        <th scope="col">Finalizados</th>
+                                        <th scope="col">Acción</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- ALUMNOS CURSADOS -->
-                    <hr class="border-light opacity-75">
-                    <h3>Eliminar alumnos:</h3>
-                    <div class="accordion" id="cursosAlumnos">
-                        <?php for ($i = 0; $i < count($cursoV); $i++) { ?>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="curso<?php echo $i; ?>">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#alumnos<?php echo $i; ?>" aria-expanded="false" aria-controls="alumnos<?php echo $i; ?>">
-                                        <?php echo $cursoV[$i][1] . " / " . $cursoV[$i][8] . " / " . $cursoV[$i][9]; ?>
-                                    </button>
-                                </h2>
-                                <div id="alumnos<?php echo $i; ?>" class="accordion-collapse collapse" aria-labelledby="curso<?php echo $i; ?>" data-bs-parent="#cursosAlumnos">
-                                    <div class="accordion-body table-responsive">
-                                        <?php $alumnos = $cursos->bAlumnosxCurso($cursoV[$i][10]); ?>
-                                        <table class="table table-striped">
-                                            <thead class="table-dark">
-                                                <tr class="text-start">
-                                                    <th scope="col"># <?php echo count($alumnos); ?></th>
-                                                    <th scope="col">Apellidos y nombres</th>
-                                                    <th scope="col">Genero</th>
-                                                    <th scope="col">Celular</th>
-                                                    <th scope="col">Correo</th>
-                                                    <th scope="col">Eliminar</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="text-start">
-                                                <?php for ($y = 0; $y < count($alumnos); $y++) { ?>
-                                                    <tr>
-                                                        <td class="text-end"><?php echo $y + 1; ?></td>
-                                                        <th scope="row"><?php echo $alumnos[$y][3] . " " . $alumnos[$y][4]; ?></th>
-                                                        <td><?php echo $alumnos[$y][1]; ?></td>
-                                                        <td class="text-end"><?php echo $alumnos[$y][6]; ?></td>
-                                                        <td><?php echo $alumnos[$y][5]; ?></td>
-                                                        <td class="text-md-center"><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                                </thead>
+                                <tbody class="text-start fs-5">
+                                    <?php for ($i = 0; $i < count($cursoFE); $i++) { ?>
+                                        <tr>
+                                            <th scope="row"><?php echo $cursoFE[$i][1] ?></th>
+                                            <td><?php echo $cursoFE[$i][3] ?></td>
+                                            <td class="text-end"><?php echo $cursoFE[$i][5] ?></td>
+                                            <td class="text-end"><?php echo $cursoFE[$i][2] ?></td>
+                                            <td class="text-md-center">
+                                                <div class="btn-group" role="group" aria-label="Opciones">
+                                                    <button type="button" name="emptyTemes" class="btn btn-primary" title="Eliminar temas" onclick="javaScript:emptyAdmData(<?php echo $cursoFE[$i][6]; ?>, 'emptyTemes')">
+                                                        <i class="bi bi-journal-minus"></i>
+                                                    </button>
+                                                    <button type="button" name="emptyStudents" class="btn btn-primary" title="Desocupar alumnos" onclick="javaScript:emptyAdmData(<?php echo $cursoFE[$i][6]; ?>, 'emptyCurse')">
+                                                        <i class="bi bi-people"></i>
+                                                    </button>
+                                                    <button type="button" name="delete" class="btn btn-danger" title="Eliminar curso" onclick="javaScript:deleteAdmData(<?php echo $cursoFE[$i][6]; ?>, 'deleteCurse')">
+                                                        <i class="bi bi-trash3"></i>
+                                                    </button>
+                                                </div>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- ALUMNOS CURSADOS -->
+                        <hr class="border-light opacity-75">
+                        <h3>Eliminar alumnos:</h3>
+                        <div class="accordion" id="cursosAlumnos">
+                            <?php for ($i = 0; $i < count($cursoV); $i++) { ?>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="curso<?php echo $i; ?>">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#alumnos<?php echo $i; ?>" aria-expanded="false" aria-controls="alumnos<?php echo $i; ?>">
+                                            <?php echo $cursoV[$i][1] . " / " . $cursoV[$i][8] . " / " . $cursoV[$i][9]; ?>
+                                        </button>
+                                    </h2>
+                                    <div id="alumnos<?php echo $i; ?>" class="accordion-collapse collapse" aria-labelledby="curso<?php echo $i; ?>" data-bs-parent="#cursosAlumnos">
+                                        <div class="accordion-body table-responsive">
+                                            <?php $alumnos = $cursos->bAlumnosxCurso($cursoV[$i][10]); ?>
+                                            <table class="table table-striped">
+                                                <thead class="table-dark">
+                                                    <tr class="text-start">
+                                                        <th scope="col"># <?php echo count($alumnos); ?></th>
+                                                        <th scope="col">Apellidos y nombres</th>
+                                                        <th scope="col">Genero</th>
+                                                        <th scope="col">Celular</th>
+                                                        <th scope="col">Correo</th>
+                                                        <th scope="col">Eliminar</th>
                                                     </tr>
-                                                <?php } ?>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody class="text-start">
+                                                    <?php for ($y = 0; $y < count($alumnos); $y++) { ?>
+                                                        <tr>
+                                                            <td class="text-end"><?php echo $y + 1; ?></td>
+                                                            <th scope="row"><?php echo $alumnos[$y][3] . " " . $alumnos[$y][4]; ?></th>
+                                                            <td><?php echo $alumnos[$y][1]; ?></td>
+                                                            <td class="text-end"><?php echo $alumnos[$y][6]; ?></td>
+                                                            <td><?php echo $alumnos[$y][5]; ?></td>
+                                                            <td class="text-md-center"><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                                                        </tr>
+                                                    <?php } ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php } ?>
+                            <?php } ?>
+                        </div>                        
+                    </div>
+                    <!-- Cursos -->
+                    <div name="table" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
+                        <h2 class="mb-3">Alumnos inactivos:</h2>
+                        <div class="table-responsive">
+                            <table class="table table-dark table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"><?php echo "#" . count($alumnosError); ?></th>
+                                        <th scope="col">Nombres</th>
+                                        <th scope="col">Correo</th>
+                                        <th scope="col">Accion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php for ($x = 0; $x < count($alumnosError); $x++) {  ?>
+                                        <tr>
+                                            <td class="text-end"><?php echo $x + 1; ?></td>
+                                            <th scope="row"> <?php echo $alumnosError[$x][5]." ".$alumnosError[$x][2]." ".$alumnosError[$x][3]; ?></th>
+                                            <td> <?php echo $alumnosError[$x][4]; ?> </td>
+                                            <td class="text-md-center"><button type="button" class="btn btn-danger" title="Borrar Tema" onclick="javaScript:deleteAdmData(<?php echo $alumnosError[$x][1]; ?>, 'deleteStudent')"><i class="bi bi-trash3"></i></button></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </article>
+
                 <!-- alumnos -->
                 <article id="alumnos" class="container">
                     <h1>Alumnos:</h1>
@@ -769,7 +808,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                     <!-- ALUMNOS -->
-                    <div name="table_alumnos" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
+                    <div name="table" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
                         <h2 class="mb-3">Todos los alumnos:</h2>
                         <form method="POST" class="input-group bg-dark pt-3 px-3 rounded-top" name="form_buscar1">
                             <select class="form-select" id="table_alumnos-b1Opciones" name="buscar_alumnos1" aria-label="Default select example">
@@ -828,6 +867,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </div>
                 </article>
+
                 <!-- evaluaciones -->
                 <article id="evaluaciones" class="container">
                     <h1>Evaluaciones:</h1>
@@ -920,7 +960,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                     <!-- Tareas pendientes -->
-                    <div name="pendientes" class="card bg-secondary text-dark border border-warning mb-3">
+                    <div name="table" class="card bg-secondary text-dark border border-warning mb-3">
                         <div class="card-body">
                             <h2 class="mb-3">Todas las evaluaciones pendientes:</h2>
                             <div class="table-responsive">
@@ -943,7 +983,16 @@ include_once "../system_data/dataView.php";
                                                 <td><?php echo $cursosEvaluaciones[$i][3] ?></td>
                                                 <td class="text-end"><?php echo $cursosEvaluaciones[$i][2] ?></td>
                                                 <td><?php echo $cursosEvaluaciones[$i][5] == "v" ? "Pendiente" : "Completo"; ?></td>
-                                                <td class="text-md-center"><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                                                <td class="text-md-center">
+                                                    <div class="btn-group" role="group" aria-label="Opciones">
+                                                        <button type="button" name="empty" class="btn btn-primary" title="Vaciar notas" onclick="javaScript:emptyAdmData(<?php echo $cursosEvaluaciones[$i][1] ?>, 'emptyTest')">
+                                                            <i class="bi bi-people"></i>
+                                                        </button>
+                                                        <button type="button" name="delete" class="btn btn-danger" title="Eliminar evaluación" onclick="javaScript:deleteAdmData(<?php echo $cursosEvaluaciones[$i][1] ?>, 'deleteTest')">
+                                                            <i class="bi bi-trash3"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         <?php }  ?>
                                     </tbody>
@@ -952,6 +1001,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </div>
                 </article>
+
                 <!-- notas -->
                 <article id="notas" class="container">
                     <h1>Notas:</h1>
@@ -1023,7 +1073,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                     <!-- Notas pendientes -->
-                    <div name="notas_pendientes" class="card bg-secondary text-dark border border-warning mb-3">
+                    <div name="table" class="card bg-secondary text-dark border border-warning mb-3">
                         <div class="card-body">
                             <h2 class="mb-3">Todas las evaluaciones pendientes:</h2>
                             <div class="table-responsive">
@@ -1055,7 +1105,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </div>
                     <!-- Notas alumnos -->
-                    <div name="notas_pendientes" class="card bg-secondary text-dark border border-warning mb-3">
+                    <div name="notas_evaluaciones" class="card bg-secondary text-dark border border-warning mb-3">
                         <div class="card-body">
                             <h2 class="mb-3">Todas las notas:</h2>
                             <div class="accordion" id="accordionNotas">                                
@@ -1100,14 +1150,15 @@ include_once "../system_data/dataView.php";
                         </div>
                     </div>
                 </article>
-                <!-- cursos -->
+
+                <!-- curso Temas -->
                 <article id="cursos" class="container">
-                    <h1>Cursos:</h1>
-                    <p class="fs-4">Registrar nuevo curso para poner como opcion para las activaciones.</p>
+                    <h1>Temas:</h1>
+                    <p class="fs-4">Registrar nuevo tema para poner como opcion para las activaciones.</p>
                     <hr class="border-light opacity-75">
                     <!-- Nuevo curso -->
                     <form name="laborales" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Nuevo curso:</h2>
+                        <h2 class="mb-3">Nuevo tema:</h2>
                         <div class="mb-3 row visually-hidden">
                             <label for="laboral_code" class="col-sm-2 col-form-label">code</label>
                             <div class="col-sm-10">
@@ -1116,18 +1167,18 @@ include_once "../system_data/dataView.php";
                         </div>
                         <div class="mb-3">
                             <div class="input-group is-validation">
-                                <span class="input-group-text">Nuevo curso:</span>
-                                <input type="text" id="nuevo_cs_name1" placeholder="Curso" aria-label="Nuevo curso" class="form-control" disabled required>
-                                <div class="invalid-feedback">Nuevo curso invalido
-                                    - Es nesesario escribir el curso sin números ni links.</div>
+                                <span class="input-group-text">Nuevo tema:</span>
+                                <input type="text" id="nuevo_cs_name1" placeholder="tema" aria-label="Nuevo tema" class="form-control" disabled required>
+                                <div class="invalid-feedback">Nuevo tema invalido
+                                    - Es nesesario escribir el tema sin números ni links.</div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <div class="input-group is-validation">
                                 <span class="input-group-text">Detalles:</span>
-                                <textarea class="form-control" placeholder="Detalle del curso" id="nuevo_cs_detalle1" aria-label="Detalles" disabled required style="max-height: 100px;"></textarea>
+                                <textarea class="form-control" placeholder="Detalle del tema" id="nuevo_cs_detalle1" aria-label="Detalles" disabled required style="max-height: 100px;"></textarea>
                                 <div class="invalid-feedback">Detalles invalido -
-                                    Es nesesario escribir el detalle del curso sin links.</div>
+                                    Es nesesario escribir el detalle del tema sin links.</div>
                             </div>
                         </div>
                         <div name="opn-vertical" class="col-12 btn-group" role="group" aria-label="opciones">
@@ -1142,14 +1193,14 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                     <!-- Cursos -->
-                    <div name="table_Cursos" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Todos los cursos:</h2>
+                    <div name="table" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
+                        <h2 class="mb-3">Todos los Temas:</h2>
                         <div class="table-responsive">
                             <table class="table table-dark table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col"><?php echo "#" . count($lcurso); ?></th>
-                                        <th scope="col">Cusos</th>
+                                        <th scope="col">Temas</th>
                                         <th scope="col">Detalles</th>
                                         <th scope="col">Accion</th>
                                     </tr>
@@ -1160,7 +1211,7 @@ include_once "../system_data/dataView.php";
                                             <td class="text-end"><?php echo $x + 1; ?></td>
                                             <th scope="row"> <?php echo $lcurso[$x][1]; ?></th>
                                             <td> <?php echo $lcurso[$x][2]; ?> </td>
-                                            <td class="text-md-center"><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                                            <td class="text-md-center"><button type="button" class="btn btn-danger" title="Borrar Tema" onclick="javaScript:deleteAdmData(<?php echo $lcurso[$x][3]; ?>, 'deleteTeme')"><i class="bi bi-trash3"></i></button></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -1168,6 +1219,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </div>
                 </article>
+
                 <!-- activar cursos -->
                 <article id="activar-curso" class="container">
                     <h1>Cursos:</h1>
@@ -1359,6 +1411,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </div>
                 </article>
+
                 <!-- institutos -->
                 <article id="institutos" class="container">
                     <h1>Institutos:</h1>
@@ -1401,7 +1454,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                     <!-- Institutos -->
-                    <div name="table_Cursos" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
+                    <div name="table" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
                         <h2 class="mb-3">Todos los institutos:</h2>
                         <div class="table-responsive">
                             <table class="table table-dark table-hover">
@@ -1419,7 +1472,7 @@ include_once "../system_data/dataView.php";
                                             <td class="text-end"><?php echo $x + 1; ?></td>
                                             <th scope="row"><?php echo $instituto[$x][1]; ?></th>
                                             <td><?php echo $instituto[$x][2]; ?></td>
-                                            <td class="text-md-center"><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                                            <td class="text-md-center"><button type="button" class="btn btn-danger" title="Borrar instituto" onclick="javaScript:deleteAdmData(<?php echo $instituto[$x][3]; ?>, 'deleteSchool')"><i class="bi bi-trash3"></i></button></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -1427,6 +1480,7 @@ include_once "../system_data/dataView.php";
                         </div>
                     </div>
                 </article>
+
                 <!-- colores_portadas -->
                 <article id="colores_portadas" class="container bg-secondary text-dark border border-warning rounded py-5">
                     <h1>Colores de portadas:</h1>
@@ -1439,6 +1493,7 @@ include_once "../system_data/dataView.php";
                         non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
                 </article>
+
                 <!-- edición_letras -->
                 <article id="edicion_letras" class="container bg-secondary text-dark border border-warning rounded py-5">
                     <h1>Edición de letras:</h1>
@@ -1451,6 +1506,7 @@ include_once "../system_data/dataView.php";
                         non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
                 </article>
+
                 <!-- imagenes_portadas -->
                 <article id="imagenes_portadas" class="container bg-secondary text-dark border border-warning rounded py-5">
                     <h1>Imagenes de portadas:</h1>
@@ -1463,6 +1519,7 @@ include_once "../system_data/dataView.php";
                         non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
                 </article>
+
                 <!-- general -->
                 <article id="general" class="container bg-secondary text-dark border border-warning rounded py-5">
                     <h1>General:</h1>
@@ -1488,7 +1545,6 @@ include_once "../system_data/dataView.php";
     <!-- CDN bootstrap -->
     <script type="text/javascript" src="../configuration/bootstrap.bundle.min.js" languaje="javascript" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
     <!-- CDN jQuery -->
     <script type="text/javascript" src="../configuration/jquery-3.5.1.min.js" languaje="javascript" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../configuration/config-mister.js" languaje="javascript"></script>

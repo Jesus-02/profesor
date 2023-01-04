@@ -1,6 +1,7 @@
 /* Indispensable para popers */
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+
 /* botones para formularios datos */
 $(link+' form div[name=opn-vertical] button').on('click',function() {
   let nameA = $(this).attr('name');
@@ -126,11 +127,12 @@ $(link+' form div[name=opn-vertical] button').on('click',function() {
     }
 
   }else if (nameA=="listar") {
-    $(link+" div div.table-responsive").load(" "+link+" div div.table-responsive");    
+    $(link+" div[name=table] div.table-responsive").load(" "+link+" div[name=table] div.table-responsive");    
   }else {
     alert("Error en el boton: "+nameA);
   }
 });
+
 /**
  * formularios
  * formulario alumno
@@ -241,6 +243,7 @@ function updateStudents(params, action) {
     });
   }
 }
+
 /* formulario Institutos */
 function updateSchool(params, action) {
   if (action=="search") {
@@ -337,6 +340,7 @@ function updateSchool(params, action) {
     });
   }
 }
+
 /* formulario Activar nuevos cursos */
 document.querySelector("select#num_Temas").addEventListener("click", ()=>{
   let valor = document.getElementById('num_Temas').value;
@@ -355,6 +359,7 @@ document.querySelector("select#num_Temas").addEventListener("click", ()=>{
     x++;
   });  
 });
+
 function updateActivateCourse(params, action) {
   if (action=="search") {
     $.ajax({
@@ -484,6 +489,7 @@ function updateActivateCourse(params, action) {
     });
   }
 }
+
 /* formulario Temas de los cursos */
 function updateArticleC(params, action) {
   if (action=="search") {
@@ -580,6 +586,7 @@ function updateArticleC(params, action) {
     });
   }
 }
+
 /* formulario evaluaciones de los cursos */
 function updateTest(params, action) {
   if (action=="search") {
@@ -653,7 +660,7 @@ function updateTest(params, action) {
       data: regist,
       dataType: 'JSON',
       success: response=>{
-        if(response['test'][2]=="validar"){
+        if(response['test'][6]=="validar"){
           let x=0;
           document.querySelectorAll(link+" form .form-control").forEach(element => {
             if (response['test'][x]==1) {
@@ -681,6 +688,7 @@ function updateTest(params, action) {
     });
   }
 }
+
 /* formulario notas de los cursos */
 function updateReview(params, action){
   if (action=="search") {
@@ -837,6 +845,7 @@ function updateReview(params, action){
     }/* Validacion */
   }
 }
+
 /* Buscar Usuarios */
 function searchUsers() {
   let dataUser=[], x=0, filas="";
@@ -857,7 +866,7 @@ function searchUsers() {
           order=`<th scope="row">${response['row'][x][2]}</th><td>${response['row'][x][3]} ${response['row'][x][4]}</td><td>${response['row'][x][7]}</td><td>${response['row'][x][8]}</td><td>${response['row'][x][11]}</td><td><button type="button" class="btn btn-warning" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="${response['row'][x][1]}"><i class="bi bi-person-badge"></i></button></td>`;
           filas=filas+"<tr>"+order+"</tr>";   
         }
-        $('#alumnos div[name=table_alumnos] table tbody').html(filas);        
+        $('#alumnos div[name=table] table tbody').html(filas);        
         /* Indispensable para popers */
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
@@ -960,6 +969,7 @@ $('#datos_personales button').click(function() {
     }
   }
 });
+
 /* redes sociales mister */
 $("#modalSocial button[name=guardar]").on('click',()=>{
   let order=[], regist;
@@ -993,6 +1003,7 @@ $("#modalSocial button[name=guardar]").on('click',()=>{
       }
   });
 });
+
 /* Cursos mister */
 $("#modalCursos button[name=guardar]").on('click',()=>{
   let order=[], regist;
@@ -1029,6 +1040,7 @@ $("#modalCursos button[name=guardar]").on('click',()=>{
     }
   });
 });
+
 /* laboral mister */
 $("#modalLaboral button[name=guardar]").on('click',()=>{
   let order=[], regist;
@@ -1062,6 +1074,7 @@ $("#modalLaboral button[name=guardar]").on('click',()=>{
       }
   });
 });
+
 /* contraseña mister */
 document.querySelector("#modalPassword button[name=save]").addEventListener("click",()=>{
   let items=[]
@@ -1092,8 +1105,9 @@ document.querySelector("#modalPassword button[name=save]").addEventListener("cli
       }
     }
   })
-})
-/* Borrar data cv docente */
+});
+
+/* Borrar datos */
 function deleteData(params,modal) {
   let mensaje=window.confirm("Estas seguro de querer borrar esta fila");
   if (mensaje) {
@@ -1112,6 +1126,68 @@ function deleteData(params,modal) {
     }).done(()=>{
       window.location.reload();
      });      
+  }
+}
+/* Borrar datos evaluaciones, institutos, cursos, temas, etc */
+function deleteAdmData(params, table) { 
+  let mensaje=window.confirm("¿Estas seguro de querer borrar estos datos?");
+  if (mensaje) {
+    let error = "";
+    if (table=="deleteTest") {
+      error = "Invalido: La evaluación está resuelta, debes vaciar las notas de los alumnos calificados.";
+    }else if (table=="deleteSchool") {
+      error = "Invalido: El instituto entá afiliado a un curso, cambia el local del curso afiliado.";
+    }else if (table=="deleteTeme") {
+      error = "Invalido: Tema incluido en algun curso, desconecta el curso del tema.";
+    }else if (table=="deleteCurse") {
+      error = "Invalido: Se está utilizando el curso, debes vaciar los alumnos, temas y evaluaciones que esten en este curso.";
+    }
+    $.ajax({
+      type: 'POST',
+      url:'../system_data/misterAdmin.php',
+      data: `valCode=${params}&table=${table}&function=adminDelete`,
+      dataType: 'JSON',
+      success: response=>{
+        if (response['valid']) {
+          alert(error);
+        }else{
+          alert("Dato borrado exitosamente.");
+          $(link+" div[name=table] div.table-responsive").load(" "+link+" div[name=table] div.table-responsive");
+        }
+      }
+    });      
+  }
+}
+
+/* Vaciar notas, evaluaciones, etc */
+function emptyAdmData(params, table) {
+  let mensaje=window.confirm("¿Estas seguro de querer vaciar los alumnos?");
+  if (mensaje) {
+    let valid=[];
+    if (table=="emptyTest") {
+      valid['false'] = "Invalido: No hay ningún alumno en esta evaluación";
+      valid['true'] = "Notas de los alumnos borradas exitossamente.";
+    }else if (table=="emptyCurse") {
+      valid['false'] = "Invalido: No hay ningún alumno en este curso o hay alumnos con evaluaciones resueltas.";
+      valid['true'] = "Curso desocupado exitosamente.";
+    }else if (table=="emptyTemes") {
+      valid['false'] = "Invalido: No hay ningun tema para desconectar.";
+      valid['true'] = "Curso desocupado de los temas exitosamente.";
+    }
+    $.ajax({
+      type: 'POST',
+      url:'../system_data/misterAdmin.php',
+      data: `valCode=${params}&table=${table}&function=adminEmpty`,
+      dataType: 'JSON',
+      success: response=>{
+        if (response['valid']) {
+          alert(valid['true']);
+          $(link+" div[name=table] div.table-responsive").load(" "+link+" div[name=table] div.table-responsive");
+        }else{
+          alert(valid['false']);
+        }
+      }
+    });      
   }
 }
 /* Cargar modal a editar */

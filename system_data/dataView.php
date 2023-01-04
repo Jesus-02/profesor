@@ -34,7 +34,7 @@
   // cursos y local, Desactivados, Eliminar meses anteriores
   $cursoFE =$cursos->cursos_ListarDEliminarM();
   // cursos y local, alumnos activos
-  $cursoAlumnos = $cursos->cursos_Alumnos();  
+  $alumnosError = $cursos->alumnosError();  
   // Alumnos
   $alumnosD = $cursos->alumnos();
   // Rangos

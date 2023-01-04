@@ -29,7 +29,7 @@ include_once "../system_data/dataView.php";
             <div class="row my-4 mx-auto" style="width: 70%;">
               <div class="col-12 col-md-7">
                 <h1 class="display-3"><?php echo $variante[1]; ?></h1>
-                <h1 class="display-3"><span><?php echo $variante[2]; ?></span><span><?php echo $variante[3]; ?></span></h1>
+                <h1 class="display-3"><span><?php echo $variante[2]; ?></span> <span><?php echo $variante[3]; ?></span></h1>
                 <h2>Programador web full stack junior</h2>
               </div>
               <div class="col-12 col-md-5 p-2">
