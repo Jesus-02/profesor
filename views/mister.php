@@ -314,37 +314,41 @@ include_once "../system_data/dataView.php";
                     <p class="fs-4">Editar informacion personal.</p>
                     <hr class="border-light opacity-75">
                     <!-- Datos personales -->
-                    <form id="datos_personales" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Datos personales:</h2>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Nombres:</span>
-                                <input type="text" name="editar_dp_name1" id="editar_dp_name1" placeholder="Primer nombre" value="<?php echo $variante[1]; ?>" class="form-control" disabled>
-                                <div class="invalid-feedback">Nombres invalidos -
-                                    Es nesesario escribir tu primer nombre mínimo sin números ni links.</div>
-                            </div>
+                    <form id="datos_personales" class="card bg-secondary text-white mb-3">
+                        <div class="card-header">
+                            <h2>Datos personales:</h2>
                         </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Apellidos:</span>
-                                <input type="text" name="editar_dp_surName1" id="editar_dp_surName1" placeholder="Apellido paterno" value="<?php echo $variante[2]; ?>" aria-label="Last name" class="form-control" disabled>
-                                <input type="text" name="editar_dp_surName2" id="editar_dp_surName2" placeholder="Apellido materno" value="<?php echo $variante[3]; ?>" aria-label="Last name" class="form-control" disabled>
-                                <div class="invalid-feedback">Apellidos invalidos
-                                    - Es nesesario escribir tus apellidos sin números ni links.</div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Nombres:</span>
+                                    <input type="text" name="editar_dp_name1" id="editar_dp_name1" placeholder="Primer nombre" value="<?php echo $variante[1]; ?>" class="form-control" disabled>
+                                    <div class="invalid-feedback">Nombres invalidos -
+                                        Es nesesario escribir tu primer nombre mínimo sin números ni links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group">
-                                <span class="input-group-text">Teléfono:</span>
-                                <input type="number" name="editar_dp_phone1" id="editar_dp_phone1" placeholder="12345678" value="<?php echo $variante[4]; ?>" min="100000000" max="99999999" aria-label="phone" class="form-control" disabled>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Apellidos:</span>
+                                    <input type="text" name="editar_dp_surName1" id="editar_dp_surName1" placeholder="Apellido paterno" value="<?php echo $variante[2]; ?>" aria-label="Last name" class="form-control" disabled>
+                                    <input type="text" name="editar_dp_surName2" id="editar_dp_surName2" placeholder="Apellido materno" value="<?php echo $variante[3]; ?>" aria-label="Last name" class="form-control" disabled>
+                                    <div class="invalid-feedback">Apellidos invalidos
+                                        - Es nesesario escribir tus apellidos sin números ni links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Celular:</span>
-                                <input type="number" name="editar_dp_cellphone1" id="editar_dp_cellphone1" placeholder="123456789" value="<?php echo $variante[5]; ?>" min="100000000" max="999999999" aria-label="cell phone" class="form-control" disabled>
-                                <div class="invalid-feedback">Número invalido - Es
-                                    nesesario escribir los 9 digitos de tu celular sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text">Teléfono:</span>
+                                    <input type="number" name="editar_dp_phone1" id="editar_dp_phone1" placeholder="12345678" value="<?php echo $variante[4]; ?>" min="100000000" max="99999999" aria-label="phone" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Celular:</span>
+                                    <input type="number" name="editar_dp_cellphone1" id="editar_dp_cellphone1" placeholder="123456789" value="<?php echo $variante[5]; ?>" min="100000000" max="999999999" aria-label="cell phone" class="form-control" disabled>
+                                    <div class="invalid-feedback">Número invalido - Es
+                                        nesesario escribir los 9 digitos de tu celular sin links.</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-12 btn-group" role="group" aria-label="opciones de datos personales">
@@ -356,11 +360,13 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                     <!-- Redes sociales -->
-                    <div name="redes" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Redes sociales:</h2>
-                        <div class="mb-3">
+                    <div name="redes" class="card mb-3">
+                        <div class="card-header">
+                            <h2>Redes sociales:</h2>
+                        </div>
+                        <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table text-dark fs-5">
+                                <table class="table table-dark fs-5">
                                     <thead>
                                         <tr class="text-center">
                                             <th scope="col"># <span>
@@ -414,11 +420,13 @@ include_once "../system_data/dataView.php";
                         </div>
                     </div>
                     <!-- Cursos realizados -->
-                    <div name="cursos" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Cursos realizados:</h2>
-                        <p class="fs-5">Los cursos tienen fechas diferentes y las havilidades tienen las mismas fechas tanto como el inicio como la finalización.</p>
-                        <div class="mb-3">
-                            <div class="accordion text-muted" id="accordionExample">
+                    <div name="cursos" class="card mb-3">
+                        <div class="card-header">
+                            <h2>Cursos realizados:</h2>
+                            <p class="fs-5">Los cursos tienen fechas diferentes y las havilidades tienen las mismas fechas tanto como el inicio como la finalización.</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="accordion" id="accordionExample">
                                 <?php
                                 for ($x = 0; $x < count($dcursos); $x++) {
                                 ?>
@@ -465,23 +473,25 @@ include_once "../system_data/dataView.php";
                                             </div>
                                         </div>
                                     </div>
-
+    
                                 <?php } ?>
                             </div>
                         </div>
                         <div class="d-grid gap-2" aria-label="opciones de tus cursos">
                             <button class="btn btn-info" type="button" data-bs-toggle="modal" onclick="javaScript:reset('modalCursos','cursoNuevo')" data-bs-target="#modalCursos">Nuevo</button>
-                        </div>
+                        </div>                            
                     </div>
                     <!-- Datos laborales -->
-                    <div name="laborales" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Datos laborales:</h2>
-                        <div class="mb-3">
+                    <div name="laborales" class="card mb-3">
+                        <div class="card-header">
+                            <h2>Datos laborales:</h2>
+                        </div>                        
+                        <div class="card-body">
                             <div class="list-group">
                                 <?php
                                 for ($x = 0; $x < count($dlaboral); $x++) {
                                 ?>
-                                    <div class="list-group-item flex-column text-dark">
+                                    <div class="list-group-item flex-column">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h5 class="mb-2">
                                                 <?php echo $dlaboral[$x][1] ?>
@@ -514,193 +524,215 @@ include_once "../system_data/dataView.php";
                 </article>
 
                 <!-- permisos -->
-                <article id="permisos" class="container bg-secondary text-dark border border-warning rounded py-5">
-                    <h1>Activaciones:</h1>
-                    <p class="fs-4">Activar los permisos.</p>
-                    <hr class="border-light opacity-75">
-                    <form class="" action="index.html" method="post">
+                <article id="permisos" class="card">
+                    <div class="card-header">
+                        <h1>Activaciones:</h1>
+                        <p class="fs-4">Activar los permisos.</p>
+                    </div>
+                    <form class="card-body" action="index.html" method="post">
                         <h2 class="mb-3">Alumnos</h2>
                         <div class="mb-3 form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                             <label class="form-check-label" for="flexSwitchCheckDefault">Permitir que los alumnos se
                                 puedan registar.</label>
                         </div>
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-info" type="button">Permitir</button>
-                        </div>
                     </form>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-info" type="button">Permitir</button>
+                    </div>
                 </article>
 
                 <!-- cursos Activados -->
-                <article id="cursosActivos" class="container bg-secondary text-dark border border-warning rounded py-5">
-                    <h1>Cursos disponibles:</h1>
-                    <p class="fs-4">Ver los cursos que estoy dictando y los que ya han finalizado.</p>
-                    <div class="recarga">
-                        <hr class="border-light opacity-75">
-                        <h3>Cursos activos:</h3>                    .
-                        <div class="table-responsive">
-                            <table class="table table-dark table-hover col-12">
-                                <thead>
-                                    <tr class="text-start fs-4">
-                                        <th scope="col"><?php echo count($cursoV); ?> Cursos</th>
-                                        <th scope="col">Institutos</th>
-                                        <th scope="col">Trayecto</th>
-                                        <th scope="col">Estados</th>
-                                        <th scope="col">Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-start fs-5">
-                                    <?php for ($i = 0; $i < count($cursoV); $i++) { ?>
-                                        <tr>
-                                            <th scope="row"><?php echo $cursoV[$i][1] ?></th>
-                                            <td><?php echo $cursoV[$i][8] ?></td>
-                                            <td class="text-end"><?php echo $cursoV[$i][6] . " - " . $cursoV[$i][7] ?></td>
-                                            <td><?php echo ($cursoV[$i][5]=="V") ? "Educando" : "Culminado" ; ?></td>
-                                            <td  class="text-md-center"><button type="button" class="btn btn-primary" title="Desactivar curso" onclick="javaScript:activeCourse(<?php echo $cursoV[$i][10];?>, false)"><i class="bi bi-journal-minus"></i></button></td>
+                <article id="cursosActivos" class="card">
+                    <div class="card-header">
+                        <h1>Cursos disponibles:</h1>
+                        <p class="fs-4">Ver los cursos que estoy dictando y los que ya han finalizado.</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="recarga">
+                            <h3>Cursos activos:</h3>
+                            <hr class="border-light opacity-75">
+                            <div class="table-responsive">
+                                <table class="table table-dark table-hover col-12">
+                                    <thead>
+                                        <tr class="text-start fs-4">
+                                            <th scope="col"><?php echo count($cursoV); ?> Cursos</th>
+                                            <th scope="col">Institutos</th>
+                                            <th scope="col">Trayecto</th>
+                                            <th scope="col">Estados</th>
+                                            <th scope="col">Acción</th>
                                         </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <hr class="border-light opacity-75">
-                        <h3>Cursos desactivos:</h3>
-                        <div class="table-responsive">
-                            <table class="table table-dark table-hover col-12">
-                                <thead class="table-dark">
-                                    <tr class="text-start fs-4">
-                                        <th scope="col"> <?php echo count($cursoF); ?> Cursos</th>
-                                        <th scope="col">Institutos</th>
-                                        <th scope="col">Trayecto</th>
-                                        <th scope="col">Estados</th>
-                                        <th scope="col">Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-start fs-5">
-                                    <?php for ($i = 0; $i < count($cursoF); $i++) { ?>
-                                        <tr>
-                                            <th scope="row"><?php echo $cursoF[$i][1] ?></th>
-                                            <td><?php echo $cursoF[$i][5] ?></td>
-                                            <td class="text-end"><?php echo $cursoF[$i][3] . " - " . $cursoF[$i][4] ?></td>
-                                            <td><?php echo ($cursoF[$i][2]=="V") ? "Educando" : "Culminado" ; ?></td>
-                                            <td  class="text-md-center"><button type="button" class="btn btn-success" title="Activar curso" onclick="javaScript:activeCourse(<?php echo $cursoF[$i][6];?>, true)"><i class="bi bi-journal-check"></i></button></td>
+                                    </thead>
+                                    <tbody class="text-start fs-5">
+                                        <?php for ($i = 0; $i < count($cursoV); $i++) { ?>
+                                            <tr>
+                                                <th scope="row"><?php echo $cursoV[$i][1] ?></th>
+                                                <td><?php echo $cursoV[$i][8] ?></td>
+                                                <td class="text-end"><?php echo $cursoV[$i][6] . " - " . $cursoV[$i][7] ?></td>
+                                                <td><?php echo ($cursoV[$i][5]=="V") ? "Educando" : "Culminado" ; ?></td>
+                                                <td  class="text-md-center"><button type="button" class="btn btn-primary" title="Desactivar curso" onclick="javaScript:activeCourse(<?php echo $cursoV[$i][10];?>, false)"><i class="bi bi-journal-minus"></i></button></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <h3>Cursos desactivos:</h3>
+                            <hr class="border-light opacity-75">
+                            <div class="table-responsive">
+                                <table class="table table-dark table-hover col-12">
+                                    <thead class="table-dark">
+                                        <tr class="text-start fs-4">
+                                            <th scope="col"> <?php echo count($cursoF); ?> Cursos</th>
+                                            <th scope="col">Institutos</th>
+                                            <th scope="col">Trayecto</th>
+                                            <th scope="col">Estados</th>
+                                            <th scope="col">Acción</th>
                                         </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody class="text-start fs-5">
+                                        <?php for ($i = 0; $i < count($cursoF); $i++) { ?>
+                                            <tr>
+                                                <th scope="row"><?php echo $cursoF[$i][1] ?></th>
+                                                <td><?php echo $cursoF[$i][5] ?></td>
+                                                <td class="text-end"><?php echo $cursoF[$i][3] . " - " . $cursoF[$i][4] ?></td>
+                                                <td><?php echo ($cursoF[$i][2]=="V") ? "Educando" : "Culminado" ; ?></td>
+                                                <td  class="text-md-center"><button type="button" class="btn btn-success" title="Activar curso" onclick="javaScript:activeCourse(<?php echo $cursoF[$i][6];?>, true)"><i class="bi bi-journal-check"></i></button></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>    
+                    </div>
                 </article>
 
                 <!-- eliminar_alumnos_cursos -->
                 <article id="eliminar_alumnos" class="container">
-                    <div class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h1>Eliminar cursos y alumnos:</h1>
-                        <p class="fs-4">Eliminar grupos de alumnos que han finalizado el curso.</p>
-                        <hr class="border-light opacity-75">
-                        <h3>Cursos finalizados:</h3>
-                        <div class="table-responsive">
-                            <table class="table col-12 table-dark table-hover">
-                                <thead class="table-dark">
-                                    <tr class="text-start fs-4">
-                                        <th scope="col"><?php echo count($cursoFE); ?> Cursos</th>
-                                        <th scope="col">Institutos</th>
-                                        <th scope="col">Alumnos</th>
-                                        <th scope="col">Finalizados</th>
-                                        <th scope="col">Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-start fs-5">
-                                    <?php for ($i = 0; $i < count($cursoFE); $i++) { ?>
-                                        <tr>
-                                            <th scope="row"><?php echo $cursoFE[$i][1] ?></th>
-                                            <td><?php echo $cursoFE[$i][3] ?></td>
-                                            <td class="text-end"><?php echo $cursoFE[$i][5] ?></td>
-                                            <td class="text-end"><?php echo $cursoFE[$i][2] ?></td>
-                                            <td class="text-md-center">
-                                                <div class="btn-group" role="group" aria-label="Opciones">
-                                                    <button type="button" name="emptyTemes" class="btn btn-primary" title="Eliminar temas" onclick="javaScript:emptyAdmData(<?php echo $cursoFE[$i][6]; ?>, 'emptyTemes')">
-                                                        <i class="bi bi-journal-minus"></i>
-                                                    </button>
-                                                    <button type="button" name="emptyStudents" class="btn btn-primary" title="Desocupar alumnos" onclick="javaScript:emptyAdmData(<?php echo $cursoFE[$i][6]; ?>, 'emptyCurse')">
-                                                        <i class="bi bi-people"></i>
-                                                    </button>
-                                                    <button type="button" name="delete" class="btn btn-danger" title="Eliminar curso" onclick="javaScript:deleteAdmData(<?php echo $cursoFE[$i][6]; ?>, 'deleteCurse')">
-                                                        <i class="bi bi-trash3"></i>
-                                                    </button>
-                                                </div>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                    <h1>Eliminar cursos y alumnos:</h1>
+                    <p class="fs-4">Eliminar alumnos y cursos que han finalizado.</p>
+                    <hr class="border-light opacity-75">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h2>Cursos finalizados:</h2>
                         </div>
-                        <!-- ALUMNOS CURSADOS -->
-                        <hr class="border-light opacity-75">
-                        <h3>Eliminar alumnos:</h3>
-                        <div class="accordion" id="cursosAlumnos">
-                            <?php for ($i = 0; $i < count($cursoV); $i++) { ?>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="curso<?php echo $i; ?>">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#alumnos<?php echo $i; ?>" aria-expanded="false" aria-controls="alumnos<?php echo $i; ?>">
-                                            <?php echo $cursoV[$i][1] . " / " . $cursoV[$i][8] . " / " . $cursoV[$i][9]; ?>
-                                        </button>
-                                    </h2>
-                                    <div id="alumnos<?php echo $i; ?>" class="accordion-collapse collapse" aria-labelledby="curso<?php echo $i; ?>" data-bs-parent="#cursosAlumnos">
-                                        <div class="accordion-body table-responsive">
-                                            <?php $alumnos = $cursos->bAlumnosxCurso($cursoV[$i][10]); ?>
-                                            <table class="table table-striped">
-                                                <thead class="table-dark">
-                                                    <tr class="text-start">
-                                                        <th scope="col"># <?php echo count($alumnos); ?></th>
-                                                        <th scope="col">Apellidos y nombres</th>
-                                                        <th scope="col">Genero</th>
-                                                        <th scope="col">Celular</th>
-                                                        <th scope="col">Correo</th>
-                                                        <th scope="col">Eliminar</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="text-start">
-                                                    <?php for ($y = 0; $y < count($alumnos); $y++) { ?>
-                                                        <tr>
-                                                            <td class="text-end"><?php echo $y + 1; ?></td>
-                                                            <th scope="row"><?php echo $alumnos[$y][3] . " " . $alumnos[$y][4]; ?></th>
-                                                            <td><?php echo $alumnos[$y][1]; ?></td>
-                                                            <td class="text-end"><?php echo $alumnos[$y][6]; ?></td>
-                                                            <td><?php echo $alumnos[$y][5]; ?></td>
-                                                            <td class="text-md-center"><button type="button" class="btn btn-danger"><i class="bi bi-trash3"></i></button></td>
+                        <div class="card-body">
+                            <p class="fs-4">Eliminar cursos que han finalizado.</p>
+                            <div class="table-responsive">
+                                <table class="table col-12 table-dark table-hover">
+                                    <thead>
+                                        <tr class="text-start fs-4">
+                                            <th scope="col"><?php echo count($cursoFE); ?> Cursos</th>
+                                            <th scope="col">Institutos</th>
+                                            <th scope="col">Alumnos</th>
+                                            <th scope="col">Finalizados</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-start fs-5">
+                                        <?php for ($i = 0; $i < count($cursoFE); $i++) { ?>
+                                            <tr>
+                                                <th scope="row"><?php echo $cursoFE[$i][1] ?></th>
+                                                <td><?php echo $cursoFE[$i][3] ?></td>
+                                                <td class="text-end"><?php echo $cursoFE[$i][5] ?></td>
+                                                <td class="text-end"><?php echo $cursoFE[$i][2] ?></td>
+                                                <td class="text-md-center">
+                                                    <div class="btn-group" role="group" aria-label="Opciones">
+                                                        <button type="button" name="emptyTemes" class="btn btn-primary" title="Eliminar temas" onclick="javaScript:emptyAdmData(<?php echo $cursoFE[$i][6]; ?>, 'emptyTemes')">
+                                                            <i class="bi bi-journal-minus"></i>
+                                                        </button>
+                                                        <button type="button" name="emptyStudents" class="btn btn-primary" title="Desocupar alumnos" onclick="javaScript:emptyAdmData(<?php echo $cursoFE[$i][6]; ?>, 'emptyCurse')">
+                                                            <i class="bi bi-people"></i>
+                                                        </button>
+                                                        <button type="button" name="delete" class="btn btn-danger" title="Eliminar curso" onclick="javaScript:deleteAdmData(<?php echo $cursoFE[$i][6]; ?>, 'deleteCurse')">
+                                                            <i class="bi bi-trash3"></i>
+                                                        </button>
+                                                    </div>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Alumnos por curso -->
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h2>Eliminar alumnos:</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="fs-4">Eliminar alumnos retirados de los cursos.</p>
+                            <div class="accordion" id="cursosAlumnos">
+                                <?php for ($i = 0; $i < count($cursoV); $i++) { ?>
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="curso<?php echo $i; ?>">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#alumnos<?php echo $i; ?>" aria-expanded="false" aria-controls="alumnos<?php echo $i; ?>">
+                                                <?php echo $cursoV[$i][1] . " / " . $cursoV[$i][8] . " / " . $cursoV[$i][9]; ?>
+                                            </button>
+                                        </h2>
+                                        <div id="alumnos<?php echo $i; ?>" class="accordion-collapse collapse" aria-labelledby="curso<?php echo $i; ?>" data-bs-parent="#cursosAlumnos">
+                                            <div class="accordion-body table-responsive">
+                                                <?php $alumnos = $cursos->bAlumnosxCurso($cursoV[$i][10]); ?>
+                                                <table class="table table-striped">
+                                                    <thead class="table-dark">
+                                                        <tr class="text-start">
+                                                            <th scope="col"># <?php echo count($alumnos); ?></th>
+                                                            <th scope="col">Apellidos y nombres</th>
+                                                            <th scope="col">Genero</th>
+                                                            <th scope="col">Celular</th>
+                                                            <th scope="col">Correo</th>
+                                                            <th scope="col">Eliminar</th>
                                                         </tr>
-                                                    <?php } ?>
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody class="text-start">
+                                                        <?php for ($y = 0; $y < count($alumnos); $y++) { ?>
+                                                            <tr>
+                                                                <td class="text-end"><?php echo $y + 1; ?></td>
+                                                                <th scope="row"><?php echo $alumnos[$y][3] . " " . $alumnos[$y][4]; ?></th>
+                                                                <td><?php echo $alumnos[$y][1]; ?></td>
+                                                                <td class="text-end"><?php echo $alumnos[$y][6]; ?></td>
+                                                                <td><?php echo $alumnos[$y][5]; ?></td>
+                                                                <td class="text-md-center"><button type="button" class="btn btn-danger" title="Eliminar alumno" onclick="javaScript:deleteAdmData(<?php echo $alumnos[$y][2]; ?>, 'deleteStudent')"><i class="bi bi-trash3"></i></button></td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php } ?>
-                        </div>                        
+                                <?php } ?>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Cursos -->
-                    <div name="table" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Alumnos inactivos:</h2>
-                        <div class="table-responsive">
-                            <table class="table table-dark table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"><?php echo "#" . count($alumnosError); ?></th>
-                                        <th scope="col">Nombres</th>
-                                        <th scope="col">Correo</th>
-                                        <th scope="col">Accion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php for ($x = 0; $x < count($alumnosError); $x++) {  ?>
+
+                    <!-- Alumnos sin actividad -->
+                    <div name="table" class="card mb-3">
+                        <div class="card-header">
+                            <h2>Alumnos inactivos:</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="fs-4">Eliminar alumnos que culminaron cursos que ya se eliminaron y ellos quedaron sin cursos.</p>
+                            <div class="table-responsive">
+                                <table class="table table-dark table-hover">
+                                    <thead>
                                         <tr>
-                                            <td class="text-end"><?php echo $x + 1; ?></td>
-                                            <th scope="row"> <?php echo $alumnosError[$x][5]." ".$alumnosError[$x][2]." ".$alumnosError[$x][3]; ?></th>
-                                            <td> <?php echo $alumnosError[$x][4]; ?> </td>
-                                            <td class="text-md-center"><button type="button" class="btn btn-danger" title="Borrar Tema" onclick="javaScript:deleteAdmData(<?php echo $alumnosError[$x][1]; ?>, 'deleteStudent')"><i class="bi bi-trash3"></i></button></td>
+                                            <th scope="col"><?php echo "#" . count($alumnosError); ?></th>
+                                            <th scope="col">Nombres</th>
+                                            <th scope="col">Correo</th>
+                                            <th scope="col">Accion</th>
                                         </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php for ($x = 0; $x < count($alumnosError); $x++) {  ?>
+                                            <tr>
+                                                <td class="text-end"><?php echo $x + 1; ?></td>
+                                                <th scope="row"> <?php echo $alumnosError[$x][5]." ".$alumnosError[$x][2]." ".$alumnosError[$x][3]; ?></th>
+                                                <td> <?php echo $alumnosError[$x][4]; ?> </td>
+                                                <td class="text-md-center"><button type="button" class="btn btn-danger" title="Eliminar alumno" onclick="javaScript:deleteAdmData(<?php echo $alumnosError[$x][1]; ?>, 'deleteStudent')"><i class="bi bi-trash3"></i></button></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </article>
@@ -711,89 +743,93 @@ include_once "../system_data/dataView.php";
                     <p class="fs-4">Registar nuevo alumno al curso.</p>
                     <hr class="border-light opacity-75">
                     <!-- Datos personales -->
-                    <form id="datos_alumnos" name="datos_alumnos" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Datos personales:</h2>
-                        <div class="mb-3 row visually-hidden">
-                            <label for="evaluacion_code" class="col-sm-2 col-form-label">code</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext bg-success" id="alumno_code" value="" disabled>
-                            </div>
+                    <form id="datos_alumnos" name="datos_alumnos" class="card bg-secondary text-white mb-3">
+                        <div class="card-header">
+                            <h2>Datos personales:</h2>
                         </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">DNI:</span>
-                                <input type="number" name="alumno_dp_dni" id="alumno_dp_dni" placeholder="N° 12345678" min="10000000" max="99999999" aria-label="cell phone" class="form-control" disabled required>
-                                <div class="invalid-feedback">DNI invalido - Es
-                                    nesesario escribir los 8 digitos de tu dni sin links.</div>
+                        <div class="card-body">
+                            <div class="mb-3 row visually-hidden">
+                                <label for="evaluacion_code" class="col-sm-2 col-form-label">code</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext bg-success" id="alumno_code" value="" disabled>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Nombres:</span>
-                                <input type="text" name="alumno_dp_name1" id="alumno_dp_name1" placeholder="Primer nombre" aria-label="Primer nombre" class="form-control" disabled required>
-                                <div class="invalid-feedback">Nombres invalidos -
-                                    Es nesesario escribir tu primer nombre mínimo sin números ni links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">DNI:</span>
+                                    <input type="number" name="alumno_dp_dni" id="alumno_dp_dni" placeholder="N° 12345678" min="10000000" max="99999999" aria-label="cell phone" class="form-control" disabled required>
+                                    <div class="invalid-feedback">DNI invalido - Es
+                                        nesesario escribir los 8 digitos de tu dni sin links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Apellidos:</span>
-                                <input type="text" name="alumno_dp_surName1" id="alumno_dp_surName1" placeholder="Apellido paterno" aria-label="Apellidos" class="form-control" disabled required>
-                                <input type="text" name="alumno_dp_surName2" id="alumno_dp_surName2" placeholder="Apellido materno" aria-label="Apellidos" class="form-control" disabled required>
-                                <div class="invalid-feedback">Apellidos invalidos
-                                    - Es nesesario escribir tus apellidos sin números ni links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Nombres:</span>
+                                    <input type="text" name="alumno_dp_name1" id="alumno_dp_name1" placeholder="Primer nombre" aria-label="Primer nombre" class="form-control" disabled required>
+                                    <div class="invalid-feedback">Nombres invalidos -
+                                        Es nesesario escribir tu primer nombre mínimo sin números ni links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Genero:</span>
-                                <select name="alumno_dp_genero1" id="alumno_dp_genero1" aria-label="Genero" class="form-select form-control" disabled required>
-                                    <option value="0">Ninguno</option>
-                                    <option value="M">Masculino</option>
-                                    <option value="F">Femenino</option>
-                                    <option value="O">Otros</option>
-                                </select>
-                                <div class="invalid-feedback">Genero invalido - Es
-                                    nesesario seleccionar una opción sin links ni números.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Apellidos:</span>
+                                    <input type="text" name="alumno_dp_surName1" id="alumno_dp_surName1" placeholder="Apellido paterno" aria-label="Apellidos" class="form-control" disabled required>
+                                    <input type="text" name="alumno_dp_surName2" id="alumno_dp_surName2" placeholder="Apellido materno" aria-label="Apellidos" class="form-control" disabled required>
+                                    <div class="invalid-feedback">Apellidos invalidos
+                                        - Es nesesario escribir tus apellidos sin números ni links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Edad:</span>
-                                <input type="number" name="alumno_dp_edad" id="alumno_dp_edad" placeholder="Edad" min="1" max="200" aria-label="Edad" class="form-control" disabled required>
-                                <div class="invalid-feedback">Edad invalido - Es
-                                    nesesario escribir tu edad sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Genero:</span>
+                                    <select name="alumno_dp_genero1" id="alumno_dp_genero1" aria-label="Genero" class="form-select form-control" disabled required>
+                                        <option value="0">Ninguno</option>
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Femenino</option>
+                                        <option value="O">Otros</option>
+                                    </select>
+                                    <div class="invalid-feedback">Genero invalido - Es
+                                        nesesario seleccionar una opción sin links ni números.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Correo:</span>
-                                <input type="email" name="alumno_dp_correo1" id="alumno_dp_correo1" placeholder="ejemplo@gmail.com" aria-label="Correo" class="form-control" disabled required>
-                                <div class="invalid-feedback">Correo invalido - Es
-                                    nesesario escribir tu correo sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Edad:</span>
+                                    <input type="number" name="alumno_dp_edad" id="alumno_dp_edad" placeholder="Edad" min="1" max="200" aria-label="Edad" class="form-control" disabled required>
+                                    <div class="invalid-feedback">Edad invalido - Es
+                                        nesesario escribir tu edad sin links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Celular:</span>
-                                <input type="number" name="alumno_dp_cellPhone1" id="alumno_dp_cellPhone1" placeholder="N° 123456789" min="1000000000" max="999999999" aria-label="cell phone" class="form-control" disabled required>
-                                <div class="invalid-feedback">Número invalido - Es
-                                    nesesario escribir los 9 digitos de tu celular sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Correo:</span>
+                                    <input type="email" name="alumno_dp_correo1" id="alumno_dp_correo1" placeholder="ejemplo@gmail.com" aria-label="Correo" class="form-control" disabled required>
+                                    <div class="invalid-feedback">Correo invalido - Es
+                                        nesesario escribir tu correo sin links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Curso:</span>
-                                <select name="alumno_dp_curso1" id="alumno_dp_curso1" aria-label="Curso" class="form-select form-control" disabled required>
-                                    <option value="0">Ninguno</option>
-                                    <optgroup label="Cursos actuales">
-                                        <?php for ($i = 0; $i < count($cursoV); $i++) { ?>
-                                            <option value="<?php echo $cursoV[$i][10]; ?>"><?php echo $cursoV[$i][1] . " - " . $cursoV[$i][8] . " - " . $cursoV[$i][9]; ?></option>
-                                        <?php } ?>
-                                    </optgroup>
-                                </select>
-                                <div class="invalid-feedback">Curso invalidos - Es
-                                    nesesario seleccionar una opción sin links ni números.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Celular:</span>
+                                    <input type="number" name="alumno_dp_cellPhone1" id="alumno_dp_cellPhone1" placeholder="N° 123456789" min="1000000000" max="999999999" aria-label="cell phone" class="form-control" disabled required>
+                                    <div class="invalid-feedback">Número invalido - Es
+                                        nesesario escribir los 9 digitos de tu celular sin links.</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Curso:</span>
+                                    <select name="alumno_dp_curso1" id="alumno_dp_curso1" aria-label="Curso" class="form-select form-control" disabled required>
+                                        <option value="0">Ninguno</option>
+                                        <optgroup label="Cursos actuales">
+                                            <?php for ($i = 0; $i < count($cursoV); $i++) { ?>
+                                                <option value="<?php echo $cursoV[$i][10]; ?>"><?php echo $cursoV[$i][1] . " - " . $cursoV[$i][8] . " - " . $cursoV[$i][9]; ?></option>
+                                            <?php } ?>
+                                        </optgroup>
+                                    </select>
+                                    <div class="invalid-feedback">Curso invalidos - Es
+                                        nesesario seleccionar una opción sin links ni números.</div>
+                                </div>
                             </div>
                         </div>
                         <div name="opn-vertical" class="col-12 btn-group" role="group" aria-label="opciones">
@@ -808,62 +844,66 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                     <!-- ALUMNOS -->
-                    <div name="table" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Todos los alumnos:</h2>
-                        <form method="POST" class="input-group bg-dark pt-3 px-3 rounded-top" name="form_buscar1">
-                            <select class="form-select" id="table_alumnos-b1Opciones" name="buscar_alumnos1" aria-label="Default select example">
-                                <option value="a1">DNI</option>
-                                <option value="a2">NOMBRES, APELLIDO</option>
-                                <option value="a4">CORREO</option>
-                                <option value="a5">CELULAR</option>
-                                <option value="a6" selected>CURSOS</option>
-                            </select>
-                            <input type="text" name="a1" placeholder="00000000" aria-label="DNI" class="form-control">
-                            <input type="text" name="a2" placeholder="NOMBRES" aria-label="NOMBRES" class="form-control">
-                            <input type="text" name="a3" placeholder="APELLIDO PATERNO" aria-label="APELLIDO" class="form-control">
-                            <input type="text" name="a4" placeholder="ejemplo@gamil.com" aria-label="CORREO" class="form-control">
-                            <input type="text" name="a5" placeholder="000000000" aria-label="CELULAR" class="form-control">
-                            <select name="a6" aria-label="Curso" class="form-select">
-                                <option value="0">todos</option>
-                                <optgroup label="Cursos actuales">
-                                    <?php for ($i = 0; $i < count($cursoLocal); $i++) { ?>
-                                        <option value="<?php echo $cursoLocal[$i][9]; ?>">
-                                            <?php echo $cursoLocal[$i][1] . " " . $cursoLocal[$i][8]; ?>
-                                        </option>
-                                    <?php } ?>
-                                </optgroup>
-                            </select>
-                            <button class="btn btn-outline-secondary" type="button" onclick="JavaScript:searchUsers()">Buscar</button>
-                        </form>
-                        <div class="table-responsive">
-                            <table class="table table-dark table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Nombres</th>
-                                        <th scope="col">Apellidos</th>
-                                        <th scope="col">Correo</th>
-                                        <th scope="col">Celular</th>
-                                        <th scope="col">Cursos</th>
-                                        <th scope="col">DNI</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php for ($i = 0; $i < count($alumnosD); $i++) { ?>
+                    <div name="table" class="card">
+                        <div class="card-header">
+                            <h2>Todos los alumnos:</h2>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" class="input-group bg-dark pt-3 px-3 rounded-top" name="form_buscar1">
+                                <select class="form-select" id="table_alumnos-b1Opciones" name="buscar_alumnos1" aria-label="Default select example">
+                                    <option value="a1">DNI</option>
+                                    <option value="a2">NOMBRES, APELLIDO</option>
+                                    <option value="a4">CORREO</option>
+                                    <option value="a5">CELULAR</option>
+                                    <option value="a6" selected>CURSOS</option>
+                                </select>
+                                <input type="text" name="a1" placeholder="00000000" aria-label="DNI" class="form-control">
+                                <input type="text" name="a2" placeholder="NOMBRES" aria-label="NOMBRES" class="form-control">
+                                <input type="text" name="a3" placeholder="APELLIDO PATERNO" aria-label="APELLIDO" class="form-control">
+                                <input type="text" name="a4" placeholder="ejemplo@gamil.com" aria-label="CORREO" class="form-control">
+                                <input type="text" name="a5" placeholder="000000000" aria-label="CELULAR" class="form-control">
+                                <select name="a6" aria-label="Curso" class="form-select">
+                                    <option value="0">todos</option>
+                                    <optgroup label="Cursos actuales">
+                                        <?php for ($i = 0; $i < count($cursoLocal); $i++) { ?>
+                                            <option value="<?php echo $cursoLocal[$i][9]; ?>">
+                                                <?php echo $cursoLocal[$i][1] . " " . $cursoLocal[$i][8]; ?>
+                                            </option>
+                                        <?php } ?>
+                                    </optgroup>
+                                </select>
+                                <button class="btn btn-outline-secondary" type="button" onclick="JavaScript:searchUsers()">Buscar</button>
+                            </form>
+                            <div class="table-responsive">
+                                <table class="table table-dark table-hover">
+                                    <thead>
                                         <tr>
-                                            <th scope="row"><?php echo $alumnosD[$i][7]; ?></th>
-                                            <td><?php echo $alumnosD[$i][2] . " " . $alumnosD[$i][3]; ?></td>
-                                            <td><?php echo $alumnosD[$i][4]; ?></td>
-                                            <td class="text-end"><?php echo $alumnosD[$i][5]; ?></td>
-                                            <td><?php echo $alumnosD[$i][6]; ?></td>
-                                            <td class="text-md-center">
-                                                <button type="button" class="btn btn-warning" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<?php echo $alumnosD[$i][1]; ?>">
-                                                    <i class="bi bi-person-badge"></i>
-                                                </button>
-                                            </td>
+                                            <th scope="col">Nombres</th>
+                                            <th scope="col">Apellidos</th>
+                                            <th scope="col">Correo</th>
+                                            <th scope="col">Celular</th>
+                                            <th scope="col">Cursos</th>
+                                            <th scope="col">DNI</th>
                                         </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php for ($i = 0; $i < count($alumnosD); $i++) { ?>
+                                            <tr>
+                                                <th scope="row"><?php echo $alumnosD[$i][7]; ?></th>
+                                                <td><?php echo $alumnosD[$i][2] . " " . $alumnosD[$i][3]; ?></td>
+                                                <td><?php echo $alumnosD[$i][4]; ?></td>
+                                                <td class="text-end"><?php echo $alumnosD[$i][5]; ?></td>
+                                                <td><?php echo $alumnosD[$i][6]; ?></td>
+                                                <td class="text-md-center">
+                                                    <button type="button" class="btn btn-warning" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<?php echo $alumnosD[$i][1]; ?>">
+                                                        <i class="bi bi-person-badge"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </article>
@@ -874,78 +914,82 @@ include_once "../system_data/dataView.php";
                     <p class="fs-4">Aqui puedes registrar nuevas evaluaciones a los alumnos.</p>
                     <hr class="border-light opacity-75">
                     <!-- Registrar evaluacion pendiente -->
-                    <form name="evaluaciones" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Registrar evaluación:</h2>
-                        <div class="mb-3 row visually-hidden">
-                            <label for="evaluacion_code" class="col-sm-2 col-form-label">code</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext bg-success" id="evaluacion_code" value="" disabled>
-                            </div>
+                    <form name="evaluaciones" class="card bg-secondary text-white mb-3">
+                        <div class="card-header">
+                            <h2>Registrar evaluación:</h2>
                         </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Cursos:</span>
-                                <select id="evaluaciones_pd_curso1" aria-label="Cursos" title="Cursos" class="form-select form-control" disabled required>
-                                    <option value="0">Ninguno</option>
-                                    <optgroup label="Cursos Encontrados">
-                                        <?php for ($i = 0; $i < count($cursoV); $i++) { ?>
-                                            <option value="<?php echo $cursoV[$i][10]; ?>"><?php echo $cursoV[$i][1] . " - " . $cursoV[$i][8]; ?></option>
-                                        <?php } ?>
-                                    </optgroup>
-                                </select>
-                                <div class="invalid-feedback">Curso invalido - Es
-                                    nesesario seleccionar un curso sin links.</div>
+                        <div class="card-body">
+                            <div class="mb-3 row visually-hidden">
+                                <label for="evaluacion_code" class="col-sm-2 col-form-label">code</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext bg-success" id="evaluacion_code" value="" disabled>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Titulo:</span>
-                                <input type="text" id="evaluaciones_pd_titulo1" placeholder="Titulo" aria-label="Titulo" class="form-control" disabled required>
-                                <div class="invalid-feedback">Titulo invalido - Es
-                                    nesesario escribir el titulo de la evaluación sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Cursos:</span>
+                                    <select id="evaluaciones_pd_curso1" aria-label="Cursos" title="Cursos" class="form-select form-control" disabled required>
+                                        <option value="0">Ninguno</option>
+                                        <optgroup label="Cursos Encontrados">
+                                            <?php for ($i = 0; $i < count($cursoV); $i++) { ?>
+                                                <option value="<?php echo $cursoV[$i][10]; ?>"><?php echo $cursoV[$i][1] . " - " . $cursoV[$i][8]; ?></option>
+                                            <?php } ?>
+                                        </optgroup>
+                                    </select>
+                                    <div class="invalid-feedback">Curso invalido - Es
+                                        nesesario seleccionar un curso sin links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Descripcion:</span>
-                                <textarea class="form-control" id="evaluaciones_pd_descripcion1" aria-label="Descripcion" disabled required style="max-height: 100px;"></textarea>
-                                <div class="invalid-feedback">Descripcion invalido
-                                    - Es nesesario escribir la descripcion sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Titulo:</span>
+                                    <input type="text" id="evaluaciones_pd_titulo1" placeholder="Titulo" aria-label="Titulo" class="form-control" disabled required>
+                                    <div class="invalid-feedback">Titulo invalido - Es
+                                        nesesario escribir el titulo de la evaluación sin links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Estado:</span>
-                                <select id="evaluaciones_pd_estado" aria-label="Estado" class="form-select form-control" disabled required>
-                                    <option selected>Ninguno</option>
-                                    <option value="v">Pendiente</option>
-                                    <option value="f">Completo</option>
-                                </select>
-                                <div class="invalid-feedback">Estado invalido - Es
-                                    nesesario seleccionar un estado sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Descripcion:</span>
+                                    <textarea class="form-control" id="evaluaciones_pd_descripcion1" aria-label="Descripcion" disabled required style="max-height: 100px;"></textarea>
+                                    <div class="invalid-feedback">Descripcion invalido
+                                        - Es nesesario escribir la descripcion sin links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Rango:</span>
-                                <select id="evaluaciones_pd_rango1" aria-label="Rango" class="form-select form-control" disabled required>
-                                    <option value="0">Ninguno</option>
-                                    <optgroup label="Cursos Encontrados">
-                                        <?php for ($x = 0; $x < count($cursosRangos); $x++) { ?>
-                                            <option value="<?php echo $cursosRangos[$x][1]; ?>"><?php echo $cursosRangos[$x][2]; ?></option>
-                                        <?php  } ?>
-                                    </optgroup>
-                                </select>
-                                <div class="invalid-feedback">Rango invalido - Es
-                                    nesesario seleccionar un rango sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Estado:</span>
+                                    <select id="evaluaciones_pd_estado" aria-label="Estado" class="form-select form-control" disabled required>
+                                        <option selected>Ninguno</option>
+                                        <option value="v">Pendiente</option>
+                                        <option value="f">Completo</option>
+                                    </select>
+                                    <div class="invalid-feedback">Estado invalido - Es
+                                        nesesario seleccionar un estado sin links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Fecha propuesta:</span>
-                                <input type="date" id="alumno_dp_fecha" title="Fecha propuesta" aria-label="Fecha propuesta" class="form-control" disabled required>
-                                <div class="invalid-feedback">Fecha invalido - Es
-                                    nesesario escribir la fecha propuesta sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Rango:</span>
+                                    <select id="evaluaciones_pd_rango1" aria-label="Rango" class="form-select form-control" disabled required>
+                                        <option value="0">Ninguno</option>
+                                        <optgroup label="Cursos Encontrados">
+                                            <?php for ($x = 0; $x < count($cursosRangos); $x++) { ?>
+                                                <option value="<?php echo $cursosRangos[$x][1]; ?>"><?php echo $cursosRangos[$x][2]; ?></option>
+                                            <?php  } ?>
+                                        </optgroup>
+                                    </select>
+                                    <div class="invalid-feedback">Rango invalido - Es
+                                        nesesario seleccionar un rango sin links.</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Fecha propuesta:</span>
+                                    <input type="date" id="alumno_dp_fecha" title="Fecha propuesta" aria-label="Fecha propuesta" class="form-control" disabled required>
+                                    <div class="invalid-feedback">Fecha invalido - Es
+                                        nesesario escribir la fecha propuesta sin links.</div>
+                                </div>
                             </div>
                         </div>
                         <div name="opn-vertical" class="col-12 btn-group" role="group" aria-label="opciones">
@@ -960,9 +1004,11 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                     <!-- Tareas pendientes -->
-                    <div name="table" class="card bg-secondary text-dark border border-warning mb-3">
+                    <div name="table" class="card">
+                        <div class="card-header">
+                            <h2>Todas las evaluaciones pendientes:</h2>
+                        </div>
                         <div class="card-body">
-                            <h2 class="mb-3">Todas las evaluaciones pendientes:</h2>
                             <div class="table-responsive">
                                 <table class="table table-dark table-hover">
                                     <thead>
@@ -1008,55 +1054,59 @@ include_once "../system_data/dataView.php";
                     <p class="fs-4">Aqui puedes registrar las notas de los alumnos en las evaluaciones.</p>
                     <hr class="border-light opacity-75">
                     <!-- Notas para evaluaciones pendientes -->
-                    <form name="notas" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Registrar notas a los alumnos:</h2>
-                        <div class="row">
-                            <div class="col-6 col-lg-8">
-                                <div class="mb-3">
-                                    <div class="input-group is-validation">
-                                        <span class="input-group-text">Evaluacion:</span>
-                                        <select id="notas_pd_evaluacion1" aria-label="Evaluacion" title="Evaluacion" class="form-select form-control" disabled required>
-                                            <option value="0">Ninguno</option>
-                                            <optgroup label="Evaluaciones encontradas">
-                                                <?php for ($i = 0; $i < count($cursosEvaluaciones); $i++) { ?>
-                                                        <option value="<?php echo $cursosEvaluaciones[$i][1]; ?>">
-                                                            <?php echo $cursosEvaluaciones[$i][3] . " - " . $cursosEvaluaciones[$i][6] . " - " . $cursosEvaluaciones[$i][10]. " - " . ($cursosEvaluaciones[$i][5]=="v" ? "pendiente" : "completo"); ?>
-                                                        </option>
-                                                <?php } ?>
-                                            </optgroup>
-                                        </select>
-                                        <div class="invalid-feedback">Evaluacion invalido
-                                            - Es nesesario seleccionar una evaluación sin links.</div>
+                    <form name="notas" class="card bg-secondary text-white mb-3">
+                        <div class="card-header">
+                            <h2>Registrar notas a los alumnos:</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6 col-lg-8">
+                                    <div class="mb-3">
+                                        <div class="input-group is-validation">
+                                            <span class="input-group-text">Evaluacion:</span>
+                                            <select id="notas_pd_evaluacion1" aria-label="Evaluacion" title="Evaluacion" class="form-select form-control" disabled required>
+                                                <option value="0">Ninguno</option>
+                                                <optgroup label="Evaluaciones encontradas">
+                                                    <?php for ($i = 0; $i < count($cursosEvaluaciones); $i++) { ?>
+                                                            <option value="<?php echo $cursosEvaluaciones[$i][1]; ?>">
+                                                                <?php echo $cursosEvaluaciones[$i][3] . " - " . $cursosEvaluaciones[$i][6] . " - " . $cursosEvaluaciones[$i][10]. " - " . ($cursosEvaluaciones[$i][5]=="v" ? "pendiente" : "completo"); ?>
+                                                            </option>
+                                                    <?php } ?>
+                                                </optgroup>
+                                            </select>
+                                            <div class="invalid-feedback">Evaluacion invalido
+                                                - Es nesesario seleccionar una evaluación sin links.</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="input-group is-validation">
+                                            <span class="input-group-text">Nota:</span>
+                                            <input type="number" id="notas_pd_nota1" placeholder="N° 20" min="5" max="20" aria-label="Nota" class="form-control" disabled required>
+                                            <div class="invalid-feedback">Nota invalido -
+                                                Es nesesario escribir la nota de la evaluacion mayor que 4 y menor que 21 sin
+                                                links.</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="input-group is-validation">
+                                            <span class="input-group-text">Reseña:</span>
+                                            <textarea id="notas_pd_reseña1" placeholder="Cosejo para que el alumno mejore" class="form-control" aria-label="Reseña" maxlength="299" disabled required style="max-height: 100px;"></textarea>
+                                            <div class="invalid-feedback">Reseña invalido
+                                                - Es nesesario escribir tu reseña sin links.</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <div class="input-group is-validation">
-                                        <span class="input-group-text">Nota:</span>
-                                        <input type="number" id="notas_pd_nota1" placeholder="N° 20" min="5" max="20" aria-label="Nota" class="form-control" disabled required>
-                                        <div class="invalid-feedback">Nota invalido -
-                                            Es nesesario escribir la nota de la evaluacion mayor que 4 y menor que 21 sin
-                                            links.</div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="input-group is-validation">
-                                        <span class="input-group-text">Reseña:</span>
-                                        <textarea id="notas_pd_reseña1" placeholder="Cosejo para que el alumno mejore" class="form-control" aria-label="Reseña" maxlength="299" disabled required style="max-height: 100px;"></textarea>
-                                        <div class="invalid-feedback">Reseña invalido
-                                            - Es nesesario escribir tu reseña sin links.</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-lg-4">
-                                <div class="mb-3">
-                                    <div class="input-group is-validation">
-                                        <span class="input-group-text"><i class="bi bi-people"></i></span>
-                                        <select id="notas_pd_alumno1" aria-label="Alumnos" class="form-control" size="8" disabled required>
-                                            <option value="0">Ninguno</option>
-                                            <optgroup label="Alumnos encontrados"></optgroup>
-                                        </select>
-                                        <div class="invalid-feedback">Alumnos
-                                            invalidos - Es nesesario seleccionar el alumno sin links.</div>
+                                <div class="col-6 col-lg-4">
+                                    <div class="mb-3">
+                                        <div class="input-group is-validation">
+                                            <span class="input-group-text"><i class="bi bi-people"></i></span>
+                                            <select id="notas_pd_alumno1" aria-label="Alumnos" class="form-control" size="8" disabled required>
+                                                <option value="0">Ninguno</option>
+                                                <optgroup label="Alumnos encontrados"></optgroup>
+                                            </select>
+                                            <div class="invalid-feedback">Alumnos
+                                                invalidos - Es nesesario seleccionar el alumno sin links.</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1073,9 +1123,11 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                     <!-- Notas pendientes -->
-                    <div name="table" class="card bg-secondary text-dark border border-warning mb-3">
+                    <div name="table" class="card mb-3">
+                        <div class="card-header">
+                            <h2>Todas las evaluaciones pendientes:</h2>
+                        </div>
                         <div class="card-body">
-                            <h2 class="mb-3">Todas las evaluaciones pendientes:</h2>
                             <div class="table-responsive">
                                 <table class="table table-dark table-hover">
                                     <thead>
@@ -1105,9 +1157,11 @@ include_once "../system_data/dataView.php";
                         </div>
                     </div>
                     <!-- Notas alumnos -->
-                    <div name="notas_evaluaciones" class="card bg-secondary text-dark border border-warning mb-3">
+                    <div name="notas_evaluaciones" class="card">
+                        <div class="card-header">
+                            <h2>Todas las notas:</h2>
+                        </div>
                         <div class="card-body">
-                            <h2 class="mb-3">Todas las notas:</h2>
                             <div class="accordion" id="accordionNotas">                                
                                 <?php for ($i = 0; $i < count($cursosEvaluaciones); $i++) { ?>
                                     <?php if ($cursosEvaluaciones[$i][5] != "v") {?>
@@ -1157,28 +1211,32 @@ include_once "../system_data/dataView.php";
                     <p class="fs-4">Registrar nuevo tema para poner como opcion para las activaciones.</p>
                     <hr class="border-light opacity-75">
                     <!-- Nuevo curso -->
-                    <form name="laborales" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Nuevo tema:</h2>
-                        <div class="mb-3 row visually-hidden">
-                            <label for="laboral_code" class="col-sm-2 col-form-label">code</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext bg-success" id="laboral_code" value="" disabled>
-                            </div>
+                    <form name="laborales" class="card bg-secondary text-white mb-3">
+                        <div class="card-header">
+                            <h2>Nuevo tema:</h2>
                         </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Nuevo tema:</span>
-                                <input type="text" id="nuevo_cs_name1" placeholder="tema" aria-label="Nuevo tema" class="form-control" disabled required>
-                                <div class="invalid-feedback">Nuevo tema invalido
-                                    - Es nesesario escribir el tema sin números ni links.</div>
+                        <div class="card-body">
+                            <div class="mb-3 row visually-hidden">
+                                <label for="laboral_code" class="col-sm-2 col-form-label">code</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext bg-success" id="laboral_code" value="" disabled>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Detalles:</span>
-                                <textarea class="form-control" placeholder="Detalle del tema" id="nuevo_cs_detalle1" aria-label="Detalles" disabled required style="max-height: 100px;"></textarea>
-                                <div class="invalid-feedback">Detalles invalido -
-                                    Es nesesario escribir el detalle del tema sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Nuevo tema:</span>
+                                    <input type="text" id="nuevo_cs_name1" placeholder="tema" aria-label="Nuevo tema" class="form-control" disabled required>
+                                    <div class="invalid-feedback">Nuevo tema invalido
+                                        - Es nesesario escribir el tema sin números ni links.</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Detalles:</span>
+                                    <textarea class="form-control" placeholder="Detalle del tema" id="nuevo_cs_detalle1" aria-label="Detalles" disabled required style="max-height: 100px;"></textarea>
+                                    <div class="invalid-feedback">Detalles invalido -
+                                        Es nesesario escribir el detalle del tema sin links.</div>
+                                </div>
                             </div>
                         </div>
                         <div name="opn-vertical" class="col-12 btn-group" role="group" aria-label="opciones">
@@ -1193,29 +1251,33 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                     <!-- Cursos -->
-                    <div name="table" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Todos los Temas:</h2>
-                        <div class="table-responsive">
-                            <table class="table table-dark table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"><?php echo "#" . count($lcurso); ?></th>
-                                        <th scope="col">Temas</th>
-                                        <th scope="col">Detalles</th>
-                                        <th scope="col">Accion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php for ($x = 0; $x < count($lcurso); $x++) {  ?>
+                    <div name="table" class="card">
+                        <div class="card-header">
+                            <h2>Todos los Temas:</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-dark table-hover">
+                                    <thead>
                                         <tr>
-                                            <td class="text-end"><?php echo $x + 1; ?></td>
-                                            <th scope="row"> <?php echo $lcurso[$x][1]; ?></th>
-                                            <td> <?php echo $lcurso[$x][2]; ?> </td>
-                                            <td class="text-md-center"><button type="button" class="btn btn-danger" title="Borrar Tema" onclick="javaScript:deleteAdmData(<?php echo $lcurso[$x][3]; ?>, 'deleteTeme')"><i class="bi bi-trash3"></i></button></td>
+                                            <th scope="col"><?php echo "#" . count($lcurso); ?></th>
+                                            <th scope="col">Temas</th>
+                                            <th scope="col">Detalles</th>
+                                            <th scope="col">Accion</th>
                                         </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php for ($x = 0; $x < count($lcurso); $x++) {  ?>
+                                            <tr>
+                                                <td class="text-end"><?php echo $x + 1; ?></td>
+                                                <th scope="row"> <?php echo $lcurso[$x][1]; ?></th>
+                                                <td> <?php echo $lcurso[$x][2]; ?> </td>
+                                                <td class="text-md-center"><button type="button" class="btn btn-danger" title="Borrar Tema" onclick="javaScript:deleteAdmData(<?php echo $lcurso[$x][3]; ?>, 'deleteTeme')"><i class="bi bi-trash3"></i></button></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </article>
@@ -1226,149 +1288,153 @@ include_once "../system_data/dataView.php";
                     <p class="fs-4">Activar nuevo curso para presentar en como opcion en el inicio.</p>
                     <hr class="border-light opacity-75">
                     <!-- Activar nuevos cursos -->
-                    <form name="data_cursos" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Activar nuevo curso:</h2>
-                        <div class="mb-3 row visually-hidden">
-                            <label for="curso_code" class="col-sm-2 col-form-label">code</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext bg-success" id="curso_code" value="" disabled>
-                            </div>
+                    <form name="data_cursos" class="card bg-secondary text-white mb-3">
+                        <div class="card-header">
+                            <h2>Activar nuevo curso:</h2>
                         </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Curso:</span>
-                                <input type="text" id="curso_ac_titulo" placeholder="Titulo" aria-label="Curso" class="form-control" maxlength="100" disabled required>
-                                <div class="invalid-feedback">Titulo del curso
-                                    invalido - Es nesesario escribir el Titulo del curso sin links.</div>
+                        <div class="card-body">
+                            <div class="mb-3 row visually-hidden">
+                                <label for="curso_code" class="col-sm-2 col-form-label">code</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext bg-success" id="curso_code" value="" disabled>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Detalles:</span>
-                                <textarea class="form-control" placeholder="Detalle del curso" id="curso_ac_detalle" aria-label="Detalles" maxlength="300" disabled required style="max-height: 100px;"></textarea>
-                                <div class="invalid-feedback">Detalles invalido -
-                                    Es nesesario escribir el detalle del curso sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Curso:</span>
+                                    <input type="text" id="curso_ac_titulo" placeholder="Titulo" aria-label="Curso" class="form-control" maxlength="100" disabled required>
+                                    <div class="invalid-feedback">Titulo del curso
+                                        invalido - Es nesesario escribir el Titulo del curso sin links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Local:</span>
-                                <select id="curso_ac_Local" aria-label="Local" class="form-select form-control" disabled required>
-                                    <option value="0">Ninguno</option>
-                                    <optgroup label="Locales encontrados">
-                                        <?php
-                                        for ($i = 0; $i < count($instituto); $i++) {
-                                        ?>
-                                            <option value="<?php echo $instituto[$i][3]; ?>"><?php echo $instituto[$i][1] . " - " . $instituto[$i][2]; ?></option>
-                                        <?php  } ?>
-                                    </optgroup>
-                                </select>
-                                <div class="invalid-feedback">Local invalido - Es
-                                    nesesario seleccionar una opción sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Detalles:</span>
+                                    <textarea class="form-control" placeholder="Detalle del curso" id="curso_ac_detalle" aria-label="Detalles" maxlength="300" disabled required style="max-height: 100px;"></textarea>
+                                    <div class="invalid-feedback">Detalles invalido -
+                                        Es nesesario escribir el detalle del curso sin links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Nivel del curso:</span>
-                                <input type="number" id="curso_ac_nivel1" placeholder="Nivel" aria-label="Nivel" max="100" class="form-control" max="100" disabled required>
-                                <div class="invalid-feedback">Nivel del curso
-                                    invalido - Es nesesario escribir el nivel del curso sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Local:</span>
+                                    <select id="curso_ac_Local" aria-label="Local" class="form-select form-control" disabled required>
+                                        <option value="0">Ninguno</option>
+                                        <optgroup label="Locales encontrados">
+                                            <?php
+                                            for ($i = 0; $i < count($instituto); $i++) {
+                                            ?>
+                                                <option value="<?php echo $instituto[$i][3]; ?>"><?php echo $instituto[$i][1] . " - " . $instituto[$i][2]; ?></option>
+                                            <?php  } ?>
+                                        </optgroup>
+                                    </select>
+                                    <div class="invalid-feedback">Local invalido - Es
+                                        nesesario seleccionar una opción sin links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">link:</span>
-                                <input type="text" id="curso_ac_link1" placeholder="Link del curso" aria-label="Link del curso" maxlength="100" class="form-control" disabled required>
-                                <div class="invalid-feedback">link invalido - Es
-                                    nesesario escribir el link del curso.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Nivel del curso:</span>
+                                    <input type="number" id="curso_ac_nivel1" placeholder="Nivel" aria-label="Nivel" max="100" class="form-control" max="100" disabled required>
+                                    <div class="invalid-feedback">Nivel del curso
+                                        invalido - Es nesesario escribir el nivel del curso sin links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Inicio:</span>
-                                <input type="date" id="curso_ac_inicio1" class="form-control" aria-label="Fecha inicio" disabled required>
-                                <div class="invalid-feedback">Fecha invalida - Es
-                                    nesesario escribir la fecha de inicio sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">link:</span>
+                                    <input type="text" id="curso_ac_link1" placeholder="Link del curso" aria-label="Link del curso" maxlength="100" class="form-control" disabled required>
+                                    <div class="invalid-feedback">link invalido - Es
+                                        nesesario escribir el link del curso.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Teminó:</span>
-                                <input type="date" id="curso_ac_termino1" class="form-control" aria-label="Fecha terminó" disabled required>
-                                <div class="invalid-feedback">Fecha invalida - Es
-                                    nesesario escribir la fecha final sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Inicio:</span>
+                                    <input type="date" id="curso_ac_inicio1" class="form-control" aria-label="Fecha inicio" disabled required>
+                                    <div class="invalid-feedback">Fecha invalida - Es
+                                        nesesario escribir la fecha de inicio sin links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Número de temas:</span>
-                                <select id="num_Temas" aria-label="Cantidad" class="form-select form-control" disabled required>
-                                    <option value="0">Ninguno</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                                <div class="invalid-feedback">Cantidad invalida - Es
-                                    nesesario seleccionar una opción sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Teminó:</span>
+                                    <input type="date" id="curso_ac_termino1" class="form-control" aria-label="Fecha terminó" disabled required>
+                                    <div class="invalid-feedback">Fecha invalida - Es
+                                        nesesario escribir la fecha final sin links.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div name="temas" class="mb-3 visually-hidden">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Temas:</span>
-                                <select id="curso_ac_Tema1" aria-label="Tema 1" class="form-select form-control" disabled required>
-                                    <option value="0">Ninguno</option>
-                                    <optgroup label="Temas encontrados">
-                                        <?php
-                                        for ($x = 0; $x < count($lcurso); $x++) {
-                                        ?>
-                                            <option value="<?php echo $x + 1; ?>"><?php echo $lcurso[$x][1]; ?></option>
-                                        <?php  } ?>
-                                    </optgroup>
-                                </select>
-                                <select id="curso_ac_Tema2" aria-label="Tema 2" class="form-select form-control" disabled required>
-                                    <option value="0">Ninguno</option>
-                                    <optgroup label="Temas encontrados">
-                                        <?php
-                                        for ($x = 0; $x < count($lcurso); $x++) {
-                                        ?>
-                                            <option value="<?php echo $x + 1; ?>"><?php echo $lcurso[$x][1]; ?></option>
-                                        <?php  } ?>
-                                    </optgroup>
-                                </select>
-                                <select id="curso_ac_Tema3" aria-label="Tema 3" class="form-select form-control" disabled required>
-                                    <option value="0">Ninguno</option>
-                                    <optgroup label="Temas encontrados">
-                                        <?php
-                                        for ($x = 0; $x < count($lcurso); $x++) {
-                                        ?>
-                                            <option value="<?php echo $x + 1; ?>"><?php echo $lcurso[$x][1]; ?></option>
-                                        <?php  } ?>
-                                    </optgroup>
-                                </select>
-                                <select id="curso_ac_Tema4" aria-label="Tema 4" class="form-select form-control" disabled required>
-                                    <option value="0">Ninguno</option>
-                                    <optgroup label="Temas encontrados">
-                                        <?php
-                                        for ($x = 0; $x < count($lcurso); $x++) {
-                                        ?>
-                                            <option value="<?php echo $x + 1; ?>"><?php echo $lcurso[$x][1]; ?></option>
-                                        <?php  } ?>
-                                    </optgroup>
-                                </select>
-                                <select id="curso_ac_Tema5" aria-label="Tema 5" class="form-select form-control" disabled required>
-                                    <option value="0">Ninguno</option>
-                                    <optgroup label="Temas encontrados">
-                                        <?php
-                                        for ($x = 0; $x < count($lcurso); $x++) {
-                                        ?>
-                                            <option value="<?php echo $x + 1; ?>"><?php echo $lcurso[$x][1]; ?></option>
-                                        <?php  } ?>
-                                    </optgroup>
-                                </select>
-                                <div class="invalid-feedback">Temas invalidos - Es
-                                    nesesario seleccionar las opcines sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Número de temas:</span>
+                                    <select id="num_Temas" aria-label="Cantidad" class="form-select form-control" disabled required>
+                                        <option value="0">Ninguno</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <div class="invalid-feedback">Cantidad invalida - Es
+                                        nesesario seleccionar una opción sin links.</div>
+                                </div>
+                            </div>
+                            <div name="temas" class="mb-3 visually-hidden">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Temas:</span>
+                                    <select id="curso_ac_Tema1" aria-label="Tema 1" class="form-select form-control" disabled required>
+                                        <option value="0">Ninguno</option>
+                                        <optgroup label="Temas encontrados">
+                                            <?php
+                                            for ($x = 0; $x < count($lcurso); $x++) {
+                                            ?>
+                                                <option value="<?php echo $x + 1; ?>"><?php echo $lcurso[$x][1]; ?></option>
+                                            <?php  } ?>
+                                        </optgroup>
+                                    </select>
+                                    <select id="curso_ac_Tema2" aria-label="Tema 2" class="form-select form-control" disabled required>
+                                        <option value="0">Ninguno</option>
+                                        <optgroup label="Temas encontrados">
+                                            <?php
+                                            for ($x = 0; $x < count($lcurso); $x++) {
+                                            ?>
+                                                <option value="<?php echo $x + 1; ?>"><?php echo $lcurso[$x][1]; ?></option>
+                                            <?php  } ?>
+                                        </optgroup>
+                                    </select>
+                                    <select id="curso_ac_Tema3" aria-label="Tema 3" class="form-select form-control" disabled required>
+                                        <option value="0">Ninguno</option>
+                                        <optgroup label="Temas encontrados">
+                                            <?php
+                                            for ($x = 0; $x < count($lcurso); $x++) {
+                                            ?>
+                                                <option value="<?php echo $x + 1; ?>"><?php echo $lcurso[$x][1]; ?></option>
+                                            <?php  } ?>
+                                        </optgroup>
+                                    </select>
+                                    <select id="curso_ac_Tema4" aria-label="Tema 4" class="form-select form-control" disabled required>
+                                        <option value="0">Ninguno</option>
+                                        <optgroup label="Temas encontrados">
+                                            <?php
+                                            for ($x = 0; $x < count($lcurso); $x++) {
+                                            ?>
+                                                <option value="<?php echo $x + 1; ?>"><?php echo $lcurso[$x][1]; ?></option>
+                                            <?php  } ?>
+                                        </optgroup>
+                                    </select>
+                                    <select id="curso_ac_Tema5" aria-label="Tema 5" class="form-select form-control" disabled required>
+                                        <option value="0">Ninguno</option>
+                                        <optgroup label="Temas encontrados">
+                                            <?php
+                                            for ($x = 0; $x < count($lcurso); $x++) {
+                                            ?>
+                                                <option value="<?php echo $x + 1; ?>"><?php echo $lcurso[$x][1]; ?></option>
+                                            <?php  } ?>
+                                        </optgroup>
+                                    </select>
+                                    <div class="invalid-feedback">Temas invalidos - Es
+                                        nesesario seleccionar las opcines sin links.</div>
+                                </div>
                             </div>
                         </div>
                         <div name="opn-vertical" class="col-12 btn-group" role="group" aria-label="opciones">
@@ -1383,31 +1449,35 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                     <!-- locales con cursos -->
-                    <div name="table_locales_cursos" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Todos los locales con cursos:</h2>
-                        <div class="table-responsive">
-                            <table class="table table-dark table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"><?php echo count($cursoLocal); ?> Cursos</th>
-                                        <th scope="col">Local</th>
-                                        <th scope="col">Nivel</th>
-                                        <th scope="col">Inicio</th>
-                                        <th scope="col">Finalizado</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php for ($i = 0; $i < count($cursoLocal); $i++) {   ?>
+                    <div name="table_locales_cursos" class="card">
+                        <div class="card-header">
+                            <h2>Todos los locales con cursos:</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-dark table-hover">
+                                    <thead>
                                         <tr>
-                                            <th scope="row"><?php echo $cursoLocal[$i][1]; ?></th>
-                                            <td><?php echo $cursoLocal[$i][8]; ?></td>
-                                            <td class="text-end"><?php echo $cursoLocal[$i][3]; ?></td>
-                                            <td class="text-end"><?php echo $cursoLocal[$i][6]; ?></td>
-                                            <td class="text-end"><?php echo $cursoLocal[$i][7]; ?></td>
+                                            <th scope="col"><?php echo count($cursoLocal); ?> Cursos</th>
+                                            <th scope="col">Local</th>
+                                            <th scope="col">Nivel</th>
+                                            <th scope="col">Inicio</th>
+                                            <th scope="col">Finalizado</th>
                                         </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php for ($i = 0; $i < count($cursoLocal); $i++) {   ?>
+                                            <tr>
+                                                <th scope="row"><?php echo $cursoLocal[$i][1]; ?></th>
+                                                <td><?php echo $cursoLocal[$i][8]; ?></td>
+                                                <td class="text-end"><?php echo $cursoLocal[$i][3]; ?></td>
+                                                <td class="text-end"><?php echo $cursoLocal[$i][6]; ?></td>
+                                                <td class="text-end"><?php echo $cursoLocal[$i][7]; ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </article>
@@ -1418,28 +1488,32 @@ include_once "../system_data/dataView.php";
                     <p class="fs-4">Cursos que puedes ejercer con mi persona.</p>
                     <hr class="border-light opacity-75">
                     <!-- Nuevo curso -->
-                    <form name="school" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Nuevo instituto:</h2>
-                        <div class="mb-3 row visually-hidden">
-                            <label for="school_code" class="col-sm-2 col-form-label">code</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext bg-success" id="school_code" value="" disabled>
-                            </div>
+                    <form name="school" class="card bg-secondary text-white mb-3">
+                        <div class="card-header">
+                            <h2>Nuevo instituto:</h2>
                         </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Nuevo instituto:</span>
-                                <input type="text" id="instituto_Name" placeholder="Instituto - Distrito" aria-label="Instituto" class="form-control" disabled required>
-                                <div class="invalid-feedback">Nuevo instituto
-                                    invalido - Es nesesario escribir el nombre del instituto sin links.</div>
+                        <div class="card-body">
+                            <div class="mb-3 row visually-hidden">
+                                <label for="school_code" class="col-sm-2 col-form-label">code</label>
+                                <div class="col-sm-10">
+                                    <input type="text" readonly class="form-control-plaintext bg-success" id="school_code" value="" disabled>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="input-group is-validation">
-                                <span class="input-group-text">Dirección:</span>
-                                <input type="text" id="indtituto_Address" placeholder="Av. example, caserio #" class="form-control" aria-label="Direccion" disabled required>
-                                <div class="invalid-feedback">Dirección invalido -
-                                    Es nesesario escribir la direccion del local del instituto sin links.</div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Nuevo instituto:</span>
+                                    <input type="text" id="instituto_Name" placeholder="Instituto - Distrito" aria-label="Instituto" class="form-control" disabled required>
+                                    <div class="invalid-feedback">Nuevo instituto
+                                        invalido - Es nesesario escribir el nombre del instituto sin links.</div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="input-group is-validation">
+                                    <span class="input-group-text">Dirección:</span>
+                                    <input type="text" id="indtituto_Address" placeholder="Av. example, caserio #" class="form-control" aria-label="Direccion" disabled required>
+                                    <div class="invalid-feedback">Dirección invalido -
+                                        Es nesesario escribir la direccion del local del instituto sin links.</div>
+                                </div>
                             </div>
                         </div>
                         <div name="opn-vertical" class="col-12 btn-group" role="group" aria-label="opciones">
@@ -1454,29 +1528,33 @@ include_once "../system_data/dataView.php";
                         </div>
                     </form>
                     <!-- Institutos -->
-                    <div name="table" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-                        <h2 class="mb-3">Todos los institutos:</h2>
-                        <div class="table-responsive">
-                            <table class="table table-dark table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"><?php echo "#" . count($instituto); ?></th>
-                                        <th scope="col">Institutos</th>
-                                        <th scope="col">Direcciones</th>
-                                        <th scope="col">Accion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php for ($x = 0; $x < count($instituto); $x++) { ?>
+                    <div name="table" class="card bg-secondary text-white mb-3">
+                        <div class="card-header">
+                            <h2>Todos los institutos:</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-dark table-hover">
+                                    <thead>
                                         <tr>
-                                            <td class="text-end"><?php echo $x + 1; ?></td>
-                                            <th scope="row"><?php echo $instituto[$x][1]; ?></th>
-                                            <td><?php echo $instituto[$x][2]; ?></td>
-                                            <td class="text-md-center"><button type="button" class="btn btn-danger" title="Borrar instituto" onclick="javaScript:deleteAdmData(<?php echo $instituto[$x][3]; ?>, 'deleteSchool')"><i class="bi bi-trash3"></i></button></td>
+                                            <th scope="col"><?php echo "#" . count($instituto); ?></th>
+                                            <th scope="col">Institutos</th>
+                                            <th scope="col">Direcciones</th>
+                                            <th scope="col">Accion</th>
                                         </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        <?php for ($x = 0; $x < count($instituto); $x++) { ?>
+                                            <tr>
+                                                <td class="text-end"><?php echo $x + 1; ?></td>
+                                                <th scope="row"><?php echo $instituto[$x][1]; ?></th>
+                                                <td><?php echo $instituto[$x][2]; ?></td>
+                                                <td class="text-md-center"><button type="button" class="btn btn-danger" title="Borrar instituto" onclick="javaScript:deleteAdmData(<?php echo $instituto[$x][3]; ?>, 'deleteSchool')"><i class="bi bi-trash3"></i></button></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </article>
