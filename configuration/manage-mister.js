@@ -189,6 +189,19 @@ function updateStudents(params, action) {
             }
             x++;
           });
+        }else if (response['test'][10]){
+          alert("Invalido: El alumno ha resuelto alguna evaluación de algun curso.");
+          /* botones para formularios datos */
+          $(link+' form#datos_alumnos input').attr('disabled',true);    
+          $(link+' form#datos_alumnos select').attr('disabled',true);
+          $(link+' form#datos_alumnos input').val('');    
+          $(link+' form#datos_alumnos select').val('0');
+          $(link+' form#datos_alumnos .form-control').removeClass('is-invalid');
+
+          $(link+' form#datos_alumnos div[name=opn-vertical] button').addClass('visually-hidden');
+          $(link+' form#datos_alumnos button[name=editar1]').removeClass('visually-hidden');
+          $(link+' form#datos_alumnos button[name=nuevo1]').removeClass('visually-hidden');
+          $(link+' form#datos_alumnos button[name=listar]').removeClass('visually-hidden');
         }else{
           alert("Alumno registrado");
           /* botones para formularios datos */
@@ -202,7 +215,6 @@ function updateStudents(params, action) {
           $(link+' form#datos_alumnos button[name=editar1]').removeClass('visually-hidden');
           $(link+' form#datos_alumnos button[name=nuevo1]').removeClass('visually-hidden');
           $(link+' form#datos_alumnos button[name=listar]').removeClass('visually-hidden');
-
         }
       }
     });
@@ -1141,6 +1153,8 @@ function deleteAdmData(params, table) {
       error = "Invalido: Tema incluido en algun curso, desconecta el curso del tema.";
     }else if (table=="deleteCurse") {
       error = "Invalido: Se está utilizando el curso, debes vaciar los alumnos, temas y evaluaciones que esten en este curso.";
+    }else if (table=="deleteStudent") {
+      error = "Invalido: El alumno está inclueido en algun evento, tales como evaluaciones y cursos";
     }
     $.ajax({
       type: 'POST',
@@ -1173,6 +1187,12 @@ function emptyAdmData(params, table) {
     }else if (table=="emptyTemes") {
       valid['false'] = "Invalido: No hay ningun tema para desconectar.";
       valid['true'] = "Curso desocupado de los temas exitosamente.";
+    }else if (table=="emptyTestStudent") {
+      valid['false'] = "Invalido: El alumno no resolvió ninguna evaluación";
+      valid['true'] = "¡Las notas del alumno se borraron!.";
+    }else if (table=="emptyCurseStudent") {
+      valid['true'] = "¡Alumno retirado del curso exitosamente!";
+      valid['false'] = "Invalido: El alumno ha resuelto evaluaciones del curso, debes eliminarlos.";
     }
     $.ajax({
       type: 'POST',

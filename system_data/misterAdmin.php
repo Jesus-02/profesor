@@ -650,6 +650,38 @@ class userAdmin
                 $response['section'][2] = $temes[0];
                 $response['section'][3] = $test[0];
             }
+        }else if($table == "deleteStudent"){
+            /* cursos */
+            $sql = "SELECT count(id_curso) FROM cursos_alumnos WHERE id_alumno={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $curse=$this->data->fetch_array(MYSQLI_NUM);
+            /* test */
+            $sql = "select count(nota_numero) from evaluaciones_alumnos where id_alumno={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $test=$this->data->fetch_array(MYSQLI_NUM);
+            /* mail */
+            $sql = "select id_correo from segurityalumn where id_alumno={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $mail=$this->data->fetch_array(MYSQLI_NUM);
+            if ($curse[0]==0 && $test[0]==0) {
+                if ($mail[0]!="" || $mail[0]!=null) {
+                    /* conexion */
+                    $sql = "DELETE FROM segurityalumn WHERE id_alumno={$code} LIMIT 1";
+                    $this->con->consultaSimple($sql);             
+    
+                    /* mail pass */
+                    $sql = "DELETE FROM correo_ingreso WHERE id_correo={$code} LIMIT 1";
+                    $this->con->consultaSimple($sql);             
+                }
+                /* students */
+                $sql = "DELETE FROM alumnos WHERE id_alumnos={$code} LIMIT 1";
+                $this->con->consultaSimple($sql);             
+                $response['valid'] = false;
+            }else {
+                $response['valid'] = true;
+                $response['section'][1] = $curse[0];
+                $response['section'][3] = $test[0];
+            }
         }
         return json_encode($response);
     }
@@ -698,6 +730,33 @@ class userAdmin
                 $sql = "DELETE FROM cursos_alumnos WHERE id_curso={$code}";
                 $this->con->consultaSimple($sql);
                 $response['valid'] = true;
+            }
+        }else if($table == "emptyTestStudent"){
+            $sql = "select count(nota_numero) from evaluaciones_alumnos where id_alumno={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $y=$this->data->fetch_array(MYSQLI_NUM);
+            if ($y[0]==0) {
+                $response['valid'] = false;
+            }else {
+                $sql = "DELETE FROM evaluaciones_alumnos WHERE id_alumno={$code}";
+                $this->con->consultaSimple($sql);
+                $response['valid'] = true;
+            }
+        }else if($table == "emptyCurseStudent"){
+            /* cursos */
+            $sql = "select count(id_curso) from cursos_alumnos where id_alumno={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $y=$this->data->fetch_array(MYSQLI_NUM);
+            /* test */
+            $sql = "select count(nota_numero) from evaluaciones_alumnos where id_alumno={$code}";
+            $this->data=$this->con->consultaRetorno($sql);
+            $test=$this->data->fetch_array(MYSQLI_NUM);
+            if ($y[0]==0 || $test[0]==0) {
+                $sql = "DELETE FROM cursos_alumnos WHERE id_alumno={$code}";
+                $this->con->consultaSimple($sql);
+                $response['valid'] = true;
+            }else {
+                $response['valid'] = false;
             }
         }
         return json_encode($response);

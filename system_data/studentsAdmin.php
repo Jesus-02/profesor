@@ -38,13 +38,22 @@ class estudentAdmin{
         $this->arrayUsers[7] = [$order['cellphone1'], 'celular'];
         $this->arrayUsers[8] = [$order['curso'], 'select_numero'];
         $response['test']=$this->validate->value_date($this->arrayUsers);
-        if ($response['test'][9]=="completo") {
+        
+        /* test */
+        $sql = "select count(nota_numero) from evaluaciones_alumnos where id_alumno={$order['alumnoCode']}";
+        $this->data=$this->con->consultaRetorno($sql);
+        $test=$this->data->fetch_array(MYSQLI_NUM);        
+        
+        if ($response['test'][9]=="completo" && $test[0]==0) {
+            /* ordenar datos alumno */
             $sql="update alumnos set nombres='{$order['name2']}', ap_paterno='{$order['surNameP']}', ap_materno='{$order['surNameM1']}', genero='{$order['genero1']}',";
             $sql=$sql." edad='{$order['edad1']}', correo='{$order['correo']}', celular='{$order['cellphone1']}' where dni={$order['identidad']}";
             if($this->con->consultaRetorno($sql)){
                 $sql="update cursos_alumnos set id_curso='{$order['curso']}' where id_alumno='{$order['alumnoCode']}' limit 1";
                 $this->con->consultaRetorno($sql);
             }
+        }else if($test[0]>0) {
+            $response['test'][10]=true;
         }
         return json_encode($response);
     }

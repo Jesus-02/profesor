@@ -637,10 +637,10 @@ include_once "../system_data/dataView.php";
                                                 <td class="text-end"><?php echo $cursoFE[$i][2] ?></td>
                                                 <td class="text-md-center">
                                                     <div class="btn-group" role="group" aria-label="Opciones">
-                                                        <button type="button" name="emptyTemes" class="btn btn-primary" title="Eliminar temas" onclick="javaScript:emptyAdmData(<?php echo $cursoFE[$i][6]; ?>, 'emptyTemes')">
+                                                        <button type="button" name="emptyTemes" class="btn btn-warning" title="Eliminar temas" onclick="javaScript:emptyAdmData(<?php echo $cursoFE[$i][6]; ?>, 'emptyTemes')">
                                                             <i class="bi bi-journal-minus"></i>
                                                         </button>
-                                                        <button type="button" name="emptyStudents" class="btn btn-primary" title="Desocupar alumnos" onclick="javaScript:emptyAdmData(<?php echo $cursoFE[$i][6]; ?>, 'emptyCurse')">
+                                                        <button type="button" name="emptyStudents" class="btn btn-warning" title="Desocupar alumnos" onclick="javaScript:emptyAdmData(<?php echo $cursoFE[$i][6]; ?>, 'emptyCurse')">
                                                             <i class="bi bi-people"></i>
                                                         </button>
                                                         <button type="button" name="delete" class="btn btn-danger" title="Eliminar curso" onclick="javaScript:deleteAdmData(<?php echo $cursoFE[$i][6]; ?>, 'deleteCurse')">
@@ -691,7 +691,17 @@ include_once "../system_data/dataView.php";
                                                                 <td><?php echo $alumnos[$y][1]; ?></td>
                                                                 <td class="text-end"><?php echo $alumnos[$y][6]; ?></td>
                                                                 <td><?php echo $alumnos[$y][5]; ?></td>
-                                                                <td class="text-md-center"><button type="button" class="btn btn-danger" title="Eliminar alumno" onclick="javaScript:deleteAdmData(<?php echo $alumnos[$y][2]; ?>, 'deleteStudent')"><i class="bi bi-trash3"></i></button></td>
+                                                                <td class="text-md-center">
+                                                                    <div class="btn-group" role="group" aria-label="Opciones">
+                                                                        <button type="button" name="emptyTemes" class="btn btn-warning" title="Eliminar todas las notas del alumno" onclick="javaScript:emptyAdmData(<?php echo $alumnos[$y][2]; ?>, 'emptyTestStudent')">
+                                                                            <i class="bi bi-journal-minus"></i>
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-warning" title="Retirar alumno del curso" onclick="javaScript:emptyAdmData(<?php echo $alumnos[$y][2]; ?>, 'emptyCurseStudent')">
+                                                                            <i class="bi bi-people"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                        
+                                                                </td>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -727,7 +737,11 @@ include_once "../system_data/dataView.php";
                                                 <td class="text-end"><?php echo $x + 1; ?></td>
                                                 <th scope="row"> <?php echo $alumnosError[$x][5]." ".$alumnosError[$x][2]." ".$alumnosError[$x][3]; ?></th>
                                                 <td> <?php echo $alumnosError[$x][4]; ?> </td>
-                                                <td class="text-md-center"><button type="button" class="btn btn-danger" title="Eliminar alumno" onclick="javaScript:deleteAdmData(<?php echo $alumnosError[$x][1]; ?>, 'deleteStudent')"><i class="bi bi-trash3"></i></button></td>
+                                                <td class="text-md-center">
+                                                    <button type="button" class="btn btn-danger" title="Eliminar alumno" onclick="javaScript:deleteAdmData(<?php echo $alumnosError[$x][1]; ?>, 'deleteStudent')">
+                                                        <i class="bi bi-trash3"></i>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -1060,7 +1074,7 @@ include_once "../system_data/dataView.php";
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-6 col-lg-8">
+                                <div class="col-12 col-md-6 col-lg-8">
                                     <div class="mb-3">
                                         <div class="input-group is-validation">
                                             <span class="input-group-text">Evaluacion:</span>
@@ -1096,7 +1110,7 @@ include_once "../system_data/dataView.php";
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 col-lg-4">
+                                <div class="col-12 col-md-6 col-lg-4">
                                     <div class="mb-3">
                                         <div class="input-group is-validation">
                                             <span class="input-group-text"><i class="bi bi-people"></i></span>
@@ -1168,7 +1182,7 @@ include_once "../system_data/dataView.php";
                                         <div class="accordion-item">
                                           <h2 class="accordion-header" id="notasCHeader<?php echo $i ?>">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#notasCurso<?php echo $i ?>" aria-expanded="false" aria-controls="notasCurso<?php echo $i ?>">
-                                                <?php echo $cursosEvaluaciones[$i][6] . " / " . $cursosEvaluaciones[$i][10] . " / " . $cursosEvaluaciones[$i][2] ?>
+                                                <?php echo $cursosEvaluaciones[$i][3] . " / " . $cursosEvaluaciones[$i][6] . " / " . $cursosEvaluaciones[$i][10] . " / " . $cursosEvaluaciones[$i][2] ?>
                                             </button>
                                           </h2>
                                           <div id="notasCurso<?php echo $i ?>" class="accordion-collapse collapse" aria-labelledby="notasCHeader<?php echo $i ?>" data-bs-parent="#accordionNotas">
