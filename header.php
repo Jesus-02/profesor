@@ -33,6 +33,7 @@ class portadas
     </div>
   <?php
   }/* function */
+  
   public function portada2()
   {
   ?>
@@ -78,52 +79,53 @@ class portadas
     </header>
 <?php
   }/* function */
+  
   public function portada3()
   {
 ?>
-<header class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark bg-opacity-50">
-  <section class="container">
-    <a href="/profesor1" class="navbar-brand">Cursos bonnelee</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <article class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/profesor1" title="Inicio"><i class="bi bi-house"></i> home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/profesor1/views/cv.php" title="Información profecional"><i class="bi bi-person-check"></i> Curriculum vitae</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ms-md-auto">
-        <?php if (isset($_SESSION['user'])) { ?>
-          <ul class='nav nav-tabs session-admin'>
-            <li class='nav-item dropdown'>
-              <a class='nav-link dropdown-toggle text-uppercase' data-bs-toggle='dropdown' href='#' role='button' aria-expanded='false' title='<?php echo $_SESSION['user']; ?>'> <i class='bi bi-person-circle'></i>&nbsp;
-              <?php echo $_SESSION['type']; ?>
-              </a>
-              <ul class='dropdown-menu'>
-                <li><a class='dropdown-item' href='#'>Administrar <?php echo $_SESSION['type']; ?></a></li>
-                <li>
-                  <hr class='dropdown-divider'>
-                </li>
-                <li><a class='dropdown-item' href='#'>Cerrar session</a></li>
-              </ul>
-            </li>
-          </ul>
-        <?php } else { ?>
-          <form name='sesion' class='input-group mb-2' method='POST'>
-            <input type='number' class='form-control' id='userInit' placeholder='DNI' aria-label='DNI' min='10000000' max='99999999' aria-describedby='button-addon2' title='Iniciar sesion'>
-            <button type='button' class='btn btn-primary' title='Iniciar sesion'><i class='bi bi-door-open-fill'></i> Ingresar</button>
-          </form>                
-        <?php
-        }
-        ?>
-      </ul>
-    </article>
-  </section>
-</header>
+  <header class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark bg-opacity-50">
+    <section class="container">
+      <a href="/profesor1" class="navbar-brand">Cursos bonnelee</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <article class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/profesor1" title="Inicio"><i class="bi bi-house"></i> home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/profesor1/views/cv.php" title="Información profecional"><i class="bi bi-person-check"></i> Curriculum vitae</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-md-auto">
+          <?php if (isset($_SESSION['user'])) { ?>
+            <ul class='nav nav-tabs session-admin'>
+              <li class='nav-item dropdown'>
+                <a class='nav-link dropdown-toggle text-uppercase' data-bs-toggle='dropdown' href='#' role='button' aria-expanded='false' title='<?php echo $_SESSION['user']; ?>'> <i class='bi bi-person-circle'></i>&nbsp;
+                <?php echo $_SESSION['type']; ?>
+                </a>
+                <ul class='dropdown-menu'>
+                  <li><a class='dropdown-item' href='#'>Administrar <?php echo $_SESSION['type']; ?></a></li>
+                  <li>
+                    <hr class='dropdown-divider'>
+                  </li>
+                  <li><a class='dropdown-item' href='#'>Cerrar session</a></li>
+                </ul>
+              </li>
+            </ul>
+          <?php } else { ?>
+            <form name='sesion' class='input-group mb-2' method='POST'>
+              <input type='number' class='form-control' id='userInit' placeholder='DNI' aria-label='DNI' min='10000000' max='99999999' aria-describedby='button-addon2' title='Iniciar sesion'>
+              <button type='button' class='btn btn-primary' title='Iniciar sesion'><i class='bi bi-door-open-fill'></i> Ingresar</button>
+            </form>                
+          <?php
+          }
+          ?>
+        </ul>
+      </article>
+    </section>
+  </header>
 <?php    
   }
 }/* Class */
