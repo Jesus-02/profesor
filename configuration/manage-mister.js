@@ -745,6 +745,12 @@ function updateReview(params, action){
         }else if(response['test'][2]=="validar" && response['test'][1]==1){
           params[3].classList.remove('is-invalid');
           params[0].classList.add('is-invalid');
+        }else if (response['response']==0) {
+          let mensaje = window.confirm("Evaluación no revisada, ¿Quieres poner nueva nota?");
+          if (mensaje) {
+            updateNewTest(params);       
+            params[0].classList.remove('is-invalid');
+          }
         }else{
           params[1].value = response['response'][2];
           params[2].value = response['response'][3];
@@ -858,6 +864,24 @@ function updateReview(params, action){
   }
 }
 
+/* Nueva nota(5) con revisión completa */
+function updateNewTest(data) {
+  let regist =`alumno=${data[3].value}&review=${data[0].value}&function=reviewBNew`;
+  $.ajax({
+    type: 'POST',
+    url:'../system_data/misterAdmin.php',
+    data: regist,
+    dataType: 'JSON',
+    success: response=>{
+      if (response['return']) {
+        alert('Nota revisada, ahora puedes editar la evaluación del alumno.');
+      }else{
+        alert('Esta opción se ejecuta despues que la evaluación se haya revisado completamente.');
+      }
+    }
+  });
+}
+
 /* Buscar Usuarios */
 function searchUsers() {
   let dataUser=[], x=0, filas="";
@@ -899,7 +923,7 @@ function activeCourse(code, x) {
       $.ajax({
         type: 'POST',
         url:'../system_data/misterAdmin.php',
-        data: `courseCode=${code}&function=courseActive`,
+        data: `courseCode=${code}&function=courseActive`
       }).done(()=>{
         $("#cursosActivos .recarga").load(" #cursosActivos .recarga");
        });
@@ -907,7 +931,7 @@ function activeCourse(code, x) {
       $.ajax({
         type: 'POST',
         url:'../system_data/misterAdmin.php',
-        data: `courseCode=${code}&function=courseDisabled`,
+        data: `courseCode=${code}&function=courseDisabled`
       }).done(()=>{
         $("#cursosActivos .recarga").load(" #cursosActivos .recarga");
        });

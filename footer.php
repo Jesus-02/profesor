@@ -42,7 +42,7 @@ class footers
       </div>
       <div class="col-12 col-md-4">
         <br># Con licencia de godaddy.com
-        <br># Codigo con derechos recerbados para el creador de la página web. <a href="https://alesus2022.000webhostapp.com" target="_blank" class="link-info">@JesusDiaz</a> <b></b>
+        <br># Codigo con derechos recerbados para el creador de la página web. <a href="https://alesus2022.000webhostapp.com" target="_blank" class="link-info">@JesusDiaz</a>
       </div>
     </div>
   </div>
@@ -105,7 +105,7 @@ class footers
       </div>
       <div class="col-12 col-md-4">
         <br># Con licencia de godaddy.com
-        <br># Codigo con derechos recerbados para el creador de la página web. <b>@JesusZubilete</b>
+        <br># Codigo con derechos recerbados para el creador de la página web. <a href="https://alesus2022.000webhostapp.com" target="_blank" class="link-info">@JesusDiaz</a>
       </div>
     </div>
   </div>

@@ -539,17 +539,38 @@ class userAdmin
     }
     public function buscarTest(int $test, int $student)
     {
-        $order = [];
         $response = [];
-        $order[1] = isset($_POST['nota']) ? $_POST['nota'] : "";
-        $order[2] = isset($_POST['reseña']) ? $_POST['reseña'] : "";
         $this->arrayUsers[0] = [$test, "numero"];
         $this->arrayUsers[1] = [$student, "numero"];
         $response['test'] = $this->validate->value_date($this->arrayUsers);
         if ($response['test'][2]=="completo") {
             $sql="select * from evaluaciones_alumnos where id_nota={$test} and id_alumno={$student}";
              $this->data = $this->con->consultaRetorno($sql);
-             $response['response'] = $this->data->fetch_array(MYSQLI_NUM);
+             if ($this->data->num_rows > 0) {
+                $response['response'] = $this->data->fetch_array(MYSQLI_NUM);
+             }else {
+                $response['response'] = 0;
+             }
+        }
+        return json_encode($response);
+    }
+    public function newReview5(int $test, int $student)
+    {
+        $response = [];
+        $this->arrayUsers[0] = [$test, "numero"];
+        $this->arrayUsers[1] = [$student, "numero"];
+        $response['test'] = $this->validate->value_date($this->arrayUsers);
+        if ($response['test'][2]=="completo") {
+            $sql="select * from evaluaciones where id_nota={$test} and pendiente='f'";
+            $this->data = $this->con->consultaRetorno($sql);
+            if ($this->data->num_rows > 0) {
+                $date = date('Y-m-d');
+                $sql = "insert into evaluaciones_alumnos(id_nota, id_alumno, nota_numero, resena, fecha_nota) values('{$test}', '{$student}','5','null','{$date}')";
+                $this->con->consultaSimple($sql);
+                $response['return'] = true;
+             }else{
+                $response['return'] = false;
+             }
         }
         return json_encode($response);
     }
@@ -846,10 +867,14 @@ if ($_POST['function'] == "editMister") {
 } else if ($_POST['function'] == "reviewBTest") {
     $classMister = new userAdmin();
     echo $classMister->buscarTest($_POST['review'], $_POST['alumno']);
+} else if ($_POST['function'] == "reviewBNew") {
+    $classMister = new userAdmin();
+    echo $classMister->newReview5($_POST['review'], $_POST['alumno']);
 } else if ($_POST['function'] == "reviewB") {
     $classMister = new userAdmin();
     echo $classMister->buscarStudentsXTest($_POST['reviewBuscar']);
 } else if ($_POST['function'] == "misterDataDt") {
+    /* Borrar */
     $classMister = new userAdmin();
     echo $classMister->deleteDataMt();
 } else if ($_POST['function'] == "adminDelete") {
