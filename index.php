@@ -33,36 +33,33 @@
               echo substr($cursoV[$i][8],0, $posit);            
             ?>
           </div>
-          <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180"
-          style="font-size:1.125rem;text-anchor:middle">
-          <rect width="100%" height="100%" fill="#868e96"></rect>
-          <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-        </svg>
-        <div class="card-body">
-          <h5 class="card-title"><?php echo $cursoV[$i][1]; ?></h5>
-          <p class="card-text"><?php echo $cursoV[$i][2]; ?></p>
-            <div class="accordion" id="accordion<?php echo $cursoV[$i][1]; ?>">
-            <?php ;
-              $bdCursos = $cursos->bdcusosXcurso($cursoV[$i][10]);              
-            ?>
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $cursoV[$i][10]; ?>" aria-expanded="false" aria-controls="collapse<?php echo $cursoV[$i][10]; ?>">
-                  <?php echo count($bdCursos); ?> Tecnologias a usar:
-                  </button>
-                </h2>
-                <div id="collapse<?php echo $cursoV[$i][10]; ?>" class="accordion-collapse collapse" aria-labelledby="heading<?php echo $cursoV[$i][10]; ?>" data-bs-parent="#accordion<?php echo $cursoV[$i][1]; ?>">
-                  <div class="accordion-body">
-                    <ul class="card-text">
-                    <?php for ($x=0; $x < count($bdCursos); $x++) { ?>
-                      <li><?php echo $bdCursos[$x][1]; ?></li>
-                      <?php } ?>
-                    </ul>
+          <div class="card-img">
+            <img src="imagens/pocesamiento-lenguaje.jpg" class="d-block" alt="lenguajes" width="100%">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><?php echo $cursoV[$i][1]; ?></h5>
+            <p class="card-text"><?php echo $cursoV[$i][2]; ?></p>
+              <div class="accordion" id="accordion<?php echo $cursoV[$i][1]; ?>">
+              <?php ;
+                $bdCursos = $cursos->bdcusosXcurso($cursoV[$i][10]);              
+              ?>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $cursoV[$i][10]; ?>" aria-expanded="false" aria-controls="collapse<?php echo $cursoV[$i][10]; ?>">
+                    <?php echo count($bdCursos); ?> Tecnologias a usar:
+                    </button>
+                  </h2>
+                  <div id="collapse<?php echo $cursoV[$i][10]; ?>" class="accordion-collapse collapse" aria-labelledby="heading<?php echo $cursoV[$i][10]; ?>" data-bs-parent="#accordion<?php echo $cursoV[$i][1]; ?>">
+                    <div class="accordion-body">
+                      <ul class="card-text">
+                      <?php for ($x=0; $x < count($bdCursos); $x++) { ?>
+                        <li><?php echo $bdCursos[$x][1]; ?></li>
+                        <?php } ?>
+                      </ul>
+                    </div>
                   </div>
-                </div>
+                </div>              
               </div>
-              
-            </div>
             <br><a href="<?php echo $cursoV[$i][4]; ?>" target="_blank" class="btn btn-primary">Ir a suscribirse</a>
           </div><!-- body card -->
         </div><!-- card -->

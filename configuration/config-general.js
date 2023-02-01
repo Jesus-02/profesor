@@ -1,3 +1,14 @@
+/* carga del dom */
+window.addEventListener('load',()=>{
+  let url = window.location.href;
+  if(url.includes('/profesor1/views/cv.php')) {
+    document.querySelector('header .menu-navbar a[name=cv]').classList.add('active');
+  } else if(url.includes('/profesor1/views/register.php')) {
+    document.querySelector('header .menu-navbar a[name=register]').classList.add('active');
+  }  else {
+    document.querySelector('header .menu-navbar a[name=home]').classList.add('active');
+  }
+});
 /* Init session */
 $('form[name=sesion] button').on('click',function() {
   let userInit = document.getElementById('userInit').value;
@@ -27,7 +38,8 @@ $('form[name=sesion] button').on('click',function() {
       }
     }
   })
-})
+});
+
 /* segurity */
 $("#login_1 form[name=login_1] button[name=Ingresar]").on('click',()=>{
   let userPass = document.getElementById('log_r1pass').value;
@@ -53,7 +65,8 @@ $("#login_1 form[name=login_1] button[name=Ingresar]").on('click',()=>{
     }
    });
   }
-})
+});
+
 /* cancelar session */
 $("#login_1 form[name=login_1] button[name=cancelar]").on('click',()=>{
   let confirm = window.confirm("¿Desea cancelar la sesion?");
@@ -66,7 +79,8 @@ $("#login_1 form[name=login_1] button[name=cancelar]").on('click',()=>{
     window.location.href = '/profesor1/index.php';
   });
   }
-})
+});
+
 /* Registrar Alumnos */
 $('#registrar_1 form button').on('click',function(){
   let registDni1 = document.getElementById('user_r1Dni').value;
@@ -116,7 +130,8 @@ $('#registrar_1 form button').on('click',function(){
       }
     });    
   }
-})
+});
+
 /* dropdown administrativo session */
 $('ul.session-admin li a').on('click',(evento)=>{
   if (evento.target.innerText=="Administrar mister") {
@@ -126,7 +141,8 @@ $('ul.session-admin li a').on('click',(evento)=>{
   }else if (evento.target.innerText=="Cerrar session") {
     closeSession();
   }
-})
+});
+
 /* funcion cerrar session */
 function closeSession() {
   let link;

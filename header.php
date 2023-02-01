@@ -90,12 +90,15 @@ class portadas
         <span class="navbar-toggler-icon"></span>
       </button>
       <article class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav menu-navbar">
           <li class="nav-item">
-            <a class="nav-link" href="/profesor1" title="Inicio"><i class="bi bi-house"></i> home</a>
+            <a class="nav-link" href="/profesor1" name="home" title="Inicio"><i class="bi bi-house"></i> home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/profesor1/views/cv.php" title="Información profecional"><i class="bi bi-person-check"></i> Curriculum vitae</a>
+            <a class="nav-link" href="/profesor1/views/cv.php" name="cv" title="Información profecional"><i class="bi bi-person-check"></i> Curriculum vitae</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/profesor1/views/register.php" name="register" title="Registrate"><i class="bi bi-person-plus"></i> Registrate</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-md-auto">

@@ -122,52 +122,62 @@ include_once "../system_data/dataView.php";
                 </article>
                 <!-- labora -->
                 <article class="p-4">
-                  <div class="border-bottom border-2">
-                    <h2>ESPERIENCIA LABORAL</h2>
-                    <ul class="list-group list-group-flush mx-5 py-5">
-                      <?php for ($i=0; $i < count($dlaboral); $i++) { ?>
-                        <li class="list-group-item border-start px-0">
-                          <div class="row">
-                            <div class="col-1">
-                              <i class="bi bi-chevron-right position-start"></i>
+                  <div class="row align-items-center border-bottom border-2">
+                    <div class="col-12 col-md-7">
+                      <h2>ESPERIENCIA LABORAL</h2>
+                      <ul class="list-group list-group-flush ms-5 py-4">
+                        <?php for ($i=0; $i < count($dlaboral); $i++) { ?>
+                          <li class="list-group-item border-start px-0">
+                            <div class="row">
+                              <div class="col-1">
+                                <i class="bi bi-chevron-right position-start"></i>
+                              </div>
+                              <div class="col-11">
+                                <h3><?php echo substr($dlaboral[$i][3], 0, 7); ?> / <?php echo substr($dlaboral[$i][4], 0, 7); ?></h3>
+                                <h4 class="text-uppercase"><?php echo $dlaboral[$i][1]; ?></h4>
+                                <p>
+                                <?php echo $dlaboral[$i][2]; ?>
+                                </p>
+                              </div>
                             </div>
-                            <div class="col-11">
-                              <h3><?php echo substr($dlaboral[$i][3], 0, 7); ?> / <?php echo substr($dlaboral[$i][4], 0, 7); ?></h3>
-                              <h4 class="text-uppercase"><?php echo $dlaboral[$i][1]; ?></h4>
-                              <p>
-                              <?php echo $dlaboral[$i][2]; ?>
-                              </p>
-                            </div>
-                          </div>
-                        </li><!-- li -->
-                        <?php } ?>                        
-                    </ul>
+                          </li><!-- li -->
+                          <?php } ?>                        
+                      </ul>
+                    </div>
+                    <div class="col-12 col-md-5">
+                      <img src="../imagens/programador.png" alt="" width="100%">
+                    </div>
                   </div>
                 </article>
                 <!-- educacion -->
                 <article class="p-4">
-                  <div class="border-bottom border-2">
-                    <h2>EDUCACION</h2>
-                    <ul class="list-group list-group-flush mx-5 py-5">
-                    <?php for ($i=0; $i < count($dcursos); $i++) { 
-                    if($dcursos[$i][5]<$dcursos[$i][6]){
-                    ?>
-                      <li class="list-group-item border-start px-0">
-                        <div class="row">
-                          <div class="col-1">
-                            <i class="bi bi-chevron-right position-start"></i>
-                          </div>
-                          <div class="col-11">
-                            <h3><?php echo substr($dcursos[$i][5], 0, 7); ?> / <?php echo substr($dcursos[$i][6], 0, 7); ?></h3>
-                            <h4 class="text-uppercase"><?php echo $dcursos[$i][1]; ?></h4>
-                            <p>
-                              <?php echo $dcursos[$i][4]; ?>
-                            </p>
-                          </div>
-                        </div>
-                      </li><!-- li -->
-                      <?php }} ?>                        
-                    </ul>
+                  <div class="row align-items-center border-bottom border-2">
+                    <div class="col-12 col-md-7">
+                      <h2>EDUCACION</h2>
+                      <ul class="list-group list-group-flush ms-5 py-4">
+                        <?php for ($i=0; $i < count($dcursos); $i++) { 
+                        if($dcursos[$i][5]<$dcursos[$i][6]){
+                        ?>
+                          <li class="list-group-item border-start px-0">
+                            <div class="row">
+                              <div class="col-1">
+                                <i class="bi bi-chevron-right position-start"></i>
+                              </div>
+                              <div class="col-11">
+                                <h3><?php echo substr($dcursos[$i][5], 0, 7); ?> / <?php echo substr($dcursos[$i][6], 0, 7); ?></h3>
+                                <h4 class="text-uppercase"><?php echo $dcursos[$i][1]; ?></h4>
+                                <p>
+                                  <?php echo $dcursos[$i][4]; ?>
+                                </p>
+                              </div>
+                            </div>
+                          </li><!-- li -->
+                          <?php }} ?>                        
+                      </ul>
+                    </div>
+                    <div class="col-12 col-md-5">
+                      <img src="../imagens/estudent.png" alt="" width="100%">
+                    </div>
                   </div>
                 </article>
                 <!-- hobbys -->
