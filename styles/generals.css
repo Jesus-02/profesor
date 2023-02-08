@@ -5,7 +5,7 @@ body, html {
 }
 
 .hero-image {
-  background-image: linear-gradient(to bottom,rgba(0, 43, 54, 0), rgba(0, 43, 54, 0.8)), url("../imagens/crossing zebras.jpg");
+  background-image: linear-gradient(to bottom,rgba(0, 43, 54, 0), rgba(0, 43, 54, 1)), url("../imagens/crossing zebras.jpg");
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -13,3 +13,11 @@ body, html {
   background-attachment: fixed;
   position: relative;
 }
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+

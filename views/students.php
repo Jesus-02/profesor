@@ -1,7 +1,32 @@
 <?php
-session_start();
+/* Fecha local */
+setlocale(LC_ALL, "es_PE");
+
+/**
+ * STUDENTS
+ * Data
+*/
+include_once "../system_data/data_Students.php";
+use models\students;
+$student = new students();
+$dataSt = $student->dataUser();
+$dataCurse = $student->userCurses();
+/* Session */
 if (!isset($_SESSION['user'])) {
   header('location:../index.php');
+}
+/* asignacion por genero */
+$icon=null;
+$genero=null;
+if($dataSt['row'][4]=="M"){
+  $icon="../imagens/userh3.png";
+  $genero='Masculino';
+}elseif($dataSt['row'][4]=="F"){
+  $icon="../imagens/userm2.png";
+  $genero='Femenino';
+}else{
+  $icon="../imagens/lgtbq.png";
+  $genero='LGTBQ';
 }
 ?>
 <!doctype html>
@@ -21,8 +46,8 @@ if (!isset($_SESSION['user'])) {
     <div class="row">
       <aside class="col-12 col-md-2 p-0 border-end border-dark border-3">
         <div class="container-fluid text-center">
-          <img src="../imagens/IMG_20160605_151301~2.jpg" width="40%" class="img-fluid border border-dark border-3 rounded-circle mx-auto d-block" alt="Cargando imagen" title="Jesús Zubilete">
-          <h3>Eduardo Rancio Poncio</h3>
+          <img src=<?php echo $icon; ?> width="50%" class="img-fluid border border-dark border-3 rounded-circle mx-auto d-block" alt="Cargando imagen" title="Alumno">
+          <h3><?php echo $dataSt['row'][1]." ".$dataSt['row'][2]." ".$dataSt['row'][3];?></h3>
         </div>
         <!-- menu admin -->
         <div class="list-group">
@@ -36,71 +61,70 @@ if (!isset($_SESSION['user'])) {
       </aside>
       <!-- articulos -->
       <section class="col-12 col-md-10">
-        <!-- alumnos -->
+        <!-- alumno -->
         <article id="alumnos" class="container">
           <h1>Alumnos:</h1>
           <p class="fs-4">Cursos que puedes ejercer con mi persona.</p>
           <hr class="border-light opacity-75">
           <!-- Datos personales -->
-          <form name="datos_personales" class="bg-secondary text-dark border border-warning rounded p-3 my-3">
-            <h2 class="mb-3">Datos personales:</h2>
-            <div class="mb-3">
-              <div class="input-group">
-                <span class="input-group-text">DNI:</span>
-                <input type="number" name="alumno_dp_dni" id="alumno_dp_dni"  placeholder="N° 12345678" min="10000000" max="99999999" aria-label="DNI" class="form-control" value="<?php echo $_SESSION['user'];?>" disabled>
-              </div>
+          <form name="datos_personales" class="card bg-secondary text-dark mb-3">
+            <div class="card-header">
+              <h2>Datos personales:</h2>
             </div>
-            <div class="mb-3">
-              <div class="input-group is-validation">
-                <span class="input-group-text">Nombres:</span>
-                <input type="text" name="alumno_dp_name1" id="alumno_dp_name1" placeholder="Primer nombre" aria-label="Primer nombre" class="form-control is-invalid" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-                <div id="validationServerUsernameFeedback" class="invalid-feedback">Nombres invalidos - Es nesesario escribir tu primer nombre mínimo sin números ni links.</div>
+            <div class="card-body">
+              <div class="mb-3 visually-hidden">
+                <div class="input-group">
+                  <span class="input-group-text">DNI:</span>
+                  <input type="number" name="alumno_dp_dni" id="alumno_dp_dni"  placeholder="N° 12345678" min="10000000" max="99999999" aria-label="DNI" class="form-control" value="<?php echo $_SESSION['user'];?>" disabled>
+                </div>
               </div>
-            </div>
-            <div class="mb-3">
-              <div class="input-group is-validation">
-                <span class="input-group-text">Apellidos:</span>
-                <input type="text" name="alumno_dp_surName1" id="alumno_dp_surName1" placeholder="Apellidos" aria-label="Apellidos" class="form-control is-invalid" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-                <div id="validationServerUsernameFeedback" class="invalid-feedback">Apellidos invalidos -  Es nesesario escribir tus apellidos sin números ni links.</div>
+              <div class="mb-3">
+                <div class="input-group is-validation">
+                  <span class="input-group-text">Nombres:</span>
+                  <input type="text" name="alumno_dp_name1" id="alumno_dp_name1" placeholder="Primer nombre" aria-label="Primer nombre" class="form-control" value="<?php echo $dataSt['row'][1];?>" disabled>
+                  <div class="invalid-feedback">Nombres invalidos - Es nesesario escribir tu primer nombre mínimo sin números ni links.</div>
+                </div>
               </div>
-            </div>
-            <div class="mb-3">
-              <div class="input-group">
-                <span class="input-group-text">Genero:</span>
-                <input type="text" name="alumno_dp_genero1" id="alumno_dp_genero1" placeholder="Genero" aria-label="Genero" class="form-control" value="Ninguno" disabled>
+              <div class="mb-3">
+                <div class="input-group is-validation">
+                  <span class="input-group-text">Apellidos:</span>
+                  <input type="text" name="alumno_dp_surName1" id="alumno_dp_surName1" placeholder="Apellido paterno" aria-label="Paterno" class="form-control" value="<?php echo $dataSt['row'][2];?>" disabled>
+                  <input type="text" name="alumno_dp_surName2" id="alumno_dp_surName2" placeholder="Apellidos materno" aria-label="Materno" class="form-control" value="<?php echo $dataSt['row'][3];?>" disabled>
+                  <div class="invalid-feedback">Apellidos invalidos -  Es nesesario escribir tus apellidos sin números ni links.</div>
+                </div>
+              </div>              
+              <div class="mb-3">
+                <div class="input-group">
+                  <span class="input-group-text">Genero:</span>
+                  <select class="form-select bg-transparent" name="alumno_dp_genero1" id="alumno_dp_genero1" aria-label="Genero" disabled>
+                    <option selected disabled value="<?php echo $dataSt['row'][4];?>">Genero <?php echo $genero;?></option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                    <option value="O">LGTBQ</option>
+                  </select>
+                  <div class="invalid-feedback">Genero invalido -  Es nesesario seleccionar tu genero.</div>
+                </div>
               </div>
-            </div>
-            <div class="mb-3">
-              <div class="input-group is-validation">
-                <span class="input-group-text">Edad:</span>
-                <input type="number" name="alumno_dp_edad" id="alumno_dp_edad"  placeholder="Edad" min="1" max="200" aria-label="Edad" class="form-control is-invalid" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-                <div id="validationServerUsernameFeedback" class="invalid-feedback">Edad invalido -  Es nesesario escribir tu edad sin links.</div>
+              <div class="mb-3">
+                <div class="input-group is-validation">
+                  <span class="input-group-text">Edad:</span>
+                  <input type="number" name="alumno_dp_edad" id="alumno_dp_edad"  placeholder="Edad" min="1" max="200" aria-label="Edad" class="form-control" value="<?php echo $dataSt['row'][5];?>" disabled>
+                  <div class="invalid-feedback">Edad invalido -  Es nesesario escribir tu edad sin links.</div>
+                </div>
               </div>
-            </div>
-            <div class="mb-3">
-              <div class="input-group is-validation">
-                <span class="input-group-text">Correo:</span>
-                <input type="gmail" name="alumno_dp_correo1" id="alumno_dp_correo1"  placeholder="ejemplo@gmail.com" aria-label="Correo" class="form-control is-invalid" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-                <div id="validationServerUsernameFeedback" class="invalid-feedback">Correo invalido -  Es nesesario escribir tu correo sin links.</div>
+              <div class="mb-3">
+                <div class="input-group is-validation">
+                  <span class="input-group-text">Correo:</span>
+                  <input type="gmail" name="alumno_dp_correo1" id="alumno_dp_correo1"  placeholder="ejemplo@gmail.com" aria-label="Correo" class="form-control" value="<?php echo $dataSt['row'][6];?>" disabled>
+                  <div class="invalid-feedback">Correo invalido -  Es nesesario escribir tu correo sin links.</div>
+                </div>
               </div>
-            </div>
-            <div class="mb-3">
-              <div class="input-group is-validation">
-                <span class="input-group-text">Celular:</span>
-                <input type="number" name="alumno_dp_cellPhone1" id="alumno_dp_cellPhone1"  placeholder="N° 123456789" min="1000000000" max="999999999" aria-label="cell phone" class="form-control is-invalid" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-                <div id="validationServerUsernameFeedback" class="invalid-feedback">Número invalido -  Es nesesario escribir los 9 digitos de tu celular sin links.</div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <div class="input-group">
-                <span class="input-group-text">Curso:</span>
-                <input type="text" name="alumno_dp_curso1" id="alumno_dp_curso1"  placeholder="Curso" aria-label="Curso" class="form-control" value="Exemplo" disabled>
-              </div>
-            </div>
-            <div class="mb-3">
-              <div class="input-group">
-                <span class="input-group-text">Instituto:</span>
-                <input type="text" name="alumno_dp_intituto1" id="alumno_dp_intituto1"  placeholder="Instituto y local" aria-label="Instituto" class="form-control" value="Exemplo" disabled>
+              <div class="mb-3">
+                <div class="input-group is-validation">
+                  <span class="input-group-text">Celular:</span>
+                  <input type="number" name="alumno_dp_cellPhone1" id="alumno_dp_cellPhone1"  placeholder="N° 123456789" min="1000000000" max="999999999" aria-label="cell phone" class="form-control" value="<?php echo $dataSt['row'][7];?>" disabled>
+                  <div class="invalid-feedback">Número invalido -  Es nesesario escribir los 9 digitos de tu celular sin links.</div>
+                </div>
               </div>
             </div>
             <div class="col-12 btn-group" role="group" aria-label="opciones de datos personales">
@@ -111,6 +135,29 @@ if (!isset($_SESSION['user'])) {
               <button type="button" class="btn btn-info" name="mPass" data-bs-toggle="modal" data-bs-target="#modalPassword">Contraseña</button>
             </div>
           </form>
+          <!-- Cursos que esta ejerciendo -->
+          <h1>Ejerciendo:</h1>
+          <p class="fs-4">Cursos que estas ejerciendo.</p>
+          <hr class="border-light opacity-75">
+          <div class="row mb-2 justify-content-center">
+            <?php for($i=0; $i < count($dataCurse); $i++){ ?>
+              <div class="col-md-6">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 h-md-250 position-relative bg-transparent">
+                  <div class="col p-4 d-flex flex-column position-static">
+                    <b class="d-inline-block mb-2 text-primary"><?php echo $dataCurse['row'][7]; ?></b>
+                    <h3 class="mb-0"><?php echo $dataCurse['row'][2]; ?></h3>
+                    <div class="mb-1 text-muted"><?php echo $dataCurse['row'][5]." - ".$dataCurse['row'][6]; ?></div>
+                    <p class="card-text mb-auto"><?php echo $dataCurse['row'][3]."<br>".$dataCurse['row'][8]; ?></p>
+                    <a href="<?php echo $dataCurse['row'][4]; ?>" target="_blank" class="stretched-link">Más inforrmación</a>
+                  </div>
+                  <div class="col-auto d-none d-lg-block">
+                    <img class="bd-placeholder-img" width="200" height="300" src="https://i.ibb.co/T81KLFC/edificio.jpg" title="Istitutos" alt="Istitutos">                    
+                  </div>
+                </div>
+              </div>
+            <?php } ?>
+          </div>
+            
         </article>
         <!-- Tareas -->
         <article id="tareas" class="container">

@@ -1,5 +1,8 @@
 <?php
-  //   Mister
+  /**
+   * MISTER
+   * Data
+  */
   include_once "data_Mister.php";
   use models\curriculum_vitae;
   $mister = new curriculum_vitae();
@@ -40,8 +43,9 @@
   // Rangos
   $cursosRangos = $cursos->rangos();
   // Evaluaciones
-  $cursosEvaluaciones = $cursos->evaluaciones();
-
-  // print_r($cursosRangos);
-  // echo count($cursosRangos);
+  $cursosEvaluaciones = $cursos->evaluaciones(); 
+  
+  // pruevas
+  // print_r($dataSt);
+  // echo count($dataSt);
 ?>

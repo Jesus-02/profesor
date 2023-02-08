@@ -192,25 +192,25 @@ class detalle_curso
     }
     return $arrayCurso;
   }
-    // detalle Alumnos
-    public function alumnosError()
-    {
-      $i = 0;
-      $arrayCurso = [];
-      $sql = "select al.id_alumnos, al.nombres, al.ap_paterno, al.ap_materno, al.correo, cl.id_curso from alumnos al left join cursos_alumnos cl on cl.id_alumno=al.id_alumnos";
-      $this->data = $this->con->consultaRetorno($sql);
-      while ($row = $this->data->fetch_array(MYSQLI_ASSOC)) {
-        if ($row['id_curso']=="" || $row['id_curso']==null) {
-          $arrayCurso[$i][1] = $row['id_alumnos'];
-          $arrayCurso[$i][2] = $row['ap_paterno'];
-          $arrayCurso[$i][3] = $row['ap_materno'];
-          $arrayCurso[$i][4] = $row['correo'];
-          $arrayCurso[$i][5] = $row['nombres'];
-          $i++;
-        }
+  // detalle Alumnos
+  public function alumnosError()
+  {
+    $i = 0;
+    $arrayCurso = [];
+    $sql = "select al.id_alumnos, al.nombres, al.ap_paterno, al.ap_materno, al.correo, cl.id_curso from alumnos al left join cursos_alumnos cl on cl.id_alumno=al.id_alumnos";
+    $this->data = $this->con->consultaRetorno($sql);
+    while ($row = $this->data->fetch_array(MYSQLI_ASSOC)) {
+      if ($row['id_curso']=="" || $row['id_curso']==null) {
+        $arrayCurso[$i][1] = $row['id_alumnos'];
+        $arrayCurso[$i][2] = $row['ap_paterno'];
+        $arrayCurso[$i][3] = $row['ap_materno'];
+        $arrayCurso[$i][4] = $row['correo'];
+        $arrayCurso[$i][5] = $row['nombres'];
+        $i++;
       }
-      return $arrayCurso;
     }
+    return $arrayCurso;
+  }
   
   // detalle Alumnos
   public function alumnos()
