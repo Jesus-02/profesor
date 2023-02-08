@@ -144,11 +144,11 @@ if($dataSt['row'][4]=="M"){
               <div class="col-md-6">
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 h-md-250 position-relative bg-transparent">
                   <div class="col p-4 d-flex flex-column position-static">
-                    <b class="d-inline-block mb-2 text-primary"><?php echo $dataCurse['row'][7]; ?></b>
-                    <h3 class="mb-0"><?php echo $dataCurse['row'][2]; ?></h3>
-                    <div class="mb-1 text-muted"><?php echo $dataCurse['row'][5]." - ".$dataCurse['row'][6]; ?></div>
-                    <p class="card-text mb-auto"><?php echo $dataCurse['row'][3]."<br>".$dataCurse['row'][8]; ?></p>
-                    <a href="<?php echo $dataCurse['row'][4]; ?>" target="_blank" class="stretched-link">Más inforrmación</a>
+                    <b class="d-inline-block mb-2 text-primary"><?php echo $dataCurse['row'][$i][7]; ?></b>
+                    <h3 class="mb-0"><?php echo $dataCurse['row'][$i][2]; ?></h3>
+                    <div class="mb-1 text-muted"><?php echo $dataCurse['row'][$i][5]." - ".$dataCurse['row'][$i][6]; ?></div>
+                    <p class="card-text mb-auto"><?php echo $dataCurse['row'][$i][3]."<br>".$dataCurse['row'][$i][8]; ?></p>
+                    <a href="<?php echo $dataCurse['row'][$i][4]; ?>" target="_blank" class="stretched-link">Más inforrmación</a>
                   </div>
                   <div class="col-auto d-none d-lg-block">
                     <img class="bd-placeholder-img" width="200" height="300" src="https://i.ibb.co/T81KLFC/edificio.jpg" title="Istitutos" alt="Istitutos">                    
@@ -175,11 +175,13 @@ if($dataSt['row'][4]=="M"){
                       <form name="listar_tareas" class="input-group" method="POST">
                         <span class="input-group-text">Cursos:</span>
                         <select id="listar_Cursos1" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
-                          <option selected>Todos</option>
+                          <option>Todos</option>
                           <optgroup label="Cursos">
-                            <option value="java-idat-av.larco">java idat av.larco</option>
-                            <option value="java-idat-av.larco">java idat av.larco</option>
-                            <option value="java-idat-av.larco">java idat av.larco</option>
+                            <?php for($x=0 ; $x<count($dataCurse); $x++){ if($x==0){ ?>
+                              <option value="<?php echo $dataCurse['row'][$x][1]; ?>" selected><?php echo $dataCurse['row'][$x][2]." / ".$dataCurse['row'][$x][7]; ?></option>
+                            <?php }else{ ?>  
+                              <option value="<?php echo $dataCurse['row'][$x][1]; ?>"><?php echo $dataCurse['row'][$x][2]." / ".$dataCurse['row'][$x][7]; ?></option>
+                            <?php } } ?>
                           </optgroup>
                         </select>
                         <button type="button" id="lsCurso_1button" class="btn btn-info">Listar</button>
@@ -260,11 +262,13 @@ if($dataSt['row'][4]=="M"){
                       <form name="listar_practicas" class="input-group" method="POST">
                         <span class="input-group-text">Cursos:</span>
                         <select id="listar_Cursos2" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
-                          <option selected>Todos</option>
+                          <option>Todos</option>
                           <optgroup label="Cursos">
-                            <option value="java-idat-av.larco">java idat av.larco</option>
-                            <option value="java-idat-av.larco">java idat av.larco</option>
-                            <option value="java-idat-av.larco">java idat av.larco</option>
+                            <?php for($x=0 ; $x<count($dataCurse); $x++){ if($x==0){ ?>
+                              <option value="<?php echo $dataCurse['row'][$x][1]; ?>" selected><?php echo $dataCurse['row'][$x][2]." / ".$dataCurse['row'][$x][7]; ?></option>
+                            <?php }else{ ?>  
+                              <option value="<?php echo $dataCurse['row'][$x][1]; ?>"><?php echo $dataCurse['row'][$x][2]." / ".$dataCurse['row'][$x][7]; ?></option>
+                            <?php } } ?>
                           </optgroup>
                         </select>
                         <button type="button" id="lsCurso_2button" class="btn btn-info">Listar</button>
@@ -344,11 +348,13 @@ if($dataSt['row'][4]=="M"){
                       <form name="listar_puntos" class="input-group" method="POST">
                         <span class="input-group-text">Cursos:</span>
                         <select id="listar_Cursos3" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
-                          <option selected>Todos</option>
+                          <option>Todos</option>
                           <optgroup label="Cursos">
-                            <option value="java-idat-av.larco">java idat av.larco</option>
-                            <option value="java-idat-av.larco">java idat av.larco</option>
-                            <option value="java-idat-av.larco">java idat av.larco</option>
+                            <?php for($x=0 ; $x<count($dataCurse); $x++){ if($x==0){ ?>
+                              <option value="<?php echo $dataCurse['row'][$x][1]; ?>" selected><?php echo $dataCurse['row'][$x][2]." / ".$dataCurse['row'][$x][7]; ?></option>
+                            <?php }else{ ?>  
+                              <option value="<?php echo $dataCurse['row'][$x][1]; ?>"><?php echo $dataCurse['row'][$x][2]." / ".$dataCurse['row'][$x][7]; ?></option>
+                            <?php } } ?>
                           </optgroup>
                         </select>
                         <button type="button" id="lsCurso_3button" class="btn btn-info">Listar</button>
@@ -428,11 +434,13 @@ if($dataSt['row'][4]=="M"){
                       <form name="listar_promedio" class="input-group" method="POST">
                         <span class="input-group-text">Cursos:</span>
                         <select id="listar_Cursos4" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
-                          <option selected>Todos</option>
+                          <option>Todos</option>
                           <optgroup label="Cursos">
-                            <option value="java-idat-av.larco">java idat av.larco</option>
-                            <option value="java-idat-av.larco">java idat av.larco</option>
-                            <option value="java-idat-av.larco">java idat av.larco</option>
+                            <?php for($x=0 ; $x<count($dataCurse); $x++){ if($x==0){ ?>
+                              <option value="<?php echo $dataCurse['row'][$x][1]; ?>" selected><?php echo $dataCurse['row'][$x][2]." / ".$dataCurse['row'][$x][7]; ?></option>
+                            <?php }else{ ?>  
+                              <option value="<?php echo $dataCurse['row'][$x][1]; ?>"><?php echo $dataCurse['row'][$x][2]." / ".$dataCurse['row'][$x][7]; ?></option>
+                            <?php } } ?>
                           </optgroup>
                         </select>
                         <button type="button" id="lsCurso_4button" class="btn btn-info">Listar</button>

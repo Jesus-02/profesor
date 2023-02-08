@@ -30,7 +30,7 @@
     }
     /* Cursos */    
     public function userCurses(){
-      $response = [];
+      $response = []; $i=0;
       $sql="select cul.id_curso from alumnos al inner join cursos_alumnos cul on al.id_alumnos=cul.id_alumno where al.dni={$this->session[0]}";
       $this->data = $this->con->consultaRetorno($sql);
       if($this->data->num_rows > 0){
@@ -38,14 +38,15 @@
           $sql="select cu.id_cursos, cu.titulo, cu.descripcion, cu.link, cu.fecha_inicio, cu.fecha_fin, it.instituto, it.av_local from cursos cu inner join institutos it on cu.id_local=it.id_local where cu.id_cursos={$curses['id_curso']}";
           $this->data = $this->con->consultaRetorno($sql);
           $row=$this->data->fetch_array(MYSQLI_ASSOC);
-          $response['row'][1]=$row['id_cursos'];
-          $response['row'][2]=$row['titulo'];
-          $response['row'][3]=$row['descripcion'];
-          $response['row'][4]=$row['link'];
-          $response['row'][5]=$row['fecha_inicio'];
-          $response['row'][6]=$row['fecha_fin'];
-          $response['row'][7]=$row['instituto'];
-          $response['row'][8]=$row['av_local'];
+          $response['row'][$i][1]=$row['id_cursos'];
+          $response['row'][$i][2]=$row['titulo'];
+          $response['row'][$i][3]=$row['descripcion'];
+          $response['row'][$i][4]=$row['link'];
+          $response['row'][$i][5]=$row['fecha_inicio'];
+          $response['row'][$i][6]=$row['fecha_fin'];
+          $response['row'][$i][7]=$row['instituto'];
+          $response['row'][$i][8]=$row['av_local'];
+          $i++;
         }        
       }
       return $response;
