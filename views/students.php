@@ -11,6 +11,7 @@ use models\students;
 $student = new students();
 $dataSt = $student->dataUser();
 $dataCurse = $student->userCurses();
+$testCurse = $student->testCurse();
 /* Session */
 if (!isset($_SESSION['user'])) {
   header('location:../index.php');
@@ -64,7 +65,7 @@ if($dataSt['row'][4]=="M"){
         <!-- alumno -->
         <article id="alumnos" class="container">
           <h1>Alumnos:</h1>
-          <p class="fs-4">Cursos que puedes ejercer con mi persona.</p>
+          <p class="fs-4">Actualiza tus datos para darte una mejor experiencia &#128521;</p>
           <hr class="border-light opacity-75">
           <!-- Datos personales -->
           <form name="datos_personales" class="card bg-secondary text-dark mb-3">
@@ -161,13 +162,15 @@ if($dataSt['row'][4]=="M"){
         </article>
         <!-- Tareas -->
         <article id="tareas" class="container">
-          <h1>Alumnos:</h1>
-          <p class="fs-4">Cursos que puedes ejercer con mi persona.</p>
+          <h1>Tareas:</h1>
+          <p class="fs-4">Revisa todas tus tareas a detalle &#128208;</p>
           <hr class="border-light opacity-75">
           <!-- ALUMNOS -->
-          <div name="table_tareas" class="card bg-secondary text-dark border border-warning mb-3">
+          <div name="table_tareas" class="card mb-3">
+            <div class="card-header">
+              <h2>Todas las tareas:</h2>
+            </div>
             <div class="card-body">
-              <h2 class="mb-3">Todas las tareas:</h2>
               <table class="table table-dark table-hover">
                 <thead>
                   <tr>
@@ -196,72 +199,118 @@ if($dataSt['row'][4]=="M"){
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">Titulo</th>
-                    <td>Nota</td>
-                    <td>fecha propuesta..</td>
-                    <td>fecha revición a 5 dias maximo</td>
-                  </tr>
-                  <tr>
-                    <th  scope="row">Titulo</th>
-                    <td>Nota</td>
-                    <td>fecha propuesta..</td>
-                    <td>fecha revición a 5 dias maximo</td>
-                  </tr>
+                  <?php
+                  if($testCurse['row']!=0){
+                    for($x=0 ; $x < count($testCurse['row']); $x++){
+                      if($testCurse['row'][$x][5]=="tarea"){
+                      $testGrade = $student->testGrade($testCurse['row'][$x][1]);
+                      if($testGrade['grade'][0]){
+                        $testGrade['row'][100]=$testGrade['grade'][1];
+                        $testGrade['row'][102]=$testGrade['grade'][3];
+                      }else{
+                        $testGrade['row'][100]=0;
+                        $testGrade['row'][102]="fecha revición a 5 dias maximo";
+                      }
+                  ?>
+                    <tr>
+                      <th scope="row"><?php echo $testCurse['row'][$x][3];?></th>
+                      <td><?php echo $testGrade['row'][100];?></td>
+                      <td><?php echo $testCurse['row'][$x][2];?></td>
+                      <td><?php echo $testGrade['row'][102];?></td>
+                    </tr>
+                    <?php  } } }else{?>
+                      <th scope="row" colspan="4" class="text-primary fs-2">No hay Evaluaciones</th>
+                    <?php } ?>
+                    <tr>
+                      <td colspan="2"></td>
+                      <td colspan="2">
+                        <?php 
+                          $countT = $student->countTest('tarea');
+                          if($countT['count'][0]){
+                            echo "Total de tareas: ".$countT['count'][1];
+                          }else{
+                            echo "No hay Tareas";
+                          }
+                        ?>
+                      </td>
+                    </tr>
                 </tbody>
               </table>
             </div>
           </div>
           <!-- Detalles de Tareas -->
-          <div class="card bg-secondary text-dark border border-warning mb-3">
-            <div class="card-header">Instituto</div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <h4 class="card-title">Titulo</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p class="card-text">fecha propusta: 45/12/22</p>
-                </div>
-                <div class="col-12 col-md-6">
-                  <h3 class="card-text text-center">nota o la revición se mencionara aproximadamente en 5 dias maximo.</h3>
-                  <p class="card-text fst-italic">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h1>Detalles de las tareas:</h1>
+          <hr class="border-light opacity-75">
+          <?php 
+          if($testCurse['row']!=0){
+          for($i=0; $i < count($testCurse['row']); $i++){ 
+            if($testCurse['row'][$i][5]=="tarea"){
+          ?>
+            <div class="card border-primary mb-3">
+              <div class="card-header text-primary"><?php echo $testCurse['row'][$i][7]." / ".$testCurse['row'][$i][6];?></div>
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-12 col-md-6">
+                    <h3 class="card-title"><?php echo $testCurse['row'][$i][3];?></h3>
+                    <p class="card-text fs-4"><?php echo $testCurse['row'][$i][4];?></p>
+                    <p class="card-text">fecha propusta: <?php echo $testCurse['row'][$i][2];?></p>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <?php $testGrade = $student->testGrade($testCurse['row'][$i][1]);
+                      if($testGrade['grade'][0]){
+                        $testGrade['row'][100]=$testGrade['grade'][1];
+                        $testGrade['row'][102]=$testGrade['grade'][3];
+                        $testGrade['row'][103]=$testGrade['grade'][2];
+                      }else{
+                        $testGrade['row'][100]= 0;
+                        $testGrade['row'][102]= date('Y-m-d');
+                        $testGrade['row'][103]= "nota o la revición se mencionara aproximadamente en 5 dias maximo.";
+                      }
+                    ?>
+                    <h3 class="card-text text-center text-info"><?php echo $testGrade['row'][100]; ?></h3>
+                    <p class="card-text text-center fst-italic">Revision: <?php echo $testGrade['row'][102]; ?></p>
+                    <p class="card-text fst-italic fs-5"><?php echo $testGrade['row'][103]; ?></p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="card bg-secondary text-dark border border-warning mb-3">
-            <div class="card-header">Instituto</div>
+          <?php  } } }else{?>
+            <h1 class="text-primary">No hay Evaluaciones</h1>
+          <?php } ?>
+          <!-- total de tareas -->
+          <div class="card border-primary mb-3">
             <div class="card-body">
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <h4 class="card-title">Titulo</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p class="card-text">fecha propusta: 45/12/22</p>
-                </div>
-                <div class="col-12 col-md-6">
-                  <h3 class="card-text text-center">nota o la revición se mencionara aproximadamente en 5 dias maximo.</h3>
-                  <p class="card-text fst-italic">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-              </div>
+              <h2>
+              <?php 
+                $countTar = $student->countTest('tarea');
+                if($countTar['count'][0]){
+                  echo "Total de practicas: ".$countTar['count'][1];
+                }else{
+                  echo "No hay Tareas";
+                }
+              ?>
+              </h2>
             </div>
           </div>
         </article>
-        <!-- Practicas -->
+        <!-- Prácticas -->
         <article id="practicas" class="container">
-          <h1>Practicas:</h1>
-          <p class="fs-4">Cursos que puedes ejercer con mi persona.</p>
+          <h1>Prácticas:</h1>
+          <p class="fs-4">Cursos que puedes ejercer con mi persona &#128202;</p>
           <hr class="border-light opacity-75">
           <!-- ALUMNOS -->
-          <div name="table_practicas" class="card bg-secondary text-dark border border-warning mb-3">
+          <div name="table_practicas" class="card mb-3">
+            <div class="card-header">
+              <h2>Todas las Prácticas:</h2>
+            </div>
             <div class="card-body">
-              <h2 class="mb-3">Todas las Practicas:</h2>
               <table class="table table-dark table-hover">
                 <thead>
                   <tr>
                     <th scope="col" colspan="4">
-                      <form name="listar_practicas" class="input-group" method="POST">
+                      <form name="listar_tareas" class="input-group" method="POST">
                         <span class="input-group-text">Cursos:</span>
-                        <select id="listar_Cursos2" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
+                        <select id="listar_Cursos1" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
                           <option>Todos</option>
                           <optgroup label="Cursos">
                             <?php for($x=0 ; $x<count($dataCurse); $x++){ if($x==0){ ?>
@@ -271,7 +320,7 @@ if($dataSt['row'][4]=="M"){
                             <?php } } ?>
                           </optgroup>
                         </select>
-                        <button type="button" id="lsCurso_2button" class="btn btn-info">Listar</button>
+                        <button type="button" id="lsCurso_1button" class="btn btn-info">Listar</button>
                       </form>
                     </th>
                   </tr>
@@ -283,71 +332,123 @@ if($dataSt['row'][4]=="M"){
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">Titulo</th>
-                    <td>Nota</td>
-                    <td>fecha propuesta..</td>
-                    <td>fecha revición a 5 dias maximo</td>
-                  </tr>
-                  <tr>
-                    <th  scope="row">Titulo</th>
-                    <td>Nota</td>
-                    <td>fecha propuesta..</td>
-                    <td>fecha revición a 5 dias maximo</td>
-                  </tr>
+                  <?php
+                  if($testCurse['row'] != 0){
+                    for($x=0 ; $x < count($testCurse['row']); $x++){
+                      if($testCurse['row'][$x][5] == "practica presencial" || $testCurse['row'][$x][5] == "practica virtual"){
+                        $testGrade = $student->testGrade($testCurse['row'][$x][1]);
+                        if($testGrade['grade'][0]){
+                          $testGrade['row'][100]=$testGrade['grade'][1];
+                          $testGrade['row'][102]=$testGrade['grade'][3];
+                        }else{
+                          $testGrade['row'][100]=0;
+                          $testGrade['row'][102]="fecha revición a 5 dias maximo";
+                        }
+                  ?>
+                    <tr>
+                      <th scope="row"><?php echo $testCurse['row'][$x][3];?></th>
+                      <td><?php echo $testGrade['row'][100];?></td>
+                      <td><?php echo $testCurse['row'][$x][2];?></td>
+                      <td><?php echo $testGrade['row'][102];?></td>
+                    </tr>
+                    <?php } } }else{ ?>
+                      <th scope="row" colspan="4" class="text-primary fs-2">No hay Evaluaciones</th>
+                    <?php } ?>
+                    <!-- todas las practicas -->
+                    <tr>
+                      <td colspan="2"></td>
+                      <td colspan="2">
+                        <?php 
+                          $countPracP = $student->countTest('practica presencial');
+                          $countPracV = $student->countTest('practica virtual');
+                          if($countPracP['count'][0] || $countPracV['count'][0]){
+                            $countPrac=$countPracP['count'][1]+$countPracV['count'][1];
+                            echo "Total de practicas: ".$countPrac;
+                          }else{
+                            echo "No hay practicas";
+                          }
+                        ?>
+                      </td>
+                    </tr>
                 </tbody>
               </table>
             </div>
           </div>
-          <div class="card bg-secondary text-dark border border-warning mb-3">
-            <div class="card-header">Instituto</div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <h4 class="card-title">Titulo</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p class="card-text">fecha propusta: 45/12/22</p>
-                </div>
-                <div class="col-12 col-md-6">
-                  <h3 class="card-text text-center">nota o la revición se mencionara aproximadamente en 5 dias maximo.</h3>
-                  <p class="card-text fst-italic">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <!-- Detalles de Prácticas -->
+          <h1>Detalles de las Prácticas:</h1>
+          <hr class="border-light opacity-75">
+          <?php 
+          if($testCurse['row']!=0){
+            for($i=0; $i < count($testCurse['row']); $i++){
+              if($testCurse['row'][$i][5] == "practica presencial" || $testCurse['row'][$i][5] == "practica virtual"){
+          ?>
+            <div class="card border-primary mb-3">
+              <div class="card-header text-primary"><?php echo $testCurse['row'][$i][7]." / ".$testCurse['row'][$i][6];?></div>
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-12 col-md-6">
+                    <h3 class="card-title"><?php echo $testCurse['row'][$i][3];?></h3>
+                    <p class="card-text fs-4"><?php echo $testCurse['row'][$i][4];?></p>
+                    <p class="card-text">fecha propusta: <?php echo $testCurse['row'][$i][2];?></p>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <?php $testGrade = $student->testGrade($testCurse['row'][$i][1]);
+                      if($testGrade['grade'][0]){
+                        $testGrade['row'][100]=$testGrade['grade'][1];
+                        $testGrade['row'][102]=$testGrade['grade'][3];
+                        $testGrade['row'][103]=$testGrade['grade'][2];
+                      }else{
+                        $testGrade['row'][100]= 0;
+                        $testGrade['row'][102]= date('Y-m-d');
+                        $testGrade['row'][103]= "nota o la revición se mencionara aproximadamente en 5 dias maximo.";
+                      }
+                    ?>
+                    <h3 class="card-text text-center text-info"><?php echo $testGrade['row'][100]; ?></h3>
+                    <p class="card-text text-center fst-italic">Revision: <?php echo $testGrade['row'][102]; ?></p>
+                    <p class="card-text fst-italic fs-5"><?php echo $testGrade['row'][103]; ?></p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="card bg-secondary text-dark border border-warning mb-3">
-            <div class="card-header">Instituto</div>
+            </div>          
+          <?php } } }else{?>
+            <h1 class="text-primary">No hay Evaluaciones</h1>
+          <?php } ?>
+          <!-- todas las practicas -->
+          <div class="card border-primary mb-3">
             <div class="card-body">
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <h4 class="card-title">Titulo</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p class="card-text">fecha propusta: 45/12/22</p>
-                </div>
-                <div class="col-12 col-md-6">
-                  <h3 class="card-text text-center">nota o la revición se mencionara aproximadamente en 5 dias maximo.</h3>
-                  <p class="card-text fst-italic">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-              </div>
+              <h2>
+              <?php 
+                $countPracP = $student->countTest('practica presencial');
+                $countPracV = $student->countTest('practica virtual');
+                if($countPracP['count'][0] || $countPracV['count'][0]){
+                  $countPrac=$countPracP['count'][1]+$countPracV['count'][1];
+                  echo "Total de practicas: ".$countPrac;
+                }else{
+                  echo "No hay practicas";
+                }
+              ?>
+              </h2>
             </div>
-          </div>
+          </div>          
         </article>
         <!-- Puntos -->
         <article id="puntos" class="container">
           <h1>Puntos:</h1>
-          <p class="fs-4">Cursos que puedes ejercer con mi persona.</p>
+          <p class="fs-4">Cursos que puedes ejercer con mi persona &#129306;</p>
           <hr class="border-light opacity-75">
           <!-- ALUMNOS -->
-          <div name="table_puntos" class="card bg-secondary text-dark border border-warning mb-3">
+          <div name="table_puntos"class="card mb-3">
+            <div class="card-header">
+              <h2>Todas los puntos:</h2>
+            </div>
             <div class="card-body">
-              <h2 class="mb-3">Todos los puntos adicionales:</h2>
               <table class="table table-dark table-hover">
                 <thead>
                   <tr>
                     <th scope="col" colspan="4">
-                      <form name="listar_puntos" class="input-group" method="POST">
+                      <form name="listar_tareas" class="input-group" method="POST">
                         <span class="input-group-text">Cursos:</span>
-                        <select id="listar_Cursos3" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
+                        <select id="listar_Cursos1" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
                           <option>Todos</option>
                           <optgroup label="Cursos">
                             <?php for($x=0 ; $x<count($dataCurse); $x++){ if($x==0){ ?>
@@ -357,7 +458,7 @@ if($dataSt['row'][4]=="M"){
                             <?php } } ?>
                           </optgroup>
                         </select>
-                        <button type="button" id="lsCurso_3button" class="btn btn-info">Listar</button>
+                        <button type="button" id="lsCurso_1button" class="btn btn-info">Listar</button>
                       </form>
                     </th>
                   </tr>
@@ -369,71 +470,125 @@ if($dataSt['row'][4]=="M"){
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">Titulo</th>
-                    <td>Nota</td>
-                    <td>fecha propuesta..</td>
-                    <td>fecha revición a 5 dias maximo</td>
-                  </tr>
-                  <tr>
-                    <th  scope="row">Titulo</th>
-                    <td>Nota</td>
-                    <td>fecha propuesta..</td>
-                    <td>fecha revición a 5 dias maximo</td>
-                  </tr>
+                  <?php
+                  if($testCurse['row'] != 0){
+                    for($x=0 ; $x < count($testCurse['row']); $x++){
+                      if($testCurse['row'][$x][5] == "puntos" || $testCurse['row'][$x][5] == "clase presencial" || $testCurse['row'][$x][5] == "clase virtual"){
+                        $testGrade = $student->testGrade($testCurse['row'][$x][1]);
+                        if($testGrade['grade'][0]){
+                          $testGrade['row'][100]=$testGrade['grade'][1];
+                          $testGrade['row'][102]=$testGrade['grade'][3];
+                        }else{
+                          $testGrade['row'][100]=0;
+                          $testGrade['row'][102]="fecha revición a 5 dias maximo";
+                        }
+                  ?>
+                    <tr>
+                      <th scope="row"><?php echo $testCurse['row'][$x][3];?></th>
+                      <td><?php echo $testGrade['row'][100];?></td>
+                      <td><?php echo $testCurse['row'][$x][2];?></td>
+                      <td><?php echo $testGrade['row'][102];?></td>
+                    </tr>
+                    <?php } } }else{ ?>
+                      <th scope="row" colspan="4" class="text-primary fs-2">No hay Evaluaciones</th>
+                    <?php } ?>
+                    <!-- todas los puntos -->
+                    <tr>
+                      <td colspan="2"></td>
+                      <td colspan="2">
+                        <?php 
+                          $countclasPu = $student->countTest('puntos');
+                          $countclasPre = $student->countTest('clase presencial');
+                          $countclasV = $student->countTest('clase virtual');
+                          if($countclasPu['count'][0] || $countclasPre['count'][0] || $countclasV['count'][0]){
+                            $countPuntos=$countclasPu['count'][1]+$countclasPre['count'][1]+$countclasV['count'][1];
+                            echo "Total de puntos: ".$countPuntos;
+                          }else{
+                            echo "No hay Puntos";
+                          }
+                        ?>
+                      </td>
+                    </tr>
                 </tbody>
               </table>
             </div>
           </div>
-          <div class="card bg-secondary text-dark border border-warning mb-3">
-            <div class="card-header">Instituto</div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <h4 class="card-title">Titulo</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p class="card-text">fecha propusta: 45/12/22</p>
-                </div>
-                <div class="col-12 col-md-6">
-                  <h3 class="card-text text-center">nota o la revición se mencionara aproximadamente en 5 dias maximo.</h3>
-                  <p class="card-text fst-italic">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <!-- Detalles de Puntos -->
+          <h1>Detalles de los puntos:</h1>
+          <hr class="border-light opacity-75">
+          <?php 
+          if($testCurse['row']!=0){
+            for($i=0; $i < count($testCurse['row']); $i++){
+              if($testCurse['row'][$i][5] == "puntos" || $testCurse['row'][$i][5] == "clase presencial" || $testCurse['row'][$i][5] == "clase virtual"){
+          ?>
+            <div class="card border-primary mb-3">
+              <div class="card-header text-primary"><?php echo $testCurse['row'][$i][7]." / ".$testCurse['row'][$i][6];?></div>
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-12 col-md-6">
+                    <h3 class="card-title"><?php echo $testCurse['row'][$i][3];?></h3>
+                    <p class="card-text fs-4"><?php echo $testCurse['row'][$i][4];?></p>
+                    <p class="card-text">fecha propusta: <?php echo $testCurse['row'][$i][2];?></p>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <?php $testGrade = $student->testGrade($testCurse['row'][$i][1]);
+                      if($testGrade['grade'][0]){
+                        $testGrade['row'][100]=$testGrade['grade'][1];
+                        $testGrade['row'][102]=$testGrade['grade'][3];
+                        $testGrade['row'][103]=$testGrade['grade'][2];
+                      }else{
+                        $testGrade['row'][100]= 0;
+                        $testGrade['row'][102]= date('Y-m-d');
+                        $testGrade['row'][103]= "nota o la revición se mencionara aproximadamente en 5 dias maximo.";
+                      }
+                    ?>
+                    <h3 class="card-text text-center text-info"><?php echo $testGrade['row'][100]; ?></h3>
+                    <p class="card-text text-center fst-italic">Revision: <?php echo $testGrade['row'][102]; ?></p>
+                    <p class="card-text fst-italic fs-5"><?php echo $testGrade['row'][103]; ?></p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="card bg-secondary text-dark border border-warning mb-3">
-            <div class="card-header">Instituto</div>
+            </div>          
+          <?php } } }else{?>
+            <h1 class="text-primary">No hay Evaluaciones</h1>
+          <?php } ?>
+          <!-- todas los puntos -->
+          <div class="card border-primary mb-3">
             <div class="card-body">
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <h4 class="card-title">Titulo</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p class="card-text">fecha propusta: 45/12/22</p>
-                </div>
-                <div class="col-12 col-md-6">
-                  <h3 class="card-text text-center">nota o la revición se mencionara aproximadamente en 5 dias maximo.</h3>
-                  <p class="card-text fst-italic">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-              </div>
+              <h2>
+              <?php 
+                $countclasPu = $student->countTest('puntos');
+                $countclasPre = $student->countTest('clase presencial');
+                $countclasV = $student->countTest('clase virtual');
+                if($countclasPu['count'][0] || $countclasPre['count'][0] || $countclasV['count'][0]){
+                  $countPuntos=$countclasPu['count'][1]+$countclasPre['count'][1]+$countclasV['count'][1];
+                  echo "Total de puntos: ".$countPuntos;
+                }else{
+                  echo "No hay Puntos";
+                }
+              ?>
+              </h2>
             </div>
           </div>
         </article>
         <!-- Promedio -->
         <article id="promedio" class="container">
           <h1>Promedio:</h1>
-          <p class="fs-4">Cursos que puedes ejercer con mi persona.</p>
+          <p class="fs-4">Todos los examenes que has desarrollado en los cursos &#128220;</p>
           <hr class="border-light opacity-75">
           <!-- ALUMNOS -->
-          <div name="table_promedio" class="card bg-secondary text-dark border border-warning mb-3">
+          <div name="table_promedio" class="card mb-3">
+            <div class="card-header">
+              <h2>Todos los examenes:</h2>
+            </div>
             <div class="card-body">
-              <h2 class="mb-3">Todas las evaluaciones:</h2>
               <table class="table table-dark table-hover">
                 <thead>
                   <tr>
                     <th scope="col" colspan="4">
-                      <form name="listar_promedio" class="input-group" method="POST">
+                      <form name="listar_tareas" class="input-group" method="POST">
                         <span class="input-group-text">Cursos:</span>
-                        <select id="listar_Cursos4" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
+                        <select id="listar_Cursos1" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
                           <option>Todos</option>
                           <optgroup label="Cursos">
                             <?php for($x=0 ; $x<count($dataCurse); $x++){ if($x==0){ ?>
@@ -443,7 +598,7 @@ if($dataSt['row'][4]=="M"){
                             <?php } } ?>
                           </optgroup>
                         </select>
-                        <button type="button" id="lsCurso_4button" class="btn btn-info">Listar</button>
+                        <button type="button" id="lsCurso_1button" class="btn btn-info">Listar</button>
                       </form>
                     </th>
                   </tr>
@@ -454,65 +609,103 @@ if($dataSt['row'][4]=="M"){
                     <th scope="col">fecha revición</th>
                   </tr>
                 </thead>
-                <tfoot>
-                  <tr>
-                    <th scope="col" class="text-end">Total:</th>
-                    <th scope="col">#</th>
-                    <th scope="col" class="text-end">Puntos:</th>
-                    <th scope="col">#</th>
-                  </tr>
-                  <tr>
-                    <th scope="col" colspan="2" class="text-end">Promedio:</th>
-                    <th scope="col" colspan="2">#</th>
-                  </tr>
-                </tfoot>
                 <tbody>
-                  <tr>
-                    <th scope="row">Titulo</th>
-                    <td>Nota</td>
-                    <td>fecha propuesta..</td>
-                    <td>fecha revición a 5 dias maximo</td>
-                  </tr>
-                  <tr>
-                    <th  scope="row">Titulo</th>
-                    <td>Nota</td>
-                    <td>fecha propuesta..</td>
-                    <td>fecha revición a 5 dias maximo</td>
-                  </tr>
+                  <?php
+                  if($testCurse['row'] != 0){
+                    for($x=0 ; $x < count($testCurse['row']); $x++){
+                      if($testCurse['row'][$x][5] == "examen presencial" || $testCurse['row'][$x][5] == "examen virtual"){
+                        $testGrade = $student->testGrade($testCurse['row'][$x][1]);
+                        if($testGrade['grade'][0]){
+                          $testGrade['row'][100]=$testGrade['grade'][1];
+                          $testGrade['row'][102]=$testGrade['grade'][3];
+                        }else{
+                          $testGrade['row'][100]=0;
+                          $testGrade['row'][102]="fecha revición a 5 dias maximo";
+                        }
+                  ?>
+                    <tr>
+                      <th scope="row"><?php echo $testCurse['row'][$x][3];?></th>
+                      <td><?php echo $testGrade['row'][100];?></td>
+                      <td><?php echo $testCurse['row'][$x][2];?></td>
+                      <td><?php echo $testGrade['row'][102];?></td>
+                    </tr>
+                    <?php } } }else{ ?>
+                      <th scope="row" colspan="4" class="text-primary fs-2">No hay Evaluaciones</th>
+                    <?php } ?>
+                    <!-- todos los examenes -->
+                    <tr>
+                      <td colspan="2"></td>
+                      <td colspan="2">
+                        <?php 
+                          $countExaP = $student->countTest('examen presencial');
+                          $countExaV = $student->countTest('examen virtual');
+                          if($countExaP['count'][0] || $countExaV['count'][0]){
+                            $countExam=$countExaP['count'][1]+$countExaV['count'][1];
+                            echo "Total de examenes: ".$countExam;
+                          }else{
+                            echo "No hay examenes";
+                          }
+                        ?>
+                      </td>
+                    </tr>
                 </tbody>
               </table>
             </div>
           </div>
-          <div class="card bg-secondary text-dark border border-warning mb-3">
-            <div class="card-header">Instituto</div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <h4 class="card-title">Titulo</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p class="card-text">fecha propusta: 45/12/22</p>
-                </div>
-                <div class="col-12 col-md-6">
-                  <h3 class="card-text text-center">nota o la revición se mencionara aproximadamente en 5 dias maximo.</h3>
-                  <p class="card-text fst-italic">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <!-- Detalles de examenes -->
+          <h1>Detalles de los examenes:</h1>
+          <hr class="border-light opacity-75">
+          <?php 
+          if($testCurse['row']!=0){
+            for($i=0; $i < count($testCurse['row']); $i++){
+              if($testCurse['row'][$i][5] == "examen presencial" || $testCurse['row'][$i][5] == "examen virtual"){
+          ?>
+            <div class="card border-primary mb-3">
+              <div class="card-header text-primary"><?php echo $testCurse['row'][$i][7]." / ".$testCurse['row'][$i][6];?></div>
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col-12 col-md-6">
+                    <h3 class="card-title"><?php echo $testCurse['row'][$i][3];?></h3>
+                    <p class="card-text fs-4"><?php echo $testCurse['row'][$i][4];?></p>
+                    <p class="card-text">fecha propusta: <?php echo $testCurse['row'][$i][2];?></p>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <?php $testGrade = $student->testGrade($testCurse['row'][$i][1]);
+                      if($testGrade['grade'][0]){
+                        $testGrade['row'][100]=$testGrade['grade'][1];
+                        $testGrade['row'][102]=$testGrade['grade'][3];
+                        $testGrade['row'][103]=$testGrade['grade'][2];
+                      }else{
+                        $testGrade['row'][100]= 0;
+                        $testGrade['row'][102]= date('Y-m-d');
+                        $testGrade['row'][103]= "nota o la revición se mencionara aproximadamente en 5 dias maximo.";
+                      }
+                    ?>
+                    <h3 class="card-text text-center text-info"><?php echo $testGrade['row'][100]; ?></h3>
+                    <p class="card-text text-center fst-italic">Revision: <?php echo $testGrade['row'][102]; ?></p>
+                    <p class="card-text fst-italic fs-5"><?php echo $testGrade['row'][103]; ?></p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="card bg-secondary text-dark border border-warning mb-3">
-            <div class="card-header">Instituto</div>
+            </div>          
+          <?php } } }else{?>
+            <h1 class="text-primary">No hay Evaluaciones</h1>
+          <?php } ?>
+          <!-- todas las practicas -->
+          <div class="card border-primary mb-3">
             <div class="card-body">
-              <div class="row">
-                <div class="col-12 col-md-6">
-                  <h4 class="card-title">Titulo</h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <p class="card-text">fecha propusta: 45/12/22</p>
-                </div>
-                <div class="col-12 col-md-6">
-                  <h3 class="card-text text-center">nota o la revición se mencionara aproximadamente en 5 dias maximo.</h3>
-                  <p class="card-text fst-italic">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-              </div>
+              <h2>
+              <?php 
+                $countExaP = $student->countTest('examen presencial');
+                $countExaV = $student->countTest('examen virtual');
+                if($countExaP['count'][0] || $countExaV['count'][0]){
+                  $countExam=$countExaP['count'][1]+$countExaV['count'][1];
+                  echo "Total de examenes: ".$countExam;
+                }else{
+                  echo "No hay examenes";
+                }
+              ?>
+              </h2>
             </div>
           </div>
         </article>
