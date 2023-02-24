@@ -3,10 +3,13 @@ window.addEventListener('load',()=>{
   let url = window.location.href;
   if(url.includes('/profesor1/views/cv.php')) {
     document.querySelector('header .menu-navbar a[name=cv]').classList.add('active');
+    document.getElementById('img-menu').src = "../imagens/mister title.png"; 
   } else if(url.includes('/profesor1/views/register.php')) {
     document.querySelector('header .menu-navbar a[name=register]').classList.add('active');
+    document.getElementById('img-menu').src = "../imagens/mister title.png"; 
   }  else {
     document.querySelector('header .menu-navbar a[name=home]').classList.add('active');
+    document.getElementById('img-menu').src = "imagens/mister title.png"; 
   }
 });
 /* Init session */

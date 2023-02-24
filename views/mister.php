@@ -226,7 +226,7 @@ include_once "../system_data/dataView.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="mb-3 row">
+                <div class="mb-3 row visually-hidden">
                     <label for="pass_edit" class="col-sm-2 col-form-label">Usuario:</label>
                     <div class="col-sm-10">
                         <input type="number" readonly class="form-control-plaintext" id="pass_edit" value="<?php echo $_SESSION['user'];?>" disabled>

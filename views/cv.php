@@ -20,7 +20,7 @@ include_once "../system_data/dataView.php";
   echo $portadas->portada3();
   ?>
   <!-- cuerpo -->
-  <section class="container" style="margin-top:50px">
+  <section class="container-lg" style="margin-top:50px">
     <div class="row">
       <div class="col-12 p-0 my-5">
         <!-- card principal -->

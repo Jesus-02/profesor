@@ -40,7 +40,9 @@ class portadas
     <!-- encabezado -->
     <header class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark bg-opacity-50">
       <section class="container">
-        <a href="/profesor1" class="navbar-brand">Cursos bonnelee</a>
+        <a href="/profesor1/" class="navbar-brand">
+          <img src="" height="45px" width="230px" id="img-menu" alt="logo">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -85,7 +87,9 @@ class portadas
 ?>
   <header class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark bg-opacity-50">
     <section class="container">
-      <a href="/profesor1" class="navbar-brand">Cursos bonnelee</a>
+      <a href="/profesor1" class="navbar-brand">        
+        <img src="" height="45px" width="230px" id="img-menu" alt="logo">
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
