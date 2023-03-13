@@ -1635,8 +1635,8 @@ include_once "../system_data/dataView.php";
     echo $footers->footer2();
     ?>
     <!-- CDN bootstrap -->
-    <script type="text/javascript" src="../configuration/bootstrap.bundle.min.js" languaje="javascript" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <!-- CDN jQuery -->
     <script type="text/javascript" src="../configuration/jquery-3.5.1.min.js" languaje="javascript" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../configuration/config-mister.js" languaje="javascript"></script>

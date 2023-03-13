@@ -1,15 +1,15 @@
 /* carga del dom */
 window.addEventListener('load',()=>{
   let url = window.location.href;
-  if(url.includes('/profesor1/views/cv.php')) {
+  if(url.includes('/cv.php')) {
     document.querySelector('header .menu-navbar a[name=cv]').classList.add('active');
-    document.getElementById('img-menu').src = "../imagens/mister title.png"; 
-  } else if(url.includes('/profesor1/views/register.php')) {
+    document.getElementById('img-menu').src = "../imagens/logo_web.png"; 
+  } else if(url.includes('/register.php')) {
     document.querySelector('header .menu-navbar a[name=register]').classList.add('active');
-    document.getElementById('img-menu').src = "../imagens/mister title.png"; 
+    document.getElementById('img-menu').src = "../imagens/logo_web.png"; 
   }  else {
     document.querySelector('header .menu-navbar a[name=home]').classList.add('active');
-    document.getElementById('img-menu').src = "imagens/mister title.png"; 
+    document.getElementById('img-menu').src = "imagens/logo_web.png"; 
   }
 });
 /* Init session */
@@ -17,7 +17,7 @@ $('form[name=sesion] button').on('click',function() {
   let userInit = document.getElementById('userInit').value;
   let locacion =  window.location.href;
   let urlViews = "";
-  if (locacion.includes('views')) {
+  if (locacion.includes('/views/')) {
     urlViews="../system_data/general.php";
   } else {
     urlViews="system_data/general.php";    

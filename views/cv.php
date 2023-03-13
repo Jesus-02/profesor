@@ -27,7 +27,7 @@ include_once "../system_data/dataView.php";
         <div class="card text-white bg-opacity-50 border border-success border-3">
           <div class="card-header">
             <div class="row my-4 mx-auto" style="width: 70%;">
-              <div class="col-12 col-md-7">
+              <div class="col-12 col-md-7 text-center text-md-start">
                 <h1 class="display-3"><?php echo $variante[1]; ?></h1>
                 <h1 class="display-3"><span><?php echo $variante[2]; ?></span> <span><?php echo $variante[3]; ?></span></h1>
                 <h2>Programador web full stack junior</h2>
@@ -42,7 +42,7 @@ include_once "../system_data/dataView.php";
             <div class="row">
               <!-- seccion menu -->
               <section class="col-12 col-md-3">
-                <article class="py-4">
+                <article class="py-4 text-center text-md-start">
                   <div class="border-bottom border-dark">
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item justify-content-between align-items-center">
@@ -63,13 +63,10 @@ include_once "../system_data/dataView.php";
                           <span>PROYECTOS REALIZADOS</span>
                         </h3>
                         <h5 class="lh-lg">
-                          <span class="badge bg-primary rounded-pill"><i class="bi bi-globe" title="Web"></i></span>
+                          <span class="badge bg-primary rounded-pill"><i class="bi bi-globe"></i></span>
                           <a href="https://alesus2022.000webhostapp.com" target="_blanck">www.alesus2022.com</a>
                         </h5>
-                        <h5 class="lh-lg">
-                          <span class="badge bg-primary rounded-pill"><i class="bi bi-globe" title="Web"></i></span>
-                          <a href="https://alesus2022.000webhostapp.com/clases/tareas/ejercicio-14/index.html" target="_blanck">www.aurili.com</a>
-                        </h5>
+                        <p class="fst-italic">Aquí encontraras todos los proyectos que realicé.</p>
                       </li><!-- grupo niveles -->
                       <li class="list-group-item">
                         <h3>HABILIDADES</h3>
@@ -77,7 +74,7 @@ include_once "../system_data/dataView.php";
                           if($dcursos[$i][5]==$dcursos[$i][6]){
                         ?>                           
                           <div class="row px-0 my-3">
-                            <div class="col-5 text-end">
+                            <div class="col-5 text-center text-md-start text-lg-end">
                               <span><?php echo $dcursos[$i][1]; ?></span>
                             </div>
                             <div class="col-7 p-0">
@@ -110,7 +107,7 @@ include_once "../system_data/dataView.php";
               <!-- Seccion Cuerpo -->
               <section class="col-12 col-md-8 border-start border-dark border-2">
                 <!-- sobre mi -->
-                <article class="p-4">
+                <article class="p-4 text-center text-md-start">
                   <div class="border-bottom border-2">
                     <h1>SOBRE MY</h1>
                     <p class="fs-4">
@@ -124,7 +121,7 @@ include_once "../system_data/dataView.php";
                 <article class="p-4">
                   <div class="row align-items-center border-bottom border-2">
                     <div class="col-12 col-md-7">
-                      <h2>ESPERIENCIA LABORAL</h2>
+                      <h2 class="text-center text-md-start">ESPERIENCIA LABORAL</h2>
                       <ul class="list-group list-group-flush ms-5 py-4">
                         <?php for ($i=0; $i < count($dlaboral); $i++) { ?>
                           <li class="list-group-item border-start px-0">
@@ -153,7 +150,7 @@ include_once "../system_data/dataView.php";
                 <article class="p-4">
                   <div class="row align-items-center border-bottom border-2">
                     <div class="col-12 col-md-7">
-                      <h2>EDUCACION</h2>
+                      <h2 class="text-center text-md-start">EDUCACION</h2>
                       <ul class="list-group list-group-flush ms-5 py-4">
                         <?php for ($i=0; $i < count($dcursos); $i++) { 
                         if($dcursos[$i][5]<$dcursos[$i][6]){
@@ -181,7 +178,7 @@ include_once "../system_data/dataView.php";
                   </div>
                 </article>
                 <!-- hobbys -->
-                <article class="p-4">
+                <article class="p-4 text-center text-md-start">
                   <h1>HOBBY</h1>
                   <div class="row justify-content-md-center">
                     <div class="col-6 col-md-2">

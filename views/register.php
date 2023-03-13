@@ -26,10 +26,10 @@
   }
   ?>
   <!-- cuerpo -->
-  <section class="container" id="user" style="margin-top:50px">
-    <div class="row justify-content-center">
+  <section class="container" id="user">
+    <div class="row justify-content-center" style="margin: 80px 0px">
       <!-- regitrar alumnos -->
-      <article id="registrar_1" class="col-11 col-md-9 <?php echo $class1;?>">
+      <article id="registrar_1" class="col-11 col-md-10 <?php echo $class1;?>">
         <div class="card border-info my-5">
           <div class="card-header text-center"><h3>Registar alumnos</h3></div>
           <!-- Datos personales -->
@@ -134,7 +134,7 @@
 
       </article>
       <!-- login visually-hidden-->
-      <article id="login_1" class="col-11 col-md-9 <?php echo $class2;?>">
+      <article id="login_1" class="col-11 col-md-10 <?php echo $class2;?>">
         <div class="card border-info my-5">
           <div class="card-header text-center"><h3> Clave de seguridad</h3></div>
           <!-- Datos personales -->
@@ -188,7 +188,7 @@
   $footers = new footers();
   echo $footers->footer2();
   ?>
-<script src="../configuration/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="../configuration/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="../configuration/config-general.js" crossorigin="anonymous"></script>
 </body>
