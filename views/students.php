@@ -29,6 +29,7 @@ if($dataSt['row'][4]=="M"){
   $icon="../imagens/lgtbq.png";
   $genero='LGTBQ';
 }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -227,7 +228,7 @@ if($dataSt['row'][4]=="M"){
                       <th scope="col" colspan="5">
                         <form name="listar_tareas" class="input-group" method="POST">
                           <span class="input-group-text">Cursos:</span>
-                          <select id="listar_Cursos1" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
+                          <select class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
                             <option>Todos</option>
                             <optgroup label="Cursos">
                               <?php for($x=0 ; $x<count($dataCurse); $x++){ if($x==0){ ?>
@@ -237,7 +238,7 @@ if($dataSt['row'][4]=="M"){
                               <?php } } ?>
                             </optgroup>
                           </select>
-                          <button type="button" id="lsCurso_1button" class="btn btn-info">Listar</button>
+                          <button type="button" id="lsTareas_1button" class="btn btn-info">Listar</button>
                         </form>
                       </th>
                     </tr>
@@ -376,7 +377,7 @@ if($dataSt['row'][4]=="M"){
                       <th scope="col" colspan="5">
                         <form name="listar_tareas" class="input-group" method="POST">
                           <span class="input-group-text">Cursos:</span>
-                          <select id="listar_Cursos1" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
+                          <select class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
                             <option>Todos</option>
                             <optgroup label="Cursos">
                               <?php for($x=0 ; $x<count($dataCurse); $x++){ if($x==0){ ?>
@@ -386,7 +387,7 @@ if($dataSt['row'][4]=="M"){
                               <?php } } ?>
                             </optgroup>
                           </select>
-                          <button type="button" id="lsCurso_1button" class="btn btn-info">Listar</button>
+                          <button type="button" id="lsPrac_1button" class="btn btn-info">Listar</button>
                         </form>
                       </th>
                     </tr>
@@ -530,7 +531,7 @@ if($dataSt['row'][4]=="M"){
                       <th scope="col" colspan="5">
                         <form name="listar_tareas" class="input-group" method="POST">
                           <span class="input-group-text">Cursos:</span>
-                          <select id="listar_Cursos1" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
+                          <select class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
                             <option>Todos</option>
                             <optgroup label="Cursos">
                               <?php for($x=0 ; $x<count($dataCurse); $x++){ if($x==0){ ?>
@@ -684,7 +685,7 @@ if($dataSt['row'][4]=="M"){
                       <th scope="col" colspan="5">
                         <form name="listar_tareas" class="input-group" method="POST">
                           <span class="input-group-text">Cursos:</span>
-                          <select id="listar_Cursos1" class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
+                          <select class="form-select" title="Cursos que ejerces" aria-label="Cursos que ejerces">
                             <option>Todos</option>
                             <optgroup label="Cursos">
                               <?php for($x=0 ; $x<count($dataCurse); $x++){ if($x==0){ ?>
@@ -694,7 +695,7 @@ if($dataSt['row'][4]=="M"){
                               <?php } } ?>
                             </optgroup>
                           </select>
-                          <button type="button" id="lsCurso_1button" class="btn btn-info">Listar</button>
+                          <button type="button" id="lsPromedio_1button" class="btn btn-info">Listar</button>
                         </form>
                       </th>
                     </tr>
@@ -759,7 +760,7 @@ if($dataSt['row'][4]=="M"){
           <!-- Detalles de examenes -->
           <h1>Detalles de los examenes:</h1>
           <hr class="border-light opacity-75">
-          <?php 
+          <?php
           if($testCurse['row']!=0){
             $residuoExam=0;
             for($i=0; $i < count($testCurse['row']); $i++){
@@ -825,7 +826,7 @@ include "../footer.php";
 $footers = new footers();
 echo $footers->footer2();
 ?>
-<script src="../configuration/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="../configuration/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="../configuration/config-students.js" crossorigin="anonymous"></script>
 </body>
