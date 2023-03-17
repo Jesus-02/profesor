@@ -1,3 +1,5 @@
+/* Nombre de articulo */
+let link="";
 /* ocultar articulos */
 $('section article').hide();
 $('section article:first').show();
@@ -9,7 +11,7 @@ $('aside a span i').hide();
 $('aside a span i.bi-caret-down-fill').show();
 
 $('aside .list-group a').click(function() {
-var link = $(this).attr('href');
+  link = $(this).attr('href');
   if (link!='#') {
     /* active */
     $('aside a.list-group-item').removeClass('active');

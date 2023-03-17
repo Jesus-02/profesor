@@ -1,34 +1,34 @@
 <?php
-/* Fecha local */
-setlocale(LC_ALL, "es_PE");
+  /* Fecha local */
+  setlocale(LC_ALL, "es_PE");
 
-/**
- * STUDENTS
- * Data
-*/
-include_once "../system_data/data_Students.php";
-use models\students;
-$student = new students();
-$dataSt = $student->dataUser();
-$dataCurse = $student->userCurses();
-$testCurse = $student->testCurse();
-/* Session */
-if (!isset($_SESSION['user'])) {
-  header('location:../index.php');
-}
-/* asignacion por genero */
-$icon=null;
-$genero=null;
-if($dataSt['row'][4]=="M"){
-  $icon="../imagens/userh3.png";
-  $genero='Masculino';
-}elseif($dataSt['row'][4]=="F"){
-  $icon="../imagens/userm2.png";
-  $genero='Femenino';
-}else{
-  $icon="../imagens/lgtbq.png";
-  $genero='LGTBQ';
-}
+  /**
+   * STUDENTS
+   * Data
+  */
+  include_once "../system_data/data_Students.php";
+  use models\students;
+  $student = new students();
+  $dataSt = $student->dataUser();
+  $dataCurse = $student->userCurses();
+  $testCurse = $student->testCurse();
+  /* Session */
+  if (!isset($_SESSION['user'])) {
+    header('location:../index.php');
+  }
+  /* asignacion por genero */
+  $icon=null;
+  $genero=null;
+  if($dataSt['row'][4]=="M"){
+    $icon="../imagens/userh3.png";
+    $genero='Masculino';
+  }elseif($dataSt['row'][4]=="F"){
+    $icon="../imagens/userm2.png";
+    $genero='Femenino';
+  }else{
+    $icon="../imagens/lgtbq.png";
+    $genero='LGTBQ';
+  }
 
 ?>
 <!doctype html>
@@ -118,7 +118,7 @@ if($dataSt['row'][4]=="M"){
           <p class="fs-4">Actualiza tus datos para darte una mejor experiencia &#128521;</p>
           <hr class="border-light opacity-75">
           <!-- Datos personales -->
-          <form name="datos_personales" class="card bg-secondary text-dark mb-3">
+          <form id="datos_personales" class="card bg-secondary text-dark mb-3">
             <div class="card-header">
               <h2>Datos personales:</h2>
             </div>
@@ -126,28 +126,28 @@ if($dataSt['row'][4]=="M"){
               <div class="mb-3 visually-hidden">
                 <div class="input-group">
                   <span class="input-group-text">DNI:</span>
-                  <input type="number" name="alumno_dp_dni" id="alumno_dp_dni"  placeholder="N° 12345678" min="10000000" max="99999999" aria-label="DNI" class="form-control" value="<?php echo $_SESSION['user'];?>" disabled>
+                  <input type="number" id="alumno_dp_dni"  placeholder="N° 12345678" min="10000000" max="99999999" aria-label="DNI" class="form-control" value="<?php echo $_SESSION['user'];?>" disabled>
                 </div>
               </div>
               <div class="mb-3">
                 <div class="input-group is-validation">
                   <span class="input-group-text">Nombres:</span>
-                  <input type="text" name="alumno_dp_name1" id="alumno_dp_name1" placeholder="Primer nombre" aria-label="Primer nombre" class="form-control" value="<?php echo $dataSt['row'][1];?>" disabled>
+                  <input type="text" id="alumno_dp_name1" placeholder="Primer nombre" aria-label="Primer nombre" class="form-control" value="<?php echo $dataSt['row'][1];?>" disabled>
                   <div class="invalid-feedback">Nombres invalidos - Es nesesario escribir tu primer nombre mínimo sin números ni links.</div>
                 </div>
               </div>
               <div class="mb-3">
                 <div class="input-group is-validation">
                   <span class="input-group-text">Apellidos:</span>
-                  <input type="text" name="alumno_dp_surName1" id="alumno_dp_surName1" placeholder="Apellido paterno" aria-label="Paterno" class="form-control" value="<?php echo $dataSt['row'][2];?>" disabled>
-                  <input type="text" name="alumno_dp_surName2" id="alumno_dp_surName2" placeholder="Apellidos materno" aria-label="Materno" class="form-control" value="<?php echo $dataSt['row'][3];?>" disabled>
+                  <input type="text" id="alumno_dp_surName1" placeholder="Apellido paterno" aria-label="Paterno" class="form-control" value="<?php echo $dataSt['row'][2];?>" disabled>
+                  <input type="text" id="alumno_dp_surName2" placeholder="Apellidos materno" aria-label="Materno" class="form-control" value="<?php echo $dataSt['row'][3];?>" disabled>
                   <div class="invalid-feedback">Apellidos invalidos -  Es nesesario escribir tus apellidos sin números ni links.</div>
                 </div>
               </div>              
               <div class="mb-3">
                 <div class="input-group">
                   <span class="input-group-text">Genero:</span>
-                  <select class="form-select bg-transparent" name="alumno_dp_genero1" id="alumno_dp_genero1" aria-label="Genero" disabled>
+                  <select class="form-select form-control bg-transparent" id="alumno_dp_genero1" aria-label="Genero" disabled>
                     <option selected disabled value="<?php echo $dataSt['row'][4];?>">Genero <?php echo $genero;?></option>
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
@@ -159,21 +159,21 @@ if($dataSt['row'][4]=="M"){
               <div class="mb-3">
                 <div class="input-group is-validation">
                   <span class="input-group-text">Edad:</span>
-                  <input type="number" name="alumno_dp_edad" id="alumno_dp_edad"  placeholder="Edad" min="1" max="200" aria-label="Edad" class="form-control" value="<?php echo $dataSt['row'][5];?>" disabled>
+                  <input type="number" id="alumno_dp_edad"  placeholder="Edad" min="1" max="200" aria-label="Edad" class="form-control" value="<?php echo $dataSt['row'][5];?>" disabled>
                   <div class="invalid-feedback">Edad invalido -  Es nesesario escribir tu edad sin links.</div>
                 </div>
               </div>
               <div class="mb-3">
                 <div class="input-group is-validation">
                   <span class="input-group-text">Correo:</span>
-                  <input type="gmail" name="alumno_dp_correo1" id="alumno_dp_correo1"  placeholder="ejemplo@gmail.com" aria-label="Correo" class="form-control" value="<?php echo $dataSt['row'][6];?>" disabled>
+                  <input type="mail" id="alumno_dp_correo1"  placeholder="ejemplo@gmail.com" aria-label="Correo" class="form-control" value="<?php echo $dataSt['row'][6];?>" disabled>
                   <div class="invalid-feedback">Correo invalido -  Es nesesario escribir tu correo sin links.</div>
                 </div>
               </div>
               <div class="mb-3">
                 <div class="input-group is-validation">
                   <span class="input-group-text">Celular:</span>
-                  <input type="number" name="alumno_dp_cellPhone1" id="alumno_dp_cellPhone1"  placeholder="N° 123456789" min="1000000000" max="999999999" aria-label="cell phone" class="form-control" value="<?php echo $dataSt['row'][7];?>" disabled>
+                  <input type="number" id="alumno_dp_cellPhone1"  placeholder="N° 123456789" min="1000000000" max="999999999" aria-label="cell phone" class="form-control" value="<?php echo $dataSt['row'][7];?>" disabled>
                   <div class="invalid-feedback">Número invalido -  Es nesesario escribir los 9 digitos de tu celular sin links.</div>
                 </div>
               </div>
@@ -829,5 +829,6 @@ echo $footers->footer2();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="../configuration/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="../configuration/config-students.js" crossorigin="anonymous"></script>
+<script src="../configuration/manage-students.js" crossorigin="anonymous"></script>
 </body>
 </html>
